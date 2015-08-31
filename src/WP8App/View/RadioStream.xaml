@@ -11,27 +11,23 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
-    <phone:PhoneApplicationPage.Foreground>
-        <ImageBrush Stretch="UniformToFill" ImageSource="/Images/Background-b7bfe342-efd1-455e-b658-50ffbda457df.jpg"/>
-    </phone:PhoneApplicationPage.Foreground>
+    shell:SystemTray.IsVisible="True" Foreground="{x:Null}" Background="Black">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Background="Black">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="Vocaloid Radio" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" FontSize="48" Foreground="White" FontWeight="Bold" TextAlignment="Center"/>
-        </StackPanel>
+        <StackPanel Grid.Row="0" Margin="12,17,0,28"/>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Image HorizontalAlignment="Left" Height="216" Margin="-10,448,-12,0" VerticalAlignment="Top" Width="478" Source="/Images/Tileback-3ab589e8-5ad0-401f-9545-af245cb3d9c3.jpg" Stretch="Fill"/>
-            <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="0,533,0,0" VerticalAlignment="Top" Click="Button_Click_1" Height="120" Width="210">
+        <Grid x:Name="ContentPanel" Margin="12,10,12,0" Grid.RowSpan="2">
+            <Image HorizontalAlignment="Center" Height="216" Margin="-10,0,-12,10" VerticalAlignment="Bottom" Width="478" Source="/Images/Tileback-3ab589e8-5ad0-401f-9545-af245cb3d9c3.jpg" Stretch="Fill"/>
+            <Button x:Name="stopButton" Content="Stop" HorizontalAlignment="Left" Margin="0,628,0,0" VerticalAlignment="Bottom" Click="Button_Click_1" Height="120" Width="210" Foreground="White" BorderBrush="White">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="Black" Offset="0"/>
@@ -39,13 +35,15 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-            <Button x:Name="playButton" Content="Play" HorizontalAlignment="Left" Margin="236,533,0,0" VerticalAlignment="Top" Click="Button_Click_2" Height="120" Width="210" Background="Black"/>
-            <phone:WebBrowser x:Name="ImageStreamer" HorizontalAlignment="Left" Margin="10,-20,0,0" VerticalAlignment="Top" Height="213" Width="436" Source="http://vocaloidradio.com/popup-player.html" IsScriptEnabled="True" Foreground="{x:Null}" FontSize="36" RenderTransformOrigin="0.5,0.5">
+            <Button x:Name="playButton" Content="Play" HorizontalAlignment="Right" Margin="236,628,0,0" VerticalAlignment="Bottom" Click="Button_Click_2" Height="120" Width="210" Background="Black" Foreground="White" BorderBrush="White"/>
+            <phone:WebBrowser x:Name="ImageStreamer" HorizontalAlignment="Left" Margin="25.217,185.736,0,0" VerticalAlignment="Top" Height="234.264" Width="417" Source="http://vocaloidradio.com/popup-player.html" IsScriptEnabled="True" Foreground="{x:Null}" FontSize="36" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" Tap="ImageStreamer_Tap" MouseWheel="ImageStreamer_MouseWheel" MouseMove="ImageStreamer_MouseMove" KeyDown="ImageStreamer_KeyDown" ManipulationStarted="ImageStreamer_ManipulationStarted" ManipulationDelta="ImageStreamer_ManipulationDelta" ManipulationCompleted="ImageStreamer_ManipulationCompleted" Navigating="ImageStreamer_Navigating">
                 <phone:WebBrowser.RenderTransform>
-                    <CompositeTransform ScaleX="2" ScaleY="2"/>
+                    <CompositeTransform ScaleX="2" ScaleY="2" SkewX="0.977" TranslateX="2.951"/>
                 </phone:WebBrowser.RenderTransform>
             </phone:WebBrowser>
-            <UI:AdControl x:Name="Ad1" ApplicationId="0bbce01f-6357-4702-b4ab-db02a90d5256" AdUnitId="10336054" HorizontalAlignment="Left" Height="80" Margin="-10,368,-14,0" VerticalAlignment="Top" Width="480" IsAutoCollapseEnabled="True" ErrorOccurred="Ad1_ErrorOccurred"/>
+            <TextBlock x:Name="TextBox" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="60" Width="456" Foreground="White" TextAlignment="Center" FontSize="24" RenderTransformOrigin="0.5,0.667" LineHeight="6"/>
+            <UI:AdControl x:Name="Ad1" ApplicationId="0bbce01f-6357-4702-b4ab-db02a90d5256" AdUnitId="10336054" HorizontalAlignment="Center" Height="80" Margin="0,-15,0,0" VerticalAlignment="Top" Width="456" ErrorOccurred="Ad1_ErrorOccurred" IsAutoRefreshEnabled="False" IsAutoCollapseEnabled="True" Foreground="{x:Null}" Background="Black"/>
+            <Button Name="bt1" Content="Vocaloid Rules!" HorizontalAlignment="Left"  Margin="0,65,0,0" VerticalAlignment="Top" Height="462" Width="446" BorderBrush="{x:Null}" Foreground="{x:Null}" ClickMode="Hover" Background="{x:Null}" GotFocus="bt1_GotFocus" Tap="bt1_Tap" Click="bt1_Click"/>
         </Grid>
     </Grid>
 

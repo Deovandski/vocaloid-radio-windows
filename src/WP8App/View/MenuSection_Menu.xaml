@@ -48,7 +48,7 @@
 		</mytoolkitpaging:BindableApplicationBar>	
         <ctl:MenuData x:Key="MenuSection_MenuMenuControlData">
             <ctl:MenuItemData Title="Vocaloid Radio Website" TargetUrl="http://www.vocaloidradio.com" Image="/Images/Item-46e82c4d-229e-4c88-86f8-8be9c5e5a8ce.png"/>
-            <ctl:MenuItemData Title="About" TargetUrl="http://www.deovandski.blogspot.com/2013/11/vocaloidradio-mikufm-app-legal.html" Image="/Images/Item-2104fc48-d029-4d64-982c-bc6ede5b308b.png"/>
+            <ctl:MenuItemData Title="About" Target="/View/About.xaml" Image="/Images/Item-2104fc48-d029-4d64-982c-bc6ede5b308b.png"/>
             <ctl:MenuItemData Title="Radio Stream" Target="/View/RadioStream.xaml" Image="/Images/Item-8b2adfcd-b6ef-41c6-a76a-76bd07203a71.png"/>
             <ctl:MenuItemData Title="Donate" TargetUrl="http://vocaloidradio.com/donate/" Image="/Images/Item-7047d2b3-e1e2-447e-bd54-93fda2f7d051.png"/>
        

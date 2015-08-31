@@ -278,8 +278,17 @@
     <Compile Include="ViewModel\Base\DelegateCommand.cs" />
     <Compile Include="ViewModel\Base\INavigable.cs" />
     <Compile Include="ViewModel\Base\VMBase.cs" />
+    <Compile Include="View\Changelog.xaml.cs">
+      <DependentUpon>Changelog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LicenseTerms.xaml.cs">
+      <DependentUpon>LicenseTerms.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MenuSection_Menu.xaml.cs">
       <DependentUpon>MenuSection_Menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PrivacyInfo.xaml.cs">
+      <DependentUpon>PrivacyInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RadioStream.xaml.cs">
       <DependentUpon>RadioStream.xaml</DependentUpon>
@@ -301,9 +310,6 @@
     </Compile>
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\Interfaces\IAboutViewModel.cs" />
-    <Compile Include="View\License.xaml.cs">
-      <DependentUpon>License.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ViewModel\Interfaces\ILicenseViewModel.cs" />
     <Compile Include="ViewModel\LicenseViewModel.cs" />
   </ItemGroup>
@@ -357,13 +363,24 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\Changelog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\LicenseTerms.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\MenuSection_Menu.xaml" />
+    <Page Include="View\PrivacyInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\RadioStream.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\About.xaml" />
-    <Page Include="View\License.xaml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.resx" />

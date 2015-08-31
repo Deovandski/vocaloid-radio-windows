@@ -89,13 +89,20 @@
         </Style>
     </phone:PhoneApplicationPage.Resources>
     <Grid x:Name="LayoutRoot" Background="{StaticResource CustomApplicationBackgroundImage}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="19*"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Margin="21,17,0,28"/>
-        <Image HorizontalAlignment="Left" Height="240" Margin="0,20,0,0" Grid.Row="1" VerticalAlignment="Top" Width="480" Source="/Vocaloid Radio Back Tile.png"/>
-        <phone:WebBrowser HorizontalAlignment="Left" Margin="0,250,0,0" Grid.Row="1" VerticalAlignment="Top" Height="505" Width="480" Source="http://deovandski.blogspot.com/2013/11/vocaloidradio-mikufm-app-legal.html" IsScriptEnabled="True"/>
-        <TextBlock HorizontalAlignment="Center" Margin="0,1,5,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="44" Width="475" FontSize="36" Text="Vocaloid Radio" TextAlignment="Center"/>
+        <StackPanel Grid.Row="0" Margin="21,17,0,28" Grid.ColumnSpan="2"/>
+        <Image HorizontalAlignment="Left" Height="240" Margin="0,20,0,0" Grid.Row="1" VerticalAlignment="Top" Width="480" Source="/Vocaloid Radio Back Tile.png" Grid.ColumnSpan="2"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,1,5,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="44" Width="475" FontSize="36" Text="Vocaloid Radio" TextAlignment="Center" Grid.ColumnSpan="2"/>
+        <Button Content="License Terms" HorizontalAlignment="Left" Margin="55,260,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="135" Width="384" Click="Button_Click" Foreground="White" BorderBrush="White"/>
+        <Button Content="Technical Information" HorizontalAlignment="Left" Margin="55,395,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="135" Width="384" Click="Button_Click_1" Foreground="White" BorderBrush="White"/>
+        <Button Content="Privacy Information" HorizontalAlignment="Left" Margin="55,530,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="135" Width="384" Click="Button_Click_2" Foreground="White" BorderBrush="White"/>
+        <TextBlock HorizontalAlignment="Center" Margin="10,700,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Vocaloid Radio Version 2.3" VerticalAlignment="Bottom" Grid.ColumnSpan="2" Height="45" Width="460" Foreground="White" FontWeight="Bold" TextAlignment="Center" FontFamily="Segoe WP Black"/>
     </Grid>
 </phone:PhoneApplicationPage>

@@ -8,6 +8,7 @@ using System.CodeDom.Compiler;
 using System.Runtime.CompilerServices;
 using System.Windows.Controls;
 using Microsoft.Phone.Controls;
+using System;
 
 namespace WPAppStudio.View
 {
@@ -25,5 +26,23 @@ namespace WPAppStudio.View
         {
             InitializeComponent();        
 		}
+
+        // License Terms
+        private void Button_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/View/LicenseTerms.xaml", UriKind.Relative));
+        }
+
+        // Changelog
+        private void Button_Click_1(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/View/Changelog.xaml", UriKind.Relative));
+        }
+
+        // Privacy Info
+        private void Button_Click_2(object sender, System.Windows.RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/View/PrivacyInfo.xaml", UriKind.Relative));
+        }
     }
 }
