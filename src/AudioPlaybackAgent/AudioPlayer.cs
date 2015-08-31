@@ -21,7 +21,7 @@ namespace Vocaloid_Radio
                 Application.Current.UnhandledException += UnhandledException;
             });
         }
-        AudioTrack streamRadio = new AudioTrack(new Uri("http://199.168.142.117:8019/stream", UriKind.Absolute),
+        AudioTrack streamRadio = new AudioTrack(new Uri("http://195.154.237.156:8019/stream", UriKind.Absolute),
                             "Online Stream",
                             "Vocaloid Radio",
                             " ",
