@@ -35,9 +35,5 @@ namespace VocaloidRadio.WP_Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(MainPage));
-        }
     }
 }

@@ -1,0 +1,11 @@
+﻿en-US == US English
+zh-CN == Chinese Simplified (PRC)
+fr-FR == French (France)
+it-IT == Italian (Italy)
+ja-JP == Japanese (Japan)
+pt-BR == Portuguese (Brazil)
+ru-RU == Russian (Russia)
+
+Variable names convention:
+
+XAMLName_VariableName.Text

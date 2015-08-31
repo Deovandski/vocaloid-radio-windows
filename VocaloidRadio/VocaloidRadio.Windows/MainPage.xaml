@@ -12,14 +12,17 @@
 
     <Page.BottomAppBar>
         <CommandBar>
+            <AppBarButton Label="Release 4"  Command="{Binding MainViewModel.PrivacyCommand}" Foreground="#FF2EDEC6" Icon="Important"/>
             <AppBarButton x:Name="helpButton" x:Uid="HelpButton" Label="Help" Command="{Binding MainViewModel.PrivacyCommand}" Click="helpButton_Click" Icon="Help"/>
-            <AppBarButton x:Name="licenseButton" x:Uid="LicenseButton" Label="Legal Terms" Command="{Binding MainViewModel.PrivacyCommand}" Click="licenseButton_Click"/>
-            <AppBarButton x:Name="networkButton" x:Uid="NetworkButton" Label="Network Information" Command="{Binding MainViewModel.PrivacyCommand}" Click="networkButton_Click"/>
-            <AppBarButton x:Name="privacyButton" x:Uid="PrivacyButton" Label="Privacy Information" Command="{Binding MainViewModel.PrivacyCommand}" Click="privacyButton_Click"/>
-            <AppBarButton x:Name="technicalButton" x:Uid="TechnicalButton" Label="Technical Information" Command="{Binding MainViewModel.PrivacyCommand}" Click="technicalButton_Click"/>
+            <AppBarButton x:Name="licenseButton" x:Uid="LicenseButton" Label="Legal Terms" Command="{Binding MainViewModel.PrivacyCommand}" Icon="ContactInfo"  Click="licenseButton_Click"/>
+            <AppBarButton x:Name="networkButton" x:Uid="NetworkButton" Label="Network Information" Command="{Binding MainViewModel.PrivacyCommand}"  Icon="World" Click="networkButton_Click"/>
+            <AppBarButton x:Name="privacyButton" x:Uid="PrivacyButton" Label="Privacy Information" Command="{Binding MainViewModel.PrivacyCommand}" Icon="Contact" Click="privacyButton_Click"/>
+            <AppBarButton x:Name="technicalButton" x:Uid="TechnicalButton" Label="Technical Information" Command="{Binding MainViewModel.PrivacyCommand}" Icon="Setting"  Click="technicalButton_Click"/>
         </CommandBar>
     </Page.BottomAppBar>
 
+
+    <!--Main Grid-->
     <Grid x:Name="mainGrid" Margin="0,0,0,0" >
         <Grid.Background>
             <ImageBrush ImageSource="Images/miku_LargeBG.png" Stretch="UniformToFill"/>
@@ -30,8 +33,6 @@
         </Grid.ColumnDefinitions>
 
         <!--Left Main Column-->
-
-        <!--Right Main Column-->
         <!--SubGrid Column-->
         <Grid x:Name="leftSubGrid" Margin="10,0,10,108" Grid.Column="0">
             <Grid.ColumnDefinitions>
@@ -41,6 +42,7 @@
                 <RowDefinition Height="200" />
                 <RowDefinition Height="60" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="90" />
             </Grid.RowDefinitions>
 
             <!--Left Column SubGrid Row 0-->
@@ -53,25 +55,27 @@
 
                 <Grid Margin="0,0,10,0" Grid.Row="1">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="163*" />
-                        <ColumnDefinition Width="163*" />
-                        <ColumnDefinition Width="0*" />
-                        <ColumnDefinition Width="164*"/>
-                        <ColumnDefinition Width="163*" />
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Button x:Name="WebsiteButton" Content="Website" Height="100" Width="130" Foreground="White" BorderBrush="White" Background="Black" Click="WebsiteButton_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                    <Button x:Name="AppBlogButton" Content="App Blog" Height="100" Width="130" Foreground="White" BorderBrush="White" Background="Black" Grid.Column="1" Click="AppBlogButton_Click" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-                    <Button x:Name="FeaturedPageButton" Content="Featured Pages" Height="100" Width="150" Foreground="White" BorderBrush="White" Background="Black" Grid.Column="3" Click="FeaturedPageButton_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                    <Button x:Name="DonateButton" Content="Donate" Height="100" Width="130" Foreground="White" BorderBrush="White" Background="Black" Grid.Column="4" Click="DonateButton_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Button x:Name="WebsiteButton" Content="Website" Height="100" Width="110" Foreground="White" BorderBrush="White" Background="Black" Grid.Column="0" Click="WebsiteButton_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Button x:Name="AppBlogButton" Content="App Blog" Height="100" Width="110" Foreground="White" BorderBrush="White" Background="Black" Grid.Column="1" Click="AppBlogButton_Click" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                    <Button x:Name="FeaturedPageButton" Content="Featured" Height="100" Width="110" Foreground="White" BorderBrush="White" Background="Black" Grid.Column="2" Click="FeaturedPageButton_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Button x:Name="DonateButton" Content="Donate" Height="100" Width="110" Foreground="White" BorderBrush="White" Background="Black" Grid.Column="3" Click="DonateButton_Click" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <Button x:Name="rssButton" Content="RSS" Height="100" Width="110" Foreground="White" BorderBrush="White" Background="Black" Grid.Column="4" HorizontalAlignment="Stretch" Click="rssButton_Click" VerticalAlignment="Stretch"/>
                 </Grid>
             </Grid>
 
             <!--Left Column SubGrid Row 1 -->
             <TextBlock x:Name="currentPage" Grid.Column="0" Grid.Row="1" FontSize="45" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vocaloid Radio" VerticalAlignment="Top" Width="663" Foreground="{StaticResource CustomApplicationTextBrush}" TextAlignment="Center" Height="60"/>
             <WebView x:Name="MenuWebView" Grid.Row="2" Margin="0,0,0,0" UnviewableContentIdentified="MenuWebView_UnviewableContentIdentified"/>
+            <UI:AdControl ApplicationId="8a003930-0fab-44e3-bdc0-c9d9b3f914cd" AdUnitId="10801352" Height="90" Grid.Row="3" Width="728" Margin="0,0,0,2" ErrorOccurred="AdControl_ErrorOccurred"/>
 
         </Grid>
 
@@ -88,7 +92,7 @@
             </Grid.RowDefinitions>
 
             <!--Right Column SubGrid Left Column-->
-            <TextBlock Grid.Column="0" FontSize="35" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Radio Stream" VerticalAlignment="Center" Width="673" Foreground="{StaticResource CustomApplicationTextBrush}" TextAlignment="Center" Height="50" Grid.Row="1"/>
+            <TextBlock Grid.Column="0" FontSize="35" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Radio Stream" VerticalAlignment="Center" Width="332" Foreground="{StaticResource CustomApplicationTextBrush}" TextAlignment="Center" Height="50" Grid.Row="1"/>
             <Grid Margin="0,0,0,0" Grid.Column="0" Grid.Row="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
@@ -125,15 +129,13 @@
             </Grid>
 
             <!--Right Column SubGrid Right Column-->
-            <TextBlock Grid.Row="1" Grid.Column="1" FontSize="35" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Previous Songs" VerticalAlignment="Center" Width="673" Foreground="{StaticResource CustomApplicationTextBrush}" TextAlignment="Center" Height="50"/>
+            <TextBlock Grid.Row="1" FontSize="35" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Previous Songs" VerticalAlignment="Center" Width="331" Foreground="{StaticResource CustomApplicationTextBrush}" TextAlignment="Center" Height="50" Grid.Column="1"/>
             <WebView Grid.Row="2" x:Name="previousSongInformation" Grid.Column="1" Opacity="100" Margin="0,0,0,0" IsTapEnabled="False" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Disabled"/>
 
             <!--Upper Right Main Column-->
-            <Image Grid.Row="0" Height="230" Width="1346" Source="ms-appx:///Images/10364326_761930030517904_307840656_n.jpg" Grid.ColumnSpan="2"/>
+            <Image Grid.Row="0" Height="230" Source="ms-appx:///Images/cover fb.jpg" Grid.ColumnSpan="2" Stretch="UniformToFill"/>
         </Grid>
-        <WebView x:Uid="InternetTest" x:Name="InternetTest" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="10" Visibility="Collapsed" NavigationCompleted="InternetTest_NavigationCompleted" NavigationStarting="InternetTest_NavigationStarting"/>
-        <MediaElement x:Name="mediaplayer" x:FieldModifier="Public" Visibility="Collapsed" AudioCategory="BackgroundCapableMedia" AutoPlay="False" Source="http://curiosity.shoutca.st:8019/stream" AreTransportControlsEnabled="True" CurrentStateChanged="mediaplayer_CurrentStateChanged" />
-        <UI:AdControl ApplicationId="8a003930-0fab-44e3-bdc0-c9d9b3f914cd" AdUnitId="10801352" HorizontalAlignment="Left" Height="108" Margin="10,660,0,0" VerticalAlignment="Top" Width="663"/>
+        <MediaElement x:Name="mediaplayer" Visibility="Collapsed" AudioCategory="BackgroundCapableMedia" AutoPlay="False" Source="http://curiosity.shoutca.st:8019/stream" AreTransportControlsEnabled="True" BufferingProgressChanged="mediaplayer_BufferingProgressChanged" CurrentStateChanged="mediaplayer_CurrentStateChanged" />
     </Grid>
 
 </Page>

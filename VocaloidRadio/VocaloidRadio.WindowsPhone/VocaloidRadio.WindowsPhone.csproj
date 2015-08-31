@@ -149,6 +149,11 @@
     <Content Include="Assets\WideLogo.scale-240.png" />
     <Content Include="Logo.scale-100.png" />
     <Content Include="Logo.scale-140.png" />
+    <Content Include="Strings\LanguageResources.txt" />
+    <PRIResource Include="Strings\it-IT\Resources.resw" />
+    <PRIResource Include="Strings\es-ES\Resources.resw" />
+    <PRIResource Include="Strings\pt-BR\Resources.resw" />
+    <PRIResource Include="Strings\en-US\Resources.resw" />
     <None Include="Package.StoreAssociation.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +225,7 @@
       <Name>BackgroundAudioTask</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

@@ -31,11 +31,11 @@
                 <CompositeTransform ScaleX="0.85" ScaleY="0.85"/>
             </Image.RenderTransform>
         </Image>
-        <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="Website" VerticalAlignment="Bottom" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_VocaloidWebsite_PointerPressed"/>
+        <TextBlock x:Uid="Main_Website" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_VocaloidWebsite_PointerPressed"/>
 
         <!--Developer Blog Display Group-->
         <Image Grid.Column="1" Grid.Row="1" x:Name="imageButton_DeveloperBlog" HorizontalAlignment="Center" Height="150" Margin="0" VerticalAlignment="Center" Width="150" Source="Images/buttonBackground.jpg" Opacity="0.65" PointerPressed="imageButton_DeveloperBlog_PointerPressed"/>
-        <TextBlock Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="App Blog" VerticalAlignment="Bottom" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_DeveloperBlog_PointerPressed"/>
+        <TextBlock Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" x:Uid="Main_AppBlog" Text="" VerticalAlignment="Bottom" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_DeveloperBlog_PointerPressed"/>
         <Image Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Center" Height="123" Margin="0" VerticalAlignment="Top" Width="150" Source="Images/Icons/Item-2.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" PointerPressed="imageButton_DeveloperBlog_PointerPressed">
             <Image.RenderTransform>
                 <CompositeTransform ScaleX="0.85" ScaleY="0.85"/>
@@ -44,7 +44,7 @@
 
         <!--Radio Stream Display Group-->
         <Image Grid.Column="0" Grid.Row="3"  x:Name="imageButton_RadioStream" HorizontalAlignment="Center" Height="150" Margin="0" VerticalAlignment="Center" Width="150" Source="Images/buttonBackground.jpg" Opacity="0.65" PointerPressed="imageButton_RadioStream_PointerPressed"/>
-        <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="Radio Stream" VerticalAlignment="Bottom" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_RadioStream_PointerPressed"/>
+        <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" x:Uid="Main_RadioStream" Text="" VerticalAlignment="Bottom" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_RadioStream_PointerPressed"/>
         <Image Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" Height="123" Margin="0" VerticalAlignment="Top" Width="150" Source="Images/Icons/Dark/Music.png" Stretch="Fill" PointerPressed="imageButton_RadioStream_PointerPressed" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <CompositeTransform ScaleX="0.85" ScaleY="0.85"/>
@@ -58,7 +58,7 @@
                 <CompositeTransform ScaleX="0.85" ScaleY="0.85"/>
             </Image.RenderTransform>
         </Image>
-        <TextBlock Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="Request Song" VerticalAlignment="Bottom" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_RequestSong_PointerPressed"/>
+        <TextBlock Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" x:Uid="Main_RequestSong" Text="" VerticalAlignment="Bottom" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_RequestSong_PointerPressed"/>
 
         <!--Donate Display Group-->
         <Image Grid.Column="0" Grid.Row="5" x:Name="imageButton_Donate" HorizontalAlignment="Center" Height="150" Margin="0" VerticalAlignment="Center" Width="150" Source="Images/buttonBackground.jpg" Opacity="0.65" PointerPressed="imageButton_Donate_PointerPressed"/>
@@ -67,7 +67,7 @@
                 <CompositeTransform ScaleY="0.85" ScaleX="0.85"/>
             </Image.RenderTransform>
         </Image>
-        <TextBlock Grid.Column="0" Grid.Row="5" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="Donate" VerticalAlignment="Bottom" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_Donate_PointerPressed"/>
+        <TextBlock Grid.Column="0" Grid.Row="5" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" x:Uid="Main_Donate" Text="" VerticalAlignment="Bottom" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_Donate_PointerPressed"/>
 
         <!--Featured Pages Display Group-->
         <Image Grid.Column="1" Grid.Row="5" x:Name="imageButton_FeaturedPages" HorizontalAlignment="Center" Height="150" Margin="0" VerticalAlignment="Center" Width="150" Source="Images/buttonBackground.jpg" Opacity="0.65" PointerPressed="imageButton_FeaturedPages_PointerPressed"/>
@@ -76,7 +76,7 @@
                 <CompositeTransform ScaleX="0.85" ScaleY="0.85"/>
             </Image.RenderTransform>
         </Image>
-        <TextBlock Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="Featured Pages" VerticalAlignment="Bottom" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_FeaturedPages_PointerPressed"/>
+        <TextBlock Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" x:Uid="Main_FeaturedPages" Text="" VerticalAlignment="Bottom" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_FeaturedPages_PointerPressed"/>
 
     </Grid>
     <Page.BottomAppBar>
@@ -85,11 +85,11 @@
                 <AppBarButton x:Name="helpButton" x:Uid="HelpButton" Label="Help" Command="{Binding MainViewModel.PrivacyCommand}" Click="helpButton_Click" Icon="Help"/>
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Name="licenseButton" x:Uid="LicenseButton" Label="Legal Terms" Command="{Binding MainViewModel.PrivacyCommand}" Click="licenseButton_Click"/>
-                <AppBarButton x:Name="networkButton" x:Uid="NetworkButton" Label="Network Information" Command="{Binding MainViewModel.PrivacyCommand}" Click="networkButton_Click"/>
-                <AppBarButton x:Name="privacyButton" x:Uid="PrivacyButton" Label="Privacy Information" Command="{Binding MainViewModel.PrivacyCommand}" Click="privacyButton_Click"/>
-                <AppBarButton x:Name="technicalButton" x:Uid="TechnicalButton" Label="Technical Information" Command="{Binding MainViewModel.PrivacyCommand}" Click="technicalButton_Click"/>
-                <AppBarButton Label="App Version: 4.1" IsEnabled="False" Command="{Binding MainViewModel.PrivacyCommand}"/>
+                <AppBarButton x:Name="licenseButton" x:Uid="LicenseButton" Label="" Command="{Binding MainViewModel.PrivacyCommand}" Click="licenseButton_Click"/>
+                <AppBarButton x:Name="networkButton" x:Uid="NetworkButton" Label="" Command="{Binding MainViewModel.PrivacyCommand}" Click="networkButton_Click"/>
+                <AppBarButton x:Name="privacyButton" x:Uid="PrivacyButton" Label="" Command="{Binding MainViewModel.PrivacyCommand}" Click="privacyButton_Click"/>
+                <AppBarButton x:Name="technicalButton" x:Uid="TechnicalButton" Label="" Command="{Binding MainViewModel.PrivacyCommand}" Click="technicalButton_Click"/>
+                <AppBarButton Label="App Version: 4.2" IsEnabled="False" Command="{Binding MainViewModel.PrivacyCommand}"/>
                 <AppBarButton Label=" " Command="{Binding MainViewModel.PrivacyCommand}"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>

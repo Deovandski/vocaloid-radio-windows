@@ -9,17 +9,15 @@
     xmlns:UI="using:Microsoft.Advertising.Mobile.UI"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid >
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="90" />
-            <RowDefinition Height="50" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <WebView Source="http://vocaloidradioapp.blogspot.com/2014/06/vocaloid-radio-windows-phone-app-help.html" Grid.Row="2"/>
-        <UI:AdControl AutoRefreshIntervalInSeconds="60" ApplicationId="733b41ec-6494-40d4-9e24-ca5a9c4d0a81" AdUnitId="10801351" Height="50" IsAutoRefreshEnabled="True" Margin="0" Width="380" Grid.ColumnSpan="2" Grid.Row="1"/>
-        <Button x:Name="BackButton" Background="Black" Content="Back" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Stretch" Click="BackButton_Click" Grid.ColumnSpan="2" Foreground="White" BorderBrush="White"/>
-    </Grid>
+<Grid >
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="50" />
+        <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <WebView Source="http://vocaloidradioapp.blogspot.com/2014/06/vocaloid-radio-windows-phone-app-help.html" Grid.Row="1"/>
+    <UI:AdControl AutoRefreshIntervalInSeconds="60" ApplicationId="733b41ec-6494-40d4-9e24-ca5a9c4d0a81" AdUnitId="10801351" Height="50" IsAutoRefreshEnabled="True" Margin="0" Width="380" Grid.ColumnSpan="2" Grid.Row="0"/>
+</Grid>
 </Page>

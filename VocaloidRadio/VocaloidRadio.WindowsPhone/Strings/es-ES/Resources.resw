@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="128_CS_Text1" xml:space="preserve">
+    <value>128kbps Servidor está Activo!</value>
+  </data>
+  <data name="128_Issues.Text" xml:space="preserve">
+    <value>Problemas? Por favor, compruebe su conexión o probar la transmisión de 192 kbps.</value>
+  </data>
+  <data name="128_MoreInfo.Text" xml:space="preserve">
+    <value>Más información en la barra inferior de la página principal o VocaloidRadioApp.blogspot.com (en Inglés.) Para la traducción visite el Blog con su computadora</value>
+  </data>
+  <data name="128_PlayerStatus.Text" xml:space="preserve">
+    <value>Status de transmisión del reproductor 128kbps</value>
+  </data>
+  <data name="128_RadioStream.Header" xml:space="preserve">
+    <value>Transmisión de la radio</value>
+  </data>
+  <data name="128_RecentSongs.Header" xml:space="preserve">
+    <value>Canciones jugados recientemente</value>
+  </data>
+  <data name="128_StreamStatus.Text" xml:space="preserve">
+    <value>Status de transmisión </value>
+  </data>
+  <data name="128_VocaloidRadio.Header" xml:space="preserve">
+    <value>Radio Vocaloid </value>
+  </data>
+  <data name="192_CS_Text1" xml:space="preserve">
+    <value>192kbps Servidor está Activo!</value>
+  </data>
+  <data name="192_Issues.Text" xml:space="preserve">
+    <value>Problemas? Por favor, compruebe su conexión o probar la transmisión de 128 kbps.</value>
+  </data>
+  <data name="192_MoreInfo.Text" xml:space="preserve">
+    <value>Más información en la barra inferior de la página principal o VocaloidRadioApp.blogspot.com (en Inglés.) Para la traducción visite el Blog con su computadora</value>
+  </data>
+  <data name="192_PlayerStatus.Text" xml:space="preserve">
+    <value>Status de transmisión del reproductor 192kbps</value>
+  </data>
+  <data name="192_RadioStream.Header" xml:space="preserve">
+    <value>Transmisión de la radio</value>
+  </data>
+  <data name="192_RecentSongs.Header" xml:space="preserve">
+    <value>Canciones jugados recientemente</value>
+  </data>
+  <data name="192_StreamStatus.Text" xml:space="preserve">
+    <value>Status de transmisión</value>
+  </data>
+  <data name="192_VocaloidRadio.Header" xml:space="preserve">
+    <value>Radio Vocaloid</value>
+  </data>
+  <data name="CS_Text10" xml:space="preserve">
+    <value>En pausa</value>
+  </data>
+  <data name="CS_Text11" xml:space="preserve">
+    <value>Ocurrió un error! (Ref: WP_104)</value>
+  </data>
+  <data name="CS_Text12" xml:space="preserve">
+    <value>Ocurrió un error! (Ref: WP_105)</value>
+  </data>
+  <data name="CS_Text13" xml:space="preserve">
+    <value>Fatal Error... (Ref: WP_1)</value>
+  </data>
+  <data name="CS_Text14" xml:space="preserve">
+    <value>A la espera de la transmisión ...</value>
+  </data>
+  <data name="CS_Text15" xml:space="preserve">
+    <value>Radio is Opening!</value>
+  </data>
+  <data name="CS_Text16" xml:space="preserve">
+    <value>Ocurrió un error! (Ref: WP_106)</value>
+  </data>
+  <data name="CS_Text17" xml:space="preserve">
+    <value>Ocurrió un error! (Ref: WP_107)</value>
+  </data>
+  <data name="CS_Text18" xml:space="preserve">
+    <value>Radio is Off. Press Play!</value>
+  </data>
+  <data name="CS_Text2" xml:space="preserve">
+    <value>Verificación de internet</value>
+  </data>
+  <data name="CS_Text25" xml:space="preserve">
+    <value>Por favor espere por la configuración del radio. 75% Completo</value>
+  </data>
+  <data name="CS_Text26" xml:space="preserve">
+    <value>Transmisión / Audio de fondo Error</value>
+  </data>
+  <data name="CS_Text27" xml:space="preserve">
+    <value>Fatal Error... (Ref: WP_3)</value>
+  </data>
+  <data name="CS_Text28" xml:space="preserve">
+    <value>Su móvil no está conectado a ninguna red!</value>
+  </data>
+  <data name="CS_Text29" xml:space="preserve">
+    <value>Radio está apagado</value>
+  </data>
+  <data name="CS_Text3" xml:space="preserve">
+    <value>La radio está transmitiendo!</value>
+  </data>
+  <data name="CS_Text30" xml:space="preserve">
+    <value>la aplicación no se pudo conectar a la transmisión ...</value>
+  </data>
+  <data name="CS_Text31" xml:space="preserve">
+    <value>Compruebe su conexión! (Ref: WP_4)</value>
+  </data>
+  <data name="CS_Text4" xml:space="preserve">
+    <value>Problemas de almacenamiento ...</value>
+  </data>
+  <data name="CS_Text5" xml:space="preserve">
+    <value>Ocurrió un error! (Ref: WP_101)</value>
+  </data>
+  <data name="CS_Text6" xml:space="preserve">
+    <value>Radio está en pausa</value>
+  </data>
+  <data name="CS_Text7" xml:space="preserve">
+    <value>Ocurrió un error! (Ref: WP_102)</value>
+  </data>
+  <data name="CS_Text8" xml:space="preserve">
+    <value>Red detectada</value>
+  </data>
+  <data name="CS_Text9" xml:space="preserve">
+    <value>Ocurrió un error! (Ref: WP_103)</value>
+  </data>
+  <data name="CS__Text19" xml:space="preserve">
+    <value>Error Fatal... (Ref: WP_2)</value>
+  </data>
+  <data name="CS__Text20" xml:space="preserve">
+    <value>Por favor espere por la configuración del radio. 10% Completo</value>
+  </data>
+  <data name="CS__Text21" xml:space="preserve">
+    <value>Por favor espere por la configuración del radio. 30% Completo</value>
+  </data>
+  <data name="CS__Text22" xml:space="preserve">
+    <value>Por favor espere por la configuración del radio. 35% Completo</value>
+  </data>
+  <data name="CS__Text23" xml:space="preserve">
+    <value>Por favor espere por la configuración del radio. 45% Completo</value>
+  </data>
+  <data name="CS__Text24" xml:space="preserve">
+    <value>Por favor espere por la configuración del radio. 55% Completo</value>
+  </data>
+  <data name="LicenseButton.Label" xml:space="preserve">
+    <value>Información de licencia</value>
+  </data>
+  <data name="Main_AppBlog.Text" xml:space="preserve">
+    <value>Blog de ​​la aplicación</value>
+  </data>
+  <data name="Main_Donate.Text" xml:space="preserve">
+    <value>Donar</value>
+  </data>
+  <data name="Main_FeaturedPages.Text" xml:space="preserve">
+    <value>Páginas destacadas</value>
+  </data>
+  <data name="Main_RadioStream.Text" xml:space="preserve">
+    <value>Transmisión de la radio</value>
+  </data>
+  <data name="Main_RequestSong.Text" xml:space="preserve">
+    <value>Solicitar canción</value>
+  </data>
+  <data name="Main_Website.Text" xml:space="preserve">
+    <value>Sitio web</value>
+  </data>
+  <data name="NetworkButton.Label" xml:space="preserve">
+    <value>Información de la Red</value>
+  </data>
+  <data name="Play.Content" xml:space="preserve">
+    <value>Reproducir</value>
+  </data>
+  <data name="PrivacyButton.Label" xml:space="preserve">
+    <value>Información sobre la privacidad</value>
+  </data>
+  <data name="Selection_128KbpsPlayer.Text" xml:space="preserve">
+    <value>Reproductor 128Kbps</value>
+  </data>
+  <data name="Selection_192KbpsPlayer.Text" xml:space="preserve">
+    <value>Reproductor  192kbps</value>
+  </data>
+  <data name="Selection_bestFor3G.Text" xml:space="preserve">
+    <value>128kbps = mejor para 3G</value>
+  </data>
+  <data name="Selection_bestForWifi4G.Text" xml:space="preserve">
+    <value>192kbps = mejor para WiFi/4G</value>
+  </data>
+  <data name="Stop.Content" xml:space="preserve">
+    <value>Parar</value>
+  </data>
+  <data name="TechnicalButton.Label" xml:space="preserve">
+    <value>Información Técnica</value>
+  </data>
+</root>

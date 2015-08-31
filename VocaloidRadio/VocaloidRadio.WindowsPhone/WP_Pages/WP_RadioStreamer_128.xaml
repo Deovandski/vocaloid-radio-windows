@@ -10,7 +10,8 @@
 
     <Grid>
         <Pivot Background="{StaticResource CustomRadioBackgroundImage}" Foreground="White">
-            <PivotItem Header="Radio Stream" Foreground="{x:Null}">
+            <PivotItem Header="" x:Uid="128_RadioStream" Foreground="White">
+
                 <!--Radio Stream Grid-->
                 <Grid Margin="0,0,0,0">
                     <Grid.ColumnDefinitions>
@@ -18,8 +19,8 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50" />
-                        <RowDefinition Height="75" />
                         <RowDefinition Height="*" />
+                        <RowDefinition Height="140" />
                         <RowDefinition Height="75" />
                         <RowDefinition Height="75" />
                     </Grid.RowDefinitions>
@@ -34,10 +35,10 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" TextWrapping="Wrap" Text="128kbps Player Status" Width="176" Foreground="White" FontWeight="Bold" TextAlignment="Center" Height="38"/>
+                        <TextBlock Grid.Row="0" TextWrapping="Wrap" Text="" x:Uid="128_PlayerStatus"  Width="176" Foreground="White" FontWeight="Bold" TextAlignment="Center" Height="38"/>
                         <TextBlock Grid.Column="1" Grid.Row="1" x:Name="streamStatus"  FontSize="16" TextWrapping="Wrap" Text="_" Width="181" Foreground="White" TextAlignment="Center" Height="37" Margin="0.167,0.5,-0.333,0"/>
                         <TextBlock Grid.Column="0" Grid.Row="1" x:Name="networkStatus" FontSize="16" TextWrapping="Wrap" Text="_" Width="181" Foreground="White" TextAlignment="Center" Height="37" Margin="0,0,0,0" />
-                        <TextBlock Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" Text="Stream Status" Width="181" Foreground="White" FontWeight="Bold" TextAlignment="Center" Margin="0" />
+                        <TextBlock Grid.Column="1" Grid.Row="0" TextWrapping="Wrap" x:Uid="128_StreamStatus" Text="" Width="181" Foreground="White" FontWeight="Bold" TextAlignment="Center" Margin="0" />
                     </Grid>
 
                     <!--SubGrid Row 4 Radio Stream Grid-->
@@ -49,54 +50,49 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Button Grid.Row="0" Grid.Column="0" x:Name="stopButton" Click="Button_Click_1" Content="Stop" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="White" BorderBrush="White" Background="Black" Margin="0"/>
-                        <Button Grid.Row="0" Grid.Column="1" x:Name="playButton" Click="Button_Click_2" Content="Play" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Black" Foreground="White" BorderBrush="White" Margin="0"/>
+                        <Button Grid.Row="0" Grid.Column="0" x:Name="stopButton" Click="Button_Click_1" Content="" x:Uid="Stop" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Foreground="White" BorderBrush="White" Background="Black" Margin="0"/>
+                        <Button Grid.Row="0" Grid.Column="1" x:Name="playButton" Click="Button_Click_2" Content="" x:Uid="Play" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="Black" Foreground="White" BorderBrush="White" Margin="0"/>
                     </Grid>
-                    <Button Grid.Row="1" Background="Black" x:Name="BackButton3" Content="Back" HorizontalAlignment="Stretch" Margin="5,0,0.667,0" VerticalAlignment="Stretch" Click="BackButton_Click" BorderBrush="White" Foreground="White"/>
+                    <Image Grid.Row="2" Height="153" Margin="0,0,0,0" Width="362" Source="ms-appx:///Images/10364326_761930030517904_307840656_n.jpg" Stretch="UniformToFill"/>
                     <UI:AdControl Grid.Row="0" AutoRefreshIntervalInSeconds="60" ApplicationId="733b41ec-6494-40d4-9e24-ca5a9c4d0a81" AdUnitId="10801351" Height="50" IsAutoRefreshEnabled="True" VerticalAlignment="Top" Margin="0,0,0.667,0"/>
-                    <WebView Grid.Row="2" x:Name="ImageStreamer" AllowDrop="False" Opacity="100" Width="360" IsTapEnabled="False" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" Margin="0" Height="280"/>
+                    <WebView Grid.Row="1" x:Name="ImageStreamer" AllowDrop="False" Opacity="100" IsTapEnabled="False" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" Margin="0"/>
                 </Grid>
             </PivotItem>
 
             <!--Recent Songs Grid-->
-            <PivotItem Header="Recent Songs">
+            <PivotItem x:Uid="128_RecentSongs" Header="">
                 <Grid Margin="0,0,0,0" >
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50" />
-                        <RowDefinition Height="75" />
+                        <RowDefinition Height="0" />
+                        <RowDefinition Height="1" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="150" />
                     </Grid.RowDefinitions>
-                    <UI:AdControl Grid.Row="0" AutoRefreshIntervalInSeconds="60" ApplicationId="733b41ec-6494-40d4-9e24-ca5a9c4d0a81" AdUnitId="10801351" Height="50" IsAutoRefreshEnabled="True" VerticalAlignment="Top" Width="362"/>
-                    <Button Grid.Row="1" Background="Black" x:Name="BackButton" Content="Back" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Stretch" Width="352" Click="BackButton_Click" BorderBrush="White"/>
                     <WebView Grid.Row="2" x:Name="recentSongs" Opacity="100" Margin="0,0,-0.333,0" IsTapEnabled="False" IsRightTapEnabled="False" IsHoldingEnabled="False"/>
                     <Image Grid.Row="3" Height="153" Margin="0,0,0,0" Width="362" Source="ms-appx:///Images/10364326_761930030517904_307840656_n.jpg"/>
                 </Grid>
             </PivotItem>
 
             <!--Vocaloid Radio Grid-->
-            <PivotItem Header="Vocaloid Radio">
+            <PivotItem x:Uid="128_VocaloidRadio" Header="">
                 <Grid Margin="0,0,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50" />
-                        <RowDefinition Height="75" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="150" />
                     </Grid.RowDefinitions>
-                    <UI:AdControl Grid.Row="0" AutoRefreshIntervalInSeconds="60" ApplicationId="733b41ec-6494-40d4-9e24-ca5a9c4d0a81" AdUnitId="10801351" Height="50" IsAutoRefreshEnabled="True" VerticalAlignment="Top" Margin="0,0,-0.333,0"/>
-                    <Button Grid.Row="1" Background="Black" x:Name="BackButton2" Content="Back" HorizontalAlignment="Stretch" Margin="5,0,-0.333,0" VerticalAlignment="Stretch" Click="BackButton_Click" BorderBrush="White" Foreground="White"/>
-                    <TextBlock FontSize="23" FontFamily="Segoe WP Light" Foreground="#FF7FD1F4" Margin="24,10,23.667,137" TextWrapping="Wrap" Text="Issues? Please check your connection or try the 192kbps stream." TextAlignment="Center" Grid.Row="2"/>
-                    <TextBlock FontSize="23" FontFamily="Segoe WP Light" Foreground="#FF7FD1F4" Margin="0,146,0,0" TextWrapping="Wrap" Text="More information on the mainPage bottombar or VocaloidRadioApp.blogspot.com" Width="352" TextAlignment="Center" Height="127" Grid.Row="2"/>
+                    <TextBlock FontSize="23" FontFamily="Segoe WP Light" Foreground="#FF7FD1F4" Margin="1" TextWrapping="Wrap" x:Uid="128_Issues" Text="" Grid.Row="1"/>
+                    <TextBlock FontSize="23" FontFamily="Segoe WP Light" Foreground="#FF7FD1F4" Margin="1" TextWrapping="Wrap" x:Uid="128_MoreInfo" Text="" Grid.Row="2"/>
                     <Image Grid.Row="3" Height="153" Margin="0,0,0,0" Width="362" Source="ms-appx:///Images/10364326_761930030517904_307840656_n.jpg"/>
+                    <WebView x:Uid="RSSFeed" x:Name="RSSFeed" Grid.Row="0" Margin="1" IsTapEnabled="False" IsRightTapEnabled="False" IsHoldingEnabled="False" IsDoubleTapEnabled="False"/>
                 </Grid>
             </PivotItem>
         </Pivot>
-        <WebView x:Uid="InternetTest" x:Name="InternetTest" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="10" Visibility="Collapsed"/>
+        <WebView x:Uid="InternetTest" x:Name="InternetTest" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="10" Visibility="Collapsed" NavigationCompleted="InternetTest_NavigationCompleted"/>
     </Grid>
 </Page>
+

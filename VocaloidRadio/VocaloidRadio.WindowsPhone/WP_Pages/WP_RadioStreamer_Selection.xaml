@@ -14,7 +14,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="120" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="150" />
             <RowDefinition Height="80" />
             <RowDefinition Height="80" />
@@ -22,10 +22,9 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Button x:Name="BackButton" Background="Black" Content="Back" HorizontalAlignment="Center" Height="87" Margin="28,16,28,17" VerticalAlignment="Center" Width="344" Click="BackButton_Click" Grid.ColumnSpan="2" BorderBrush="White" Foreground="White"/>
-        <!--128 Kbps Display Group-->
+         <!--128 Kbps Display Group-->
         <Image Grid.Row="1" Grid.Column="0" Name="imageButton_128" HorizontalAlignment="Center" Height="150" Margin="0" VerticalAlignment="Center" Width="150" Source="ms-appx:///Images/buttonBackground.jpg" Opacity="0.65" PointerPressed="imageButton_128_PointerPressed"/>
-        <TextBlock Grid.Row="1" Grid.Column="0"  HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="128 Kbps Player" VerticalAlignment="Bottom" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_128_PointerPressed"/>
+        <TextBlock Grid.Row="1" Grid.Column="0"  HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" x:Uid="Selection_128KbpsPlayer" Text="" VerticalAlignment="Bottom" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_128_PointerPressed"/>
         <Image Grid.Row="1" Grid.Column="0"  HorizontalAlignment="Center" Height="123" Margin="0" VerticalAlignment="Top" Width="150" Source="ms-appx:///Images/Icons/128kbps.png" Stretch="Fill" PointerPressed="imageButton_128_PointerPressed" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <CompositeTransform ScaleX="0.85" ScaleY="0.85"/>
@@ -33,7 +32,7 @@
         </Image>
         <!--192 Kbps Display Group-->
         <Image Grid.Row="1" Grid.Column="1"  x:Name="imageButton_192" HorizontalAlignment="Center" Height="150" Margin="0" VerticalAlignment="Center" Width="150" Source="ms-appx:///Images/buttonBackground.jpg" Opacity="0.65" PointerPressed="imageButton_192_PointerPressed"/>
-        <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" Text="192 Kbps Player" VerticalAlignment="Bottom" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_192_PointerPressed"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Margin="0" TextWrapping="Wrap" x:Uid="Selection_192KbpsPlayer" Text="" VerticalAlignment="Bottom" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_192_PointerPressed"/>
         <Image Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" Height="123" Margin="0" VerticalAlignment="Top" Width="150" Source="ms-appx:///Images/Icons/192kbps.png" PointerPressed="imageButton_192_PointerPressed" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <CompositeTransform ScaleX="0.85" ScaleY="0.85"/>
@@ -41,8 +40,8 @@
         </Image>
         <!--Other Elements-->
         <Image Grid.Row="5" Grid.Column="0" Name="miku" Height="145" Width="400" Source="ms-appx:///Images/10364326_761930030517904_307840656_n.jpg" Margin="0" Grid.ColumnSpan="2" Stretch="UniformToFill" Grid.RowSpan="2"/>
-        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="30" Text="128kbps = best for 2G/3G" FontFamily="Segoe WP Light" Foreground="#FF7FD1F4" VerticalAlignment="Center" TextAlignment="Center" Margin="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
-        <TextBlock FontSize="30" Text="192kbps = best for WiFi/4G" FontFamily="Segoe WP Light" Foreground="#FF7FD1F4" VerticalAlignment="Center" TextAlignment="Center" Margin="0" HorizontalAlignment="Center" Grid.ColumnSpan="2" Grid.Row="3"/>
+        <TextBlock Grid.Row="2" Grid.Column="0" FontSize="30" x:Uid="Selection_bestFor3G" Text="" FontFamily="Segoe WP Light" Foreground="#FF7FD1F4" VerticalAlignment="Center" TextAlignment="Center" Margin="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+        <TextBlock FontSize="30" Text="" x:Uid="Selection_bestForWifi4G" FontFamily="Segoe WP Light" Foreground="#FF7FD1F4" VerticalAlignment="Center" TextAlignment="Center" Margin="0" HorizontalAlignment="Center" Grid.ColumnSpan="2" Grid.Row="3"/>
         <UI:AdControl Grid.Row="4" Grid.Column="0" AutoRefreshIntervalInSeconds="60" ApplicationId="733b41ec-6494-40d4-9e24-ca5a9c4d0a81" AdUnitId="10801351" Height="50" IsAutoRefreshEnabled="True" Margin="0" Width="400" Grid.ColumnSpan="2"/>
     </Grid>
 </Page>

@@ -17,8 +17,6 @@ using System.Diagnostics;
 using Windows.Media;
 using Windows.UI;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace VocaloidRadio
 {
     /// <summary>
@@ -29,7 +27,6 @@ namespace VocaloidRadio
         // Variables
         SystemMediaTransportControls mediaControl;
         private String MEBufferTime = "";
-        private bool InternetAvailable;
 
         public MainPage()
         {
@@ -52,48 +49,15 @@ namespace VocaloidRadio
             // Register to handle the following system transpot control buttons.
             mediaControl.IsPlayEnabled = true;
             mediaControl.IsPauseEnabled = true;
-            InternetTest.NavigationCompleted += InternetTest_NavigationCompleted;
+            mediaControl.IsFastForwardEnabled = false;
+            mediaControl.IsNextEnabled = false;
+            mediaControl.IsPreviousEnabled = false;
+            mediaControl.IsRewindEnabled = false;
+            mediaControl.IsChannelDownEnabled = false;
+            mediaControl.IsChannelUpEnabled = false;
+            mediaControl.IsRecordEnabled = false;
             
-        }
-
-        // Internet Test
-        private void InternetTest_NavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
-        {
-            Debug.WriteLine("Web View Navigation Completed");
-            if (args.IsSuccess)
-            {
-                try
-                {
-                    InternetAvailable = true;
-
-                    networkStatus.Text = "Server is On!";
-                    networkStatus.Foreground = new SolidColorBrush(Colors.Green);
-
-                    if (streamStatus.Text == "Check your Connection! (Ref: WP_4)" && mediaplayer.CurrentState != MediaElementState.Playing)
-                    {
-                        streamStatus.Text = "Press Play!";
-                        streamStatus.Foreground = new SolidColorBrush(Colors.Green);
-                    }
-                    InternetTest.Stop();
-                }
-                catch (Exception)
-                {
-                    networkStatus.Text = "I.T Error 1";
-                    streamStatus.Text = "Restart the App and notify the Developer";
-                    networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                    streamStatus.Foreground = new SolidColorBrush(Colors.Red);
-
-                }
-            }
-            else
-            {
-                InternetAvailable = false;
-                networkStatus.Text = "No internet!";
-                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                streamStatus.Text = "Check your Connection! (Ref: WP_15)";
-                streamStatus.Foreground = new SolidColorBrush(Colors.Red);
-            }
-
+            
         }
 
         // Change Window size based on Window Width
@@ -119,37 +83,26 @@ namespace VocaloidRadio
         // Start Playback
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            networkStatus.Text = "Verifying Internet";
-            networkStatus.Foreground = new SolidColorBrush(Colors.Yellow);
-            InternetTest.Navigate(new Uri("http://curiosity.shoutca.st:8019/stream"));
-            
-            if (InternetAvailable == true)
-            {
             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
             {
                 if (mediaplayer.CurrentState == MediaElementState.Closed)
                 {
-                    streamStatus.Text = "Please restart your App. Media Player error 1";
+                    streamStatus.Text = "Please restart your App. Media Player is closed";
                     streamStatus.Foreground = new SolidColorBrush(Colors.OrangeRed);
                     Debug.WriteLine("Play Request. Result: Media Player is Closed");
                 }
-                mediaplayer.Play();
-                networkStatus.Text = "Network is Available";
-                networkStatus.Foreground = new SolidColorBrush(Colors.DarkGreen);
-                Debug.WriteLine("Player Request to Play... Result: " + mediaplayer.CurrentState.ToString());
+                else
+                {
+                    mediaplayer.Play();
+                    networkStatus.Text = "Network is Available";
+                    networkStatus.Foreground = new SolidColorBrush(Colors.DarkGreen);
+                    Debug.WriteLine("Player Request to Play... Result: " + mediaplayer.CurrentState.ToString());
+                }
             }
             else
             {
-                networkStatus.Text = "Error Ocurred! Check your connection! (Ref: WP_101)";
+                networkStatus.Text = "Not Network Available! (Ref: WP_101)";
                 networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-            }
-            }
-            else // If Internet Is Not Available
-            {
-                networkStatus.Text = "Could not connect to Stream...";
-                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                streamStatus.Text = "Check your Connection! (Ref: WP_4)";
-                streamStatus.Foreground = new SolidColorBrush(Colors.Red);
             }
         }
 
@@ -158,7 +111,7 @@ namespace VocaloidRadio
         {
             try
             {
-                mediaplayer.Stop();
+                mediaplayer.Pause();
                 networkStatus.Text = "Player Stopped";
                 networkStatus.Foreground = new SolidColorBrush(Colors.Gray);
                 Debug.WriteLine("Player Request to stop... Result: " + mediaplayer.CurrentState.ToString());
@@ -168,7 +121,6 @@ namespace VocaloidRadio
             {
                 networkStatus.Text = "Error Ocurred!  (Ref: WP_101)";
                 networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-
             }
 
         }
@@ -186,7 +138,7 @@ namespace VocaloidRadio
                     }
                     catch (Exception) 
                     {
-                        networkStatus.Text = "S.M.T.C. Error";
+                        networkStatus.Text = "S.M.T.C. Error 1";
                         streamStatus.Text = "Restart the App and notify the Developer";
                         networkStatus.Foreground = new SolidColorBrush(Colors.Red);
                         streamStatus.Foreground = new SolidColorBrush(Colors.Red);
@@ -199,7 +151,7 @@ namespace VocaloidRadio
                     }
                     catch (Exception)
                     {
-                        networkStatus.Text = "S.M.T.C. Error";
+                        networkStatus.Text = "S.M.T.C. Error 2";
                         streamStatus.Text = "Restart the App and notify the Developer";
                         networkStatus.Foreground = new SolidColorBrush(Colors.Red);
                         streamStatus.Foreground = new SolidColorBrush(Colors.Red);
@@ -235,7 +187,7 @@ namespace VocaloidRadio
             {
                 try
                 {
-                    mediaplayer.Stop();    
+                    mediaplayer.Pause();    
                     Debug.WriteLine("Player Request to Play... Result: " + mediaplayer.CurrentState.ToString());
                 }
                 catch (Exception)
@@ -256,17 +208,16 @@ namespace VocaloidRadio
                 case MediaElementState.Opening:
                     streamStatus.Text = "Player Opening... If Play button does not work restart your App";
                     streamStatus.Foreground = new SolidColorBrush(Colors.Orange);
-                    Debug.WriteLine("Play Request. Result: Media Player Stuck on Opening");
                     break;
+
                 case MediaElementState.Playing:
-                    try
-                    {
+
                         networkStatus.Text = "Player is Normal";
                         networkStatus.Foreground = new SolidColorBrush(Colors.Green);
                         MEBufferTime = mediaplayer.BufferingProgress.ToString();
                         if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
                         {
-                            streamStatus.Text = "M.E. is On || Buffer is " + MEBufferTime;
+                            streamStatus.Text = "Playing! || Buffer is " + MEBufferTime;
                             streamStatus.Foreground = new SolidColorBrush(Colors.Green);
 
                         }
@@ -278,18 +229,10 @@ namespace VocaloidRadio
                             streamStatus.Foreground = new SolidColorBrush(Colors.Red);
                         }
                         mediaControl.PlaybackStatus = MediaPlaybackStatus.Playing;
-                    }
-                    catch (Exception) 
-                    {
-                        networkStatus.Text = "Internal Error 1";
-                        streamStatus.Text = "Restart the App and notify the Developer";
-                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                        streamStatus.Foreground = new SolidColorBrush(Colors.Red);
-                    }
                     break;
 
                 case MediaElementState.Paused:
-                    try { 
+
                     if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
                     {
                         streamStatus.Text = "Stream Paused";
@@ -306,19 +249,10 @@ namespace VocaloidRadio
                         streamStatus.Foreground = new SolidColorBrush(Colors.Red);
                     }
                     mediaControl.PlaybackStatus = MediaPlaybackStatus.Paused;
-                    }
-                    catch (Exception)
-                    {
-                        networkStatus.Text = "Internal Error 2";
-                        streamStatus.Text = "Restart the App and notify the Developer";
-                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                        streamStatus.Foreground = new SolidColorBrush(Colors.Red);
-                    }
                     break;
 
                 case MediaElementState.Stopped:
-                    try
-                    {
+
                         if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
                         {
                             streamStatus.Text = "Stream Stopped";
@@ -334,89 +268,43 @@ namespace VocaloidRadio
                             streamStatus.Foreground = new SolidColorBrush(Colors.Red);
                         }
                         mediaControl.PlaybackStatus = MediaPlaybackStatus.Stopped;
-                    }
-                    catch (Exception) 
-                    {
-                        networkStatus.Text = "Internal Error 3";
-                        streamStatus.Text = "Restart the App and notify the Developer";
-                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                        streamStatus.Foreground = new SolidColorBrush(Colors.Red);
-                    }
                     break;
 
                 case MediaElementState.Closed:
-                    try
-                    {
+
                         streamStatus.Text = "--";
                         streamStatus.Foreground = new SolidColorBrush(Colors.Gray);
                         networkStatus.Text = "Player is Closed...";
                         networkStatus.Foreground = new SolidColorBrush(Colors.LightGray);
                         mediaControl.PlaybackStatus = MediaPlaybackStatus.Closed;
-                    }
-                    catch (Exception) 
-                    {
-                        networkStatus.Text = "Internal Error 4";
-                        streamStatus.Text = "Restart the App and notify the Developer";
-                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                        streamStatus.Foreground = new SolidColorBrush(Colors.Red);
-                    }
+
                     break;
 
                 default:
-                    try
-                    {
                         networkStatus.Text = "App Analyser Error...";
                         streamStatus.Text = "App is starting or an error ocurred!";
                         networkStatus.Foreground = new SolidColorBrush(Colors.Red);
                         streamStatus.Foreground = new SolidColorBrush(Colors.Red);
-
-                    }
-                    catch (Exception) 
-                    {
-                        networkStatus.Text = "Internal Error 5";
-                        streamStatus.Text = "Restart the App and notify the Developer";
-                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                        streamStatus.Foreground = new SolidColorBrush(Colors.Red);
-                    }
                     break;
             }
         }
 
         private void MenuWebView_NavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
         {
-            try
-            {
                 Debug.WriteLine("Web View Navigation Error... Result: " + e.WebErrorStatus.ToString());
                 networkStatus.Text = "W.V. Error 101";
                 streamStatus.Text = "Restart the App and notify the Developer";
                 networkStatus.Foreground = new SolidColorBrush(Colors.Red);
                 streamStatus.Foreground = new SolidColorBrush(Colors.Red);
-            }
-            catch (Exception)
-            {
-                networkStatus.Text = "Internal Error 6";
-                streamStatus.Text = "Restart the App and notify the Developer";
-                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                streamStatus.Foreground = new SolidColorBrush(Colors.Red);
-            }
         }
 
         private void MenuWebView_UnviewableContentIdentified(WebView sender, WebViewUnviewableContentIdentifiedEventArgs args)
         {
-            try{
             Debug.WriteLine("Web View Unviewable Content Error... Result: " + args.Uri.ToString());
             networkStatus.Text = "W.V. Error 102";
             streamStatus.Text = "Restart the App and notify the Developer";
             networkStatus.Foreground = new SolidColorBrush(Colors.Red);
             streamStatus.Foreground = new SolidColorBrush(Colors.Red);
-            }
-            catch (Exception)
-            {
-                networkStatus.Text = "Internal Error 7";
-                streamStatus.Text = "Restart the App and notify the Developer";
-                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                streamStatus.Foreground = new SolidColorBrush(Colors.Red);
-            }
         }
 
         ///All code Below controls the Left SubGrid///
@@ -424,11 +312,25 @@ namespace VocaloidRadio
         #region LeftColumnControl
 
         // License Control
+
+        private void rssButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                MenuWebView.Navigate(new Uri("ms-appx-web:///HTML code/RSSFeed.html"));
+                currentPage.Text = "RSS Feed";
+            }
+            catch (Exception)
+            {
+                currentPage.Text = "Fatal Web View Error";
+            }
+        }
+
         private void licenseButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                MenuWebView.Navigate(new Uri("http://vocaloidradioapp.blogspot.com/2014/05/vocaloid-radio-legal-information.html"));
+                MenuWebView.Navigate(new Uri("http://vocaloidradioapp.blogspot.com/2014/05/vocaloid-radio-legal-information.html?m=1"));
                 currentPage.Text = "Legal Info";
             }
             catch (Exception)
@@ -443,7 +345,7 @@ namespace VocaloidRadio
         {
             try
             {
-                MenuWebView.Navigate(new Uri("http://vocaloidradioapp.blogspot.com/2014/05/vocaloid-radio-network-information.html"));
+                MenuWebView.Navigate(new Uri("http://vocaloidradioapp.blogspot.com/2014/05/vocaloid-radio-network-information.html?m=1"));
                 currentPage.Text = "Network Info";
             }
             catch (Exception)
@@ -457,7 +359,7 @@ namespace VocaloidRadio
         {
             try
             {
-                MenuWebView.Navigate(new Uri("http://vocaloidradioapp.blogspot.com/2014/05/all-data-collected-in-this-app-is.html"));
+                MenuWebView.Navigate(new Uri("http://vocaloidradioapp.blogspot.com/2014/05/all-data-collected-in-this-app-is.html?m=1"));
                 currentPage.Text = "Privacy Info";
             }
             catch (Exception)
@@ -471,7 +373,7 @@ namespace VocaloidRadio
         {
             try
             {
-                MenuWebView.Navigate(new Uri("http://vocaloidradioapp.blogspot.com/2014/06/vocaloid-radio-windows-app-technical.html"));
+                MenuWebView.Navigate(new Uri("http://vocaloidradioapp.blogspot.com/2014/06/vocaloid-radio-windows-app-technical.html?m=1"));
                 currentPage.Text = "Technical Info";
             }
             catch (Exception)
@@ -487,7 +389,7 @@ namespace VocaloidRadio
             {
                 MenuWebView.Stop();
 
-                MenuWebView.Navigate(new Uri("http://vocaloidradioapp.blogspot.com/2014/06/vocaloid-radio-windows-app-help.html"));
+                MenuWebView.Navigate(new Uri("http://vocaloidradioapp.blogspot.com/2014/06/vocaloid-radio-windows-app-help.html?m=1"));
                 currentPage.Text = "App Help";
             }
             catch (Exception)
@@ -515,7 +417,7 @@ namespace VocaloidRadio
         {
             try
             {
-                MenuWebView.Navigate(new Uri("http://vocaloidradioapp.blogspot.com/2014/06/vocaloid-radio-featured-pages.html"));
+                MenuWebView.Navigate(new Uri("http://vocaloidradioapp.blogspot.com/2014/06/vocaloid-radio-featured-pages.html?m=1"));
                 currentPage.Text = "Featured Pages";
             }
             catch (Exception)
@@ -529,7 +431,7 @@ namespace VocaloidRadio
         {
             try
             {
-                MenuWebView.Navigate(new Uri("http://vocaloidradioapp.blogspot.com/p/windows-version.html"));
+                MenuWebView.Navigate(new Uri("http://vocaloidradioapp.blogspot.com/p/windows-version.html?m=1"));
                 currentPage.Text = "App Blog";
             }
             catch (Exception)
@@ -543,7 +445,7 @@ namespace VocaloidRadio
         {
             try
             {
-                MenuWebView.Navigate(new Uri("http://vocaloidradio.com/"));
+                MenuWebView.Navigate(new Uri("http://vocaloidradio.com/?m=1"));
                 currentPage.Text = "Vocaloid Radio";
             }
             catch (Exception)
@@ -554,12 +456,25 @@ namespace VocaloidRadio
 
         #endregion
 
-        private void InternetTest_NavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
+        private void mediaplayer_BufferingProgressChanged(object sender, RoutedEventArgs e)
         {
-            networkStatus.Text = "Verifying Internet";
-            networkStatus.Foreground = new SolidColorBrush(Colors.Yellow);
-            streamStatus.Text = "Please wait 5 seconds!";
-            streamStatus.Foreground = new SolidColorBrush(Colors.Yellow);
+            if (mediaplayer.BufferingProgress < 1)
+            {
+                streamStatus.Text = "Buffer: " + mediaplayer.BufferingProgress.ToString();
+                streamStatus.Foreground = new SolidColorBrush(Colors.AliceBlue);
+
+            }
+            else 
+            {
+                streamStatus.Text = "Buffer issues" + mediaplayer.BufferingProgress.ToString();
+                streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+            }
         }
+
+        private void AdControl_ErrorOccurred(object sender, Microsoft.Advertising.WinRT.UI.AdErrorEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Ad Error: {0},{1}", e.ErrorCode, e.Error);
+        }
+
     }
 }

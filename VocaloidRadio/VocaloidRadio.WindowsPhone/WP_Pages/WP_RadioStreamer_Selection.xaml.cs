@@ -27,8 +27,6 @@ namespace VocaloidRadio.WP_Pages
 
             // Back Button controller
             this.NavigationCacheMode = NavigationCacheMode.Required;
-
-            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
         }
 
         /// <summary>
@@ -38,21 +36,6 @@ namespace VocaloidRadio.WP_Pages
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Windows.Phone.UI.Input.HardwareButtons.BackPressed += HardwareButtons_BackPressed;
-        }
-
-        // Back Button Event Handler
-        void HardwareButtons_BackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
-        {
-            e.Handled = true;
-            Windows.Phone.UI.Input.HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
-            // Go Back to Main Menu
-            Frame.Navigate(typeof(MainPage));
-        }
-
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(MainPage));
         }
 
         private void imageButton_128_PointerPressed(object sender, PointerRoutedEventArgs e)

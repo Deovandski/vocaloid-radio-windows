@@ -20,6 +20,7 @@
     <Content Include="$(MSBuildThisFileDirectory)HTML code\BlankPage.html" />
     <Content Include="$(MSBuildThisFileDirectory)HTML code\PreviousSongs_Larger.html" />
     <Content Include="$(MSBuildThisFileDirectory)HTML code\PreviousSongs.html" />
+    <Content Include="$(MSBuildThisFileDirectory)HTML code\RSSFeed.html" />
     <Content Include="$(MSBuildThisFileDirectory)HTML code\SongInformation.html" />
     <Content Include="$(MSBuildThisFileDirectory)HTML code\SongInformation_128.html" />
     <Content Include="$(MSBuildThisFileDirectory)HTML code\SongInformation_192.html" />
@@ -29,6 +30,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Images\bcup_MainBackground.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Images\buttonBackground.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Images\clouds_bg.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\cover fb.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Images\DonatePic.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\Icons\128kbps.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\Icons\192kbps.png" />
@@ -65,5 +67,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Images\Tileback2.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Images\TileBack.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Images\TileSmallBackground-11887729-d3a4-402c-9315-42875a4884be.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\VR_2014LOGO.png" />
   </ItemGroup>
 </Project>

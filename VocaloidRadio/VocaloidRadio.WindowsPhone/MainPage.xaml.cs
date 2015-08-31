@@ -36,11 +36,16 @@ namespace VocaloidRadio
             // This is a static public property that will allow downstream pages to get 
             // a handle to the MainPage instance in order to call methods that are in this class.
             this.NavigationCacheMode = NavigationCacheMode.Required;
-
-            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+            Windows.Phone.UI.Input.HardwareButtons.BackPressed += OnBackPressed;
         }
 
-
+        private void OnBackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
+        {
+            var frame = Window.Current.Content as Frame;
+            if (frame == null || !frame.CanGoBack) return;
+            e.Handled = true;
+            frame.GoBack();
+        }
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
         /// </summary>
@@ -48,24 +53,13 @@ namespace VocaloidRadio
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            Windows.Phone.UI.Input.HardwareButtons.BackPressed += HardwareButtons_BackPressed;
-
-            //Adding App suspension handlers here so that we can unsubscribe handlers 
+            //Adding App suspension handlers here so that we can unsubscripted handlers 
             //that access to BackgroundMediaPlayer events
             App.Current.Suspending += ForegroundApp_Suspending;
             App.Current.Resuming += ForegroundApp_Resuming;
             ApplicationSettingsHelper.SaveSettingsValue(Constants.AppState, Constants.ForegroundAppActive);
         }
         
-
-        // Back Button Event Handler
-        void HardwareButtons_BackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
-        {
-            e.Handled = true;
-            Windows.Phone.UI.Input.HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
-            // Exit Application
-            Application.Current.Exit();
-        }
 
         // Vocaloid Website Control
         private void imageButton_VocaloidWebsite_PointerPressed(object sender, PointerRoutedEventArgs e)

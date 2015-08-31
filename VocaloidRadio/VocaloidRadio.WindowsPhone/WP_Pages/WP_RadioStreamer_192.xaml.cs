@@ -15,7 +15,6 @@ namespace VocaloidRadio.WP_Pages
     public sealed partial class WP_RadioStreamer_192 : Page
     {
         private bool InternetAvailable;
-
         // Constructor
         public WP_RadioStreamer_192()
         {
@@ -23,24 +22,27 @@ namespace VocaloidRadio.WP_Pages
             this.InitializeComponent();
 
             // Source for WebControl || XAML
-            ImageStreamer.Source = new Uri("ms-appx-web:///HTML code/SongInformation_128.html");
+            ImageStreamer.Source = new Uri("ms-appx-web:///HTML code/SongInformation_192.html");
             recentSongs.Source = new Uri("ms-appx-web:///HTML code/PreviousSongs.html");
-
+            RSSFeed.Source = new Uri("ms-appx-web:///HTML code/RSSFeed.html");
+            
             //Add handlers for MediaPlayer
             BackgroundMediaPlayer.Current.CurrentStateChanged += Current_CurrentStateChanged;
 
             // Back Button controller
             this.NavigationCacheMode = NavigationCacheMode.Required;
             InternetTest.NavigationCompleted += InternetTest_NavigationCompleted;
+
         }
 
         private void InternetTest_NavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
         {
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
             if (args.IsSuccess)
             {
                 InternetAvailable = true;
 
-                networkStatus.Text = "192 Server is On!";
+                networkStatus.Text = loader.GetString("192_CS_Text1");
                 networkStatus.Foreground = new SolidColorBrush(Colors.Green);
                 InternetTest.Stop();
 
@@ -62,7 +64,8 @@ namespace VocaloidRadio.WP_Pages
 
         async void Current_CurrentStateChanged(MediaPlayer sender, object args)
         {
-            await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => networkStatus.Text = "Verifying Internet");
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => networkStatus.Text = loader.GetString("CS_Text2"));
             await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => networkStatus.Foreground = new SolidColorBrush(Colors.Yellow));
             await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => InternetTest.Navigate(new Uri("http://curiosity.shoutca.st:8019/stream")));
 
@@ -77,7 +80,7 @@ namespace VocaloidRadio.WP_Pages
                         {
                             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
                             {
-                                networkStatus.Text = "Radio is Streaming!";
+                                networkStatus.Text = loader.GetString("CS_Text3");
                                 networkStatus.Foreground = new SolidColorBrush(Colors.Green);
                                 try
                                 {
@@ -93,7 +96,7 @@ namespace VocaloidRadio.WP_Pages
                                     }
                                     if (BackgroundMediaPlayer.Current.BufferingProgress == 0)
                                     {
-                                        streamStatus.Text = "Buffering Issue...";
+                                        streamStatus.Text = loader.GetString("CS_Text4");
                                         streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
                                     }
                                 }
@@ -104,7 +107,7 @@ namespace VocaloidRadio.WP_Pages
                             }
                             else
                             {
-                                networkStatus.Text = "Error Ocurred! (Ref: WP_101)";
+                                networkStatus.Text = loader.GetString("CS_Text5");
                                 networkStatus.Foreground = new SolidColorBrush(Colors.Red);
                             }
 
@@ -115,12 +118,12 @@ namespace VocaloidRadio.WP_Pages
                         {
                             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
                             {
-                                streamStatus.Text = "Radio is Paused";
+                                streamStatus.Text = loader.GetString("CS_Text6");
                                 streamStatus.Foreground = new SolidColorBrush(Colors.DarkGray);
                             }
                             else
                             {
-                                networkStatus.Text = "Error Ocurred! (Ref: WP_102)";
+                                networkStatus.Text = loader.GetString("CS_Text7");
                                 networkStatus.Foreground = new SolidColorBrush(Colors.Red);
                             }
                         }
@@ -130,7 +133,7 @@ namespace VocaloidRadio.WP_Pages
                         {
                             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
                             {
-                                networkStatus.Text = "Network detected";
+                                networkStatus.Text = loader.GetString("CS_Text8");
                                 networkStatus.Foreground = new SolidColorBrush(Colors.GreenYellow);
                                 if (BackgroundMediaPlayer.Current.BufferingProgress > 0.5 && BackgroundMediaPlayer.Current.BufferingProgress < 0.8)
                                 {
@@ -144,13 +147,13 @@ namespace VocaloidRadio.WP_Pages
                                 }
                                 if (BackgroundMediaPlayer.Current.BufferingProgress == 0)
                                 {
-                                    streamStatus.Text = "Buffering Issue...";
+                                    streamStatus.Text = loader.GetString("CS_Text4");
                                     streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
                                 }
                             }
                             else
                             {
-                                networkStatus.Text = "Error Ocurred! (Ref: WP_103)";
+                                networkStatus.Text = loader.GetString("CS_Text9");
                                 streamStatus.Text = "...";
                                 networkStatus.Foreground = new SolidColorBrush(Colors.Red);
                                 streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
@@ -162,14 +165,14 @@ namespace VocaloidRadio.WP_Pages
                         {
                             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
                             {
-                                streamStatus.Text = "Paused";
+                                streamStatus.Text = loader.GetString("CS_Text10");
                                 streamStatus.Foreground = new SolidColorBrush(Colors.DarkGray);
-                                networkStatus.Text = "Radio is Paused";
+                                networkStatus.Text = loader.GetString("CS_Text6");
                                 networkStatus.Foreground = new SolidColorBrush(Colors.Gray);
                             }
                             else
                             {
-                                networkStatus.Text = "Error Ocurred! (Ref: WP_104)";
+                                networkStatus.Text = loader.GetString("CS_Text11");
                                 streamStatus.Text = "...";
                                 networkStatus.Foreground = new SolidColorBrush(Colors.Red);
                                 streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
@@ -181,14 +184,14 @@ namespace VocaloidRadio.WP_Pages
                         {
                             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
                             {
-                                streamStatus.Text = "Waiting for Buffer...";
+                                streamStatus.Text = loader.GetString("CS_Text14");
                                 streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
-                                networkStatus.Text = "Radio is Opening";
+                                networkStatus.Text = loader.GetString("CS_Text15");
                                 networkStatus.Foreground = new SolidColorBrush(Colors.White);
                             }
                             else
                             {
-                                networkStatus.Text = "Error Ocurred! (Ref: WP_105)";
+                                networkStatus.Text = loader.GetString("CS_Text12");
                                 streamStatus.Text = "...";
                                 networkStatus.Foreground = new SolidColorBrush(Colors.Red);
                                 streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
@@ -202,15 +205,15 @@ namespace VocaloidRadio.WP_Pages
                 {
                     if (BackgroundMediaPlayer.Current == null)
                     {
-                        networkStatus.Text = "Internal Error!";
+                        networkStatus.Text = loader.GetString("CS_Text13");
                         networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                        streamStatus.Text = "(Ref: WP_106)";
+                        streamStatus.Text = loader.GetString("CS_Text16");
                         streamStatus.Foreground = new SolidColorBrush(Colors.Red);
 
                     }
                     else
                     {
-                        networkStatus.Text = "Error Ocurred! (Ref: WP_107)";
+                        networkStatus.Text = loader.GetString("CS_Text17");
                         networkStatus.Foreground = new SolidColorBrush(Colors.Red);
                         streamStatus.Text = "...";
                         streamStatus.Foreground = new SolidColorBrush(Colors.Red);
@@ -228,17 +231,18 @@ namespace VocaloidRadio.WP_Pages
         // Stops all audio streaming
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
             try
             {
                 BackgroundMediaPlayer.Current.Pause();
-                streamStatus.Text = "Radio is Off. Press Play!";
+                streamStatus.Text = loader.GetString("CS_Text18");
                 streamStatus.Foreground = new SolidColorBrush(Colors.Gray);
                 networkStatus.Text = "...";
                 networkStatus.Foreground = new SolidColorBrush(Colors.Red);
             }
             catch (Exception)
             {
-                networkStatus.Text = "Fatal Error... (Ref: WP_2)";
+                networkStatus.Text = loader.GetString("CS_Text19");
                 networkStatus.Foreground = new SolidColorBrush(Colors.Red);
             }
         }
@@ -246,7 +250,8 @@ namespace VocaloidRadio.WP_Pages
         // Method for activating Radio
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            networkStatus.Text = "Verifying Internet";
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            networkStatus.Text = loader.GetString("CS_Text2");
             networkStatus.Foreground = new SolidColorBrush(Colors.Yellow);
             InternetTest.Navigate(new Uri("http://curiosity.shoutca.st:8019/stream"));
 
@@ -254,24 +259,24 @@ namespace VocaloidRadio.WP_Pages
             {
                 if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
                 {
-                    streamStatus.Text = "Please Wait for Radio Setup. 10% Complete";
+                    streamStatus.Text = loader.GetString("CS_Text20"); 
                     streamStatus.Foreground = new SolidColorBrush(Colors.Gray);
                     networkStatus.Text = "...";
                     networkStatus.Foreground = new SolidColorBrush(Colors.Green);
                     try
                     {
-                        streamStatus.Text = "Please Wait for Radio Setup. 30% Complete";
+                        streamStatus.Text = loader.GetString("CS_Text21"); 
 
                         if (MediaPlayerState.Playing != BackgroundMediaPlayer.Current.CurrentState)
                         {
                             BackgroundAudioTask.MyBackgroundAudioTask backgroundAccess = new BackgroundAudioTask.MyBackgroundAudioTask();
-                            streamStatus.Text = "Please Wait for Radio Setup. 35% Complete";
+                            streamStatus.Text = loader.GetString("CS_Text22"); 
                             var message = new ValueSet();
-                            streamStatus.Text = "Please Wait for Radio Setup. 45% Complete";
+                            streamStatus.Text = loader.GetString("CS_Text23"); 
                             ApplicationSettingsHelper.SaveSettingsValue(Constants.CurrentTrack, "192");
-                            streamStatus.Text = "Please Wait for Radio Setup. 55% Complete";
+                            streamStatus.Text = loader.GetString("CS_Text24"); 
                             message.Add(Constants.StartPlayback, "0");
-                            streamStatus.Text = "Please Wait for Radio Setup. 75% Complete";
+                            streamStatus.Text = loader.GetString("CS_Text25"); 
                             BackgroundMediaPlayer.SendMessageToBackground(message);
                         }
 
@@ -279,11 +284,11 @@ namespace VocaloidRadio.WP_Pages
                     }
                     catch (Exception)
                     {
-                        networkStatus.Text = "Stream/BackgroundAudio Error";
+                        networkStatus.Text = loader.GetString("CS_Text26"); 
                         networkStatus.Foreground = new SolidColorBrush(Colors.Red);
                         if (MediaPlayerState.Playing == BackgroundMediaPlayer.Current.CurrentState)
                         {
-                            streamStatus.Text = "(Ref: WP_3)";
+                            streamStatus.Text = loader.GetString("CS_Text27"); 
                         }
                         else
                         {
@@ -297,18 +302,18 @@ namespace VocaloidRadio.WP_Pages
                 }
                 else
                 {
-                    networkStatus.Text = "Not Connected to any Network!";
+                    networkStatus.Text = loader.GetString("CS_Text28"); 
                     networkStatus.Foreground = new SolidColorBrush(Colors.Yellow);
-                    streamStatus.Text = "Radio is Off";
+                    streamStatus.Text = loader.GetString("CS_Text29"); 
                     streamStatus.Foreground = new SolidColorBrush(Colors.Red);
                 }
 
             }
             else // If Internet Is Not Available
             {
-                networkStatus.Text = "Could not connect to Stream...";
+                networkStatus.Text = loader.GetString("CS_Text30"); 
                 networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                streamStatus.Text = "Check your Connection! (Ref: WP_4)";
+                streamStatus.Text = loader.GetString("CS_Text31"); 
                 streamStatus.Foreground = new SolidColorBrush(Colors.Red);
 
             }
@@ -322,7 +327,8 @@ namespace VocaloidRadio.WP_Pages
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            networkStatus.Text = "Verifying Internet";
+            var loader = new Windows.ApplicationModel.Resources.ResourceLoader();
+            networkStatus.Text = loader.GetString("CS_Text2");
             networkStatus.Foreground = new SolidColorBrush(Colors.Yellow);
             InternetTest.Navigate(new Uri("http://curiosity.shoutca.st:8019/stream"));
 
@@ -337,7 +343,7 @@ namespace VocaloidRadio.WP_Pages
                         {
                             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
                             {
-                                networkStatus.Text = "Radio is Streaming!";
+                                networkStatus.Text = loader.GetString("CS_Text3");
                                 networkStatus.Foreground = new SolidColorBrush(Colors.Green);
                                 try
                                 {
@@ -353,7 +359,7 @@ namespace VocaloidRadio.WP_Pages
                                     }
                                     if (BackgroundMediaPlayer.Current.BufferingProgress == 0)
                                     {
-                                        streamStatus.Text = "Buffering Issue...";
+                                        streamStatus.Text = loader.GetString("CS_Text4");
                                         streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
                                     }
                                 }
@@ -364,7 +370,7 @@ namespace VocaloidRadio.WP_Pages
                             }
                             else
                             {
-                                networkStatus.Text = "Error Ocurred! (Ref: WP_101)";
+                                networkStatus.Text = loader.GetString("CS_Text5");
                                 networkStatus.Foreground = new SolidColorBrush(Colors.Red);
                             }
 
@@ -374,12 +380,12 @@ namespace VocaloidRadio.WP_Pages
                         {
                             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
                             {
-                                streamStatus.Text = "Radio is Paused";
+                                streamStatus.Text = loader.GetString("CS_Text6");
                                 streamStatus.Foreground = new SolidColorBrush(Colors.DarkGray);
                             }
                             else
                             {
-                                networkStatus.Text = "Error Ocurred! (Ref: WP_102)";
+                                networkStatus.Text = loader.GetString("CS_Text7");
                                 networkStatus.Foreground = new SolidColorBrush(Colors.Red);
                             }
                         }
@@ -388,7 +394,7 @@ namespace VocaloidRadio.WP_Pages
                         {
                             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
                             {
-                                networkStatus.Text = "Network detected";
+                                networkStatus.Text = loader.GetString("CS_Text8");
                                 networkStatus.Foreground = new SolidColorBrush(Colors.GreenYellow);
                                 if (BackgroundMediaPlayer.Current.BufferingProgress > 0.5 && BackgroundMediaPlayer.Current.BufferingProgress < 0.8)
                                 {
@@ -402,13 +408,13 @@ namespace VocaloidRadio.WP_Pages
                                 }
                                 if (BackgroundMediaPlayer.Current.BufferingProgress == 0)
                                 {
-                                    streamStatus.Text = "Buffering Issue...";
+                                    streamStatus.Text = loader.GetString("CS_Text4");
                                     streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
                                 }
                             }
                             else
                             {
-                                networkStatus.Text = "Error Ocurred! (Ref: WP_103)";
+                                networkStatus.Text = loader.GetString("CS_Text9");
                                 streamStatus.Text = "...";
                                 networkStatus.Foreground = new SolidColorBrush(Colors.Red);
                                 streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
@@ -419,14 +425,14 @@ namespace VocaloidRadio.WP_Pages
                         {
                             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
                             {
-                                streamStatus.Text = "Paused";
+                                streamStatus.Text = loader.GetString("CS_Text10");
                                 streamStatus.Foreground = new SolidColorBrush(Colors.DarkGray);
-                                networkStatus.Text = "Radio is Paused";
+                                networkStatus.Text = loader.GetString("CS_Text6");
                                 networkStatus.Foreground = new SolidColorBrush(Colors.Gray);
                             }
                             else
                             {
-                                networkStatus.Text = "Error Ocurred! (Ref: WP_104)";
+                                networkStatus.Text = loader.GetString("CS_Text11");
                                 streamStatus.Text = "...";
                                 networkStatus.Foreground = new SolidColorBrush(Colors.Red);
                                 streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
@@ -437,14 +443,14 @@ namespace VocaloidRadio.WP_Pages
                         {
                             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
                             {
-                                streamStatus.Text = "Waiting for Buffer...";
+                                streamStatus.Text = loader.GetString("CS_Text14");
                                 streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
-                                networkStatus.Text = "Radio is Opening";
+                                networkStatus.Text = loader.GetString("CS_Text15");
                                 networkStatus.Foreground = new SolidColorBrush(Colors.White);
                             }
                             else
                             {
-                                networkStatus.Text = "Error Ocurred! (Ref: WP_105)";
+                                networkStatus.Text = loader.GetString("CS_Text12");
                                 streamStatus.Text = "...";
                                 networkStatus.Foreground = new SolidColorBrush(Colors.Red);
                                 streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
@@ -457,15 +463,15 @@ namespace VocaloidRadio.WP_Pages
                 {
                     if (BackgroundMediaPlayer.Current == null)
                     {
-                        networkStatus.Text = "Internal Error!";
+                        networkStatus.Text = loader.GetString("CS_Text13");
                         networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                        streamStatus.Text = "(Ref: WP_106)";
+                        streamStatus.Text = loader.GetString("CS_Text16");
                         streamStatus.Foreground = new SolidColorBrush(Colors.Red);
 
                     }
                     else
                     {
-                        networkStatus.Text = "Error Ocurred! (Ref: WP_107)";
+                        networkStatus.Text = loader.GetString("CS_Text17");
                         networkStatus.Foreground = new SolidColorBrush(Colors.Red);
                         streamStatus.Text = "...";
                         streamStatus.Foreground = new SolidColorBrush(Colors.Red);
@@ -477,11 +483,6 @@ namespace VocaloidRadio.WP_Pages
                 // Threading not available
             }
             
-        }
-
-        private void BackButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(WP_RadioStreamer_Selection));
         }
 
     }

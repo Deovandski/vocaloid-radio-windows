@@ -359,12 +359,12 @@
       <PackageInfo>
         <OsMinVersion>6.3.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>4.0.0.5</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>4.1.1.8</PackageMaxArchitectureVersion>
       </PackageInfo>
       <PackageInfo>
         <OsMinVersion>6.3.0.0</OsMinVersion>
         <PackageArchitecture>Neutral</PackageArchitecture>
-        <PackageMaxArchitectureVersion>4.0.0.5</PackageMaxArchitectureVersion>
+        <PackageMaxArchitectureVersion>4.1.1.8</PackageMaxArchitectureVersion>
       </PackageInfo>
     </BundleInfo>
   </PackageInfoList>

@@ -140,15 +140,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="MSAdvertisingXaml, Version=8.1">
-      <Name>MSAdvertisingXaml</Name>
-    </SDKReference>
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="MSAdvertisingXaml, Version=8.1">
+      <Name>Microsoft Advertising SDK for Windows 8.1 %28Xaml%29</Name>
+    </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

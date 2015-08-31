@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="31332Deovandski.VocaloidRadio" Publisher="CN=4BCD280D-1FA1-477A-BCAB-AF2BB13ABA81" Version="4.1.1.8" />
+  <Identity Name="31332Deovandski.VocaloidRadio" Publisher="CN=4BCD280D-1FA1-477A-BCAB-AF2BB13ABA81" Version="4.2.1.9" />
   <Properties>
     <DisplayName>Vocaloid Radio</DisplayName>
     <PublisherDisplayName>Deovandski</PublisherDisplayName>
@@ -22,6 +22,7 @@
         <m2:ApplicationView MinWidth="default" />
         <m2:InitialRotationPreference>
           <m2:Rotation Preference="landscape" />
+          <m2:Rotation Preference="landscapeFlipped" />
         </m2:InitialRotationPreference>
       </m2:VisualElements>
       <Extensions>
