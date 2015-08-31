@@ -69,6 +69,7 @@ namespace WPAppStudio.View
         {
             base.OnNavigatedTo(e);
 		
+		
             MenuSection_MenuMenuControl.SelectedItem = null;
 		}
     }

@@ -47,6 +47,30 @@ namespace WPAppStudio.Services
         {
             get { return _container.Resolve<IViewModels.IMenuSection_MenuViewModel>(); }
         }
+
+        /// <summary>
+        /// Gets the reference to a RadioStreamer_DetailViewModel.
+        /// </summary>
+		public IViewModels.IRadioStreamer_DetailViewModel RadioStreamer_DetailViewModel
+        {
+            get { return _container.Resolve<IViewModels.IRadioStreamer_DetailViewModel>(); }
+        }
+
+        /// <summary>
+        /// Gets the reference to a RadioStream_ListViewModel.
+        /// </summary>
+		public IViewModels.IRadioStream_ListViewModel RadioStream_ListViewModel
+        {
+            get { return _container.Resolve<IViewModels.IRadioStream_ListViewModel>(); }
+        }
+
+        /// <summary>
+        /// Gets the reference to a RadioStream_DetailViewModel.
+        /// </summary>
+		public IViewModels.IRadioStream_DetailViewModel RadioStream_DetailViewModel
+        {
+            get { return _container.Resolve<IViewModels.IRadioStream_DetailViewModel>(); }
+        }
 		/// <summary>
         /// Gets the reference to a AboutViewModel.
         /// </summary>

@@ -47,15 +47,20 @@ namespace WPAppStudio.Ioc
 		    _currentContainer.RegisterType<IServices.IStorageService, Services.StorageService>();
 			_currentContainer.RegisterType<IServices.IInternetService, Services.InternetService>(new ContainerControlledLifetimeManager());
             _currentContainer.RegisterType<IViewModels.IMenuSection_MenuViewModel, ViewModels.MenuSection_MenuViewModel>();
+            _currentContainer.RegisterType<IViewModels.IRadioStreamer_DetailViewModel, ViewModels.RadioStreamer_DetailViewModel>();
+            _currentContainer.RegisterType<IViewModels.IRadioStream_ListViewModel, ViewModels.RadioStream_ListViewModel>();
+            _currentContainer.RegisterType<IViewModels.IRadioStream_DetailViewModel, ViewModels.RadioStream_DetailViewModel>();
 
 			_currentContainer.RegisterType<IViewModels.IAboutViewModel, ViewModels.AboutViewModel>(new ContainerControlledLifetimeManager());
 			_currentContainer.RegisterType<IViewModels.ILicenseViewModel, ViewModels.LicenseViewModel>(new ContainerControlledLifetimeManager());
 			
 			if (!System.ComponentModel.DesignerProperties.IsInDesignTool)
             {
+				_currentContainer.RegisterType<Repositories.IRadioStreamer_Streamer, Repositories.RadioStreamer_Streamer>(new ContainerControlledLifetimeManager());
 			}
 			else
 			{
+				_currentContainer.RegisterType<Repositories.IRadioStreamer_Streamer, Repositories.FakeRadioStreamer_Streamer>(new ContainerControlledLifetimeManager());
 			
 			}
         }

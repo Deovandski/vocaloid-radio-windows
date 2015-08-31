@@ -1,38 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{1ef19084-6727-4e32-aac3-b3e54c1c15a1}" Title="Vocaloid Radio - Miku.fm" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="" Description="This app will be your ticket to the world of Vocaloids! Be ready to listen to great Vocaloid songs in our 24/7 Vocaloid Radio!" Publisher="" PublisherID="{e7d94c95-4681-45a0-a8b4-5df4e482fb9e}">
-    <IconPath IsRelative="true" IsResource="false">Images\Logo-d8c5800e-008d-427f-8760-3d6e8ed66cfb.png</IconPath>
+  <App xmlns="" ProductID="{1ef19084-6727-4e32-aac3-b3e54c1c15a1}" Title="Vocaloid Radio" RuntimeType="Silverlight" Version="2.0" Genre="apps.normal" Author="Deovandski Skibinski Junior" Description="This app will be your ticket to the world of Vocaloids! Be ready to listen to great Vocaloid songs in our 24/7 Vocaloid Radio!" Publisher="" PublisherID="{e7d94c95-4681-45a0-a8b4-5df4e482fb9e}">
+    <IconPath IsRelative="true" IsResource="false">AppTile2.png</IconPath>
     <Capabilities>
-      <Capability Name="ID_CAP_NETWORKING"/>
-      <Capability Name="ID_CAP_SENSORS"/>
-      <Capability Name="ID_CAP_WEBBROWSERCOMPONENT"/>
-      <Capability Name="ID_CAP_SPEECH_RECOGNITION" />
+      <Capability Name="ID_CAP_NETWORKING" />
+      <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
       <Capability Name="ID_CAP_PHONEDIALER" />
-      <Capability Name="ID_CAP_LOCATION" />
-      <Capability Name="ID_CAP_PROXIMITY" />
       <Capability Name="ID_CAP_IDENTITY_USER" />
-      <Capability Name="ID_CAP_MAP" />
-	  <Capability Name="ID_CAP_MEDIALIB_PHOTO" />
+      <Capability Name="ID_CAP_MEDIALIB_PHOTO" />
+      <Capability Name="ID_CAP_MEDIALIB_AUDIO" />
+      <Capability Name="ID_CAP_MEDIALIB_PLAYBACK" />
+      <Capability Name="ID_CAP_PROXIMITY" />
     </Capabilities>
     <Tasks>
-      <DefaultTask Name="_default" NavigationPage="View/MenuSection_Menu.xaml" ActivationPolicy="Resume"/>
+      <DefaultTask Name="_default" NavigationPage="View/MenuSection_Menu.xaml" ActivationPolicy="Resume" />
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="MyDoWapp" TaskName="_default">
-	    <TemplateFlip>
+        <TemplateFlip>
           <SmallImageURI IsRelative="true" IsResource="false">Images/TileSmallBackground-11887729-d3a4-402c-9315-42875a4884be.png</SmallImageURI>
-		  <Count>0</Count>
-		  <BackgroundImageURI IsRelative="true" IsResource="false">Images/Tile-bd89aa0f-b2b1-4907-b3cb-f44350b1a15e.png</BackgroundImageURI>
+          <Count>0</Count>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Images/Tile-bd89aa0f-b2b1-4907-b3cb-f44350b1a15e.png</BackgroundImageURI>
           <Title>Vocaloid Radio</Title>
-          <BackContent></BackContent>
-	      <BackBackgroundImageURI IsRelative="true" IsResource="false">Images/Tileback-3ab589e8-5ad0-401f-9545-af245cb3d9c3.jpg</BackBackgroundImageURI>
-          <BackTitle></BackTitle>
-		  		  <LargeBackgroundImageURI IsRelative="true" IsResource="false">Images/Tile-bd89aa0f-b2b1-4907-b3cb-f44350b1a15e.png</LargeBackgroundImageURI>
-		  <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">Images/Tileback-3ab589e8-5ad0-401f-9545-af245cb3d9c3.jpg</LargeBackBackgroundImageURI>
- 
-          <DeviceLockImageURI IsRelative="true" IsResource="false"></DeviceLockImageURI>
-          <HasLarge>True</HasLarge>		
+          <BackContent>
+          </BackContent>
+          <BackBackgroundImageURI IsRelative="true" IsResource="false">Images/Tileback-3ab589e8-5ad0-401f-9545-af245cb3d9c3.jpg</BackBackgroundImageURI>
+          <BackTitle>
+          </BackTitle>
+          <LargeBackgroundImageURI IsRelative="true" IsResource="false">Images/Tile-bd89aa0f-b2b1-4907-b3cb-f44350b1a15e.png</LargeBackgroundImageURI>
+          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">Images/Tileback-3ab589e8-5ad0-401f-9545-af245cb3d9c3.jpg</LargeBackBackgroundImageURI>
+          <DeviceLockImageURI IsRelative="true" IsResource="false">
+          </DeviceLockImageURI>
+          <HasLarge>True</HasLarge>
         </TemplateFlip>
       </PrimaryToken>
     </Tokens>

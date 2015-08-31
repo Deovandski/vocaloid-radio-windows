@@ -195,4 +195,16 @@
     <value>About</value>
     <comment></comment>
   </data>
+  <data name="TextToSpeech" xml:space="preserve">
+    <value>Read</value>
+    <comment></comment>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Share</value>
+    <comment></comment>
+  </data>
+  <data name="PinToStart" xml:space="preserve">
+    <value>Pin to start</value>
+    <comment></comment>
+  </data>
 </root>

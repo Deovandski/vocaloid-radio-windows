@@ -31,6 +31,9 @@ namespace WPAppStudio.Services
         private static readonly IDictionary<Type, string> ViewModelRouting = new Dictionary<Type, string>()
         {
             { typeof(IViewModels.IMenuSection_MenuViewModel), "/View/MenuSection_Menu.xaml" },
+            { typeof(IViewModels.IRadioStreamer_DetailViewModel), "/View/RadioStreamer_Detail.xaml" },
+            { typeof(IViewModels.IRadioStream_ListViewModel), "/View/RadioStream_List.xaml" },
+            { typeof(IViewModels.IRadioStream_DetailViewModel), "/View/RadioStream_Detail.xaml" },
 			{ typeof(IViewModels.IAboutViewModel), "/View/About.xaml" },
 			{ typeof(IViewModels.ILicenseViewModel), "/View/License.xaml" }
         };

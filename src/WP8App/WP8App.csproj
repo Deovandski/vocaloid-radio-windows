@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{78bbbab1-efa1-4e2d-8dc3-da2872eeddc9}</ProjectGuid>
+    <ProjectGuid>{7D77B3AC-AD93-48C7-8487-EE0692A3C231}</ProjectGuid>
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -142,14 +142,9 @@
     <Reference Include="WPAppStudio.Shared">
       <HintPath>..\Lib\WPAppStudio.Shared.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Advertising.Mobile">
-      <HintPath>..\Lib\Microsoft.Advertising.Mobile</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Advertising.Mobile.UI">
-      <HintPath>..\Lib\Microsoft.Advertising.Mobile.UI.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppTile2.png" />
     <Content Include="readme.txt" />
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
@@ -285,8 +280,17 @@
     <Compile Include="View\MenuSection_Menu.xaml.cs">
       <DependentUpon>MenuSection_Menu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\RadioStream.xaml.cs">
+      <DependentUpon>RadioStream.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\MenuSection_MenuViewModel.cs" />
+    <Compile Include="ViewModel\RadioStreamer_DetailViewModel.cs" />
+    <Compile Include="ViewModel\RadioStream_ListViewModel.cs" />
+    <Compile Include="ViewModel\RadioStream_DetailViewModel.cs" />
     <Compile Include="ViewModel\Interfaces\IMenuSection_MenuViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\IRadioStreamer_DetailViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\IRadioStream_ListViewModel.cs" />
+    <Compile Include="ViewModel\Interfaces\IRadioStream_DetailViewModel.cs" />
     <Compile Include="Resources\AppResources.resx.cs">
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
@@ -332,6 +336,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AudioPlaybackAgent\AudioPlaybackAgent.csproj">
+      <Project>{5C898DFB-BF6F-4532-B458-BD55E9AA425F}</Project>
+      <Name>AudioPlaybackAgent</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{68338DC5-7BC9-425A-A6E8-66C05BBCCFE7}</Project>
       <Name>Entities</Name>
@@ -342,11 +350,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModel\Interfaces\" />
-    <Folder Include="View\" />
+    <SDKReference Include="MSAdvertising, Version=6.1">
+      <Name>Microsoft Advertising SDK for Windows Phone 8 %28XAML%29</Name>
+    </SDKReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="View\MenuSection_Menu.xaml" />
+    <Page Include="View\RadioStream.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\About.xaml" />
     <Page Include="View\License.xaml" />
   </ItemGroup>

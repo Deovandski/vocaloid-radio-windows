@@ -48,8 +48,9 @@
 		</mytoolkitpaging:BindableApplicationBar>	
         <ctl:MenuData x:Key="MenuSection_MenuMenuControlData">
             <ctl:MenuItemData Title="Vocaloid Radio Website" TargetUrl="http://www.vocaloidradio.com" Image="/Images/Item-46e82c4d-229e-4c88-86f8-8be9c5e5a8ce.png"/>
-            <ctl:MenuItemData Title="Stream Radio" TargetUrl="http://vocaloidradio.com/popup-player.html" Image="/Images/Item-a370135c-36fb-4c8c-997d-b5ce86a9e258.png"/>
             <ctl:MenuItemData Title="About" TargetUrl="http://www.deovandski.blogspot.com/2013/11/vocaloidradio-mikufm-app-legal.html" Image="/Images/Item-2104fc48-d029-4d64-982c-bc6ede5b308b.png"/>
+            <ctl:MenuItemData Title="Radio Stream" Target="/View/RadioStream.xaml" Image="/Images/Item-8b2adfcd-b6ef-41c6-a76a-76bd07203a71.png"/>
+            <ctl:MenuItemData Title="Donate" TargetUrl="http://vocaloidradio.com/donate/" Image="/Images/Item-7047d2b3-e1e2-447e-bd54-93fda2f7d051.png"/>
        
         </ctl:MenuData>
     </phone:PhoneApplicationPage.Resources>
@@ -73,9 +74,9 @@
 					  
         <phone:Panorama x:Name="PanoramaMenuSection_Menu" Grid.Row="2" Foreground="{StaticResource CustomApplicationTextBrush}" Background="{StaticResource CustomApplicationBackgroundImage}" SelectionChanged="panoramaMenuSection_Menu_SelectionChanged">
 		    <phone:Panorama.Title>
-				<StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+				<StackPanel Orientation="Horizontal" Margin="-7,35,0,0">
 					<Image Height="85" Width="85" Source="http://appstudiodata.blob.core.windows.net/web-resources/Logo-d8c5800e-008d-427f-8760-3d6e8ed66cfb.png" Stretch="Uniform" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5,0,10,5" RenderTransformOrigin="0.5,0.5" />
-					<TextBlock FontSize="92" Text="Vocaloid Radio - Miku.fm" FontFamily="Segoe WP Light" Foreground="{StaticResource CustomTitleApplicationTextBrush}" VerticalAlignment="Stretch"/>
+					<TextBlock FontSize="65" Text="Vocaloid Radio" FontFamily="Segoe WP Light" Foreground="{StaticResource CustomTitleApplicationTextBrush}" VerticalAlignment="Stretch"/>
                 </StackPanel>
             </phone:Panorama.Title>
 			<phone:PanoramaItem x:Name="PanoramaMenuSection_Menu0" Margin="0,0,0,25">

@@ -37,6 +37,7 @@ namespace WPAppStudio.ViewModel
 		private readonly IServices.IDialogService _dialogService;
 		private readonly IServices.INavigationService _navigationService;
 		private readonly IServices.ILockScreenService _lockScreenService;
+		private readonly Repositories.IRadioStreamer_Streamer _radioStreamer_Streamer;
 		
         /// <summary>
         /// Initializes a new instance of the <see cref="MenuSection_MenuViewModel" /> class.
@@ -44,11 +45,13 @@ namespace WPAppStudio.ViewModel
         /// <param name="dialogService">The Dialog Service.</param>
         /// <param name="navigationService">The Navigation Service.</param>
         /// <param name="lockScreenService">The Lock Screen Service.</param>
-        public MenuSection_MenuViewModel(IServices.IDialogService dialogService, IServices.INavigationService navigationService, IServices.ILockScreenService lockScreenService)
+        /// <param name="radioStreamer_Streamer">The Radio Streamer_ Streamer.</param>
+        public MenuSection_MenuViewModel(IServices.IDialogService dialogService, IServices.INavigationService navigationService, IServices.ILockScreenService lockScreenService, Repositories.IRadioStreamer_Streamer radioStreamer_Streamer)
         {
 			_dialogService = dialogService;
 			_navigationService = navigationService;
 			_lockScreenService = lockScreenService;
+			_radioStreamer_Streamer = radioStreamer_Streamer;
         }
 		
 	
@@ -70,6 +73,62 @@ namespace WPAppStudio.ViewModel
                     _navigationService.NavigateTo(value);
             }
         }
+	
+		private ObservableCollection<Entities.StreamerSchema> _radioStreamer_ListListControlCollection;
+
+        /// <summary>
+        /// RadioStreamer_ListListControlCollection property.
+        /// </summary>		
+        public ObservableCollection<Entities.StreamerSchema> RadioStreamer_ListListControlCollection
+        {
+            get
+            {
+				
+                if(_radioStreamer_ListListControlCollection == null)
+					_radioStreamer_ListListControlCollection = _radioStreamer_Streamer.GetData();
+				return _radioStreamer_ListListControlCollection;     
+            }
+            set
+            {
+                SetProperty(ref _radioStreamer_ListListControlCollection, value);
+            }
+        }
+	
+		private int _radioStreamer_ListListControlCollectionPageNumber;
+
+        /// <summary>
+        /// RadioStreamer_ListListControlCollectionPageNumber property.
+        /// </summary>		
+        public int RadioStreamer_ListListControlCollectionPageNumber
+        {
+            get
+            {
+				return _radioStreamer_ListListControlCollectionPageNumber;
+            }
+            set
+            {
+                SetProperty(ref _radioStreamer_ListListControlCollectionPageNumber, value);
+            }
+        }
+	
+		private Entities.StreamerSchema _selectedRadioStreamer_ListListControlCollection;
+
+        /// <summary>
+        /// SelectedRadioStreamer_ListListControlCollection property.
+        /// </summary>		
+        public Entities.StreamerSchema SelectedRadioStreamer_ListListControlCollection
+        {
+            get
+            {
+				return _selectedRadioStreamer_ListListControlCollection;
+            }
+            set
+            {
+                _selectedRadioStreamer_ListListControlCollection = value;
+                if (value != null)
+                    _navigationService.NavigateTo<IViewModels.IRadioStreamer_DetailViewModel>(_selectedRadioStreamer_ListListControlCollection);
+            }
+        }
 	    /// <summary>
         /// IsInternetAvailable property.
         /// </summary>		
@@ -80,6 +139,25 @@ namespace WPAppStudio.ViewModel
 				return Visibility.Collapsed; 
            }
 		}
+
+        /// <summary>
+        /// Delegate method for the GetRadioStreamer_ListListControlCollectionCommand command.
+        /// </summary>
+        public  void GetRadioStreamer_ListListControlCollectionCommandDelegate(int pageNumber= 0) 
+        {
+				GetRadioStreamer_ListListControlCollectionData(pageNumber);
+        }
+		
+
+        private ICommand _getRadioStreamer_ListListControlCollectionCommand;
+
+        /// <summary>
+        /// Gets the GetRadioStreamer_ListListControlCollectionCommand command.
+        /// </summary>
+        public ICommand GetRadioStreamer_ListListControlCollectionCommand
+        {
+            get { return _getRadioStreamer_ListListControlCollectionCommand = _getRadioStreamer_ListListControlCollectionCommand ?? new ViewModelsBase.DelegateCommand<int>(GetRadioStreamer_ListListControlCollectionCommandDelegate); }
+        }
 
         /// <summary>
         /// Delegate method for the SetLockScreenCommand command.
@@ -118,5 +196,22 @@ namespace WPAppStudio.ViewModel
         {
             get { return _aboutCommand = _aboutCommand ?? new ViewModelsBase.DelegateCommand(AboutCommandDelegate); }
         }
+
+        private void GetRadioStreamer_ListListControlCollectionData(int pageNumber = 0)
+        {
+				RadioStreamer_ListListControlCollectionPageNumber = pageNumber;
+
+                if (pageNumber == 0)
+				{
+					var items = _radioStreamer_Streamer.GetData(pageNumber);
+                    RadioStreamer_ListListControlCollection = items;
+				}
+                else   
+				{
+					var items = _radioStreamer_Streamer.GetData(pageNumber);
+                    foreach (var item in items)                    
+                        RadioStreamer_ListListControlCollection.Add(item);
+				}
+		}
     }
 }

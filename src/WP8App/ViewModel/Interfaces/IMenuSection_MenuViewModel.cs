@@ -25,10 +25,28 @@ namespace WPAppStudio.ViewModel.Interfaces
         /// Gets/Sets the SelectedMenuSection_MenuMenuControl property.
         /// </summary>
 		Controls.MenuItemData SelectedMenuSection_MenuMenuControl { get; set; }
+        /// <summary>
+        /// Gets/Sets the RadioStreamer_ListListControlCollection property.
+        /// </summary>
+		ObservableCollection<Entities.StreamerSchema> RadioStreamer_ListListControlCollection { get; set; }
+        /// <summary>
+        /// Gets/Sets the RadioStreamer_ListListControlCollectionPageNumber property.
+        /// </summary>
+		int RadioStreamer_ListListControlCollectionPageNumber { get; set; }
+        /// <summary>
+        /// Gets/Sets the SelectedRadioStreamer_ListListControlCollection property.
+        /// </summary>
+		Entities.StreamerSchema SelectedRadioStreamer_ListListControlCollection { get; set; }
 	    /// <summary>
         /// IsInternetAvailable property.
         /// </summary>		
         Visibility IsInternetAvailable { get; }
+        
+        /// <summary>
+        /// Gets the GetRadioStreamer_ListListControlCollectionCommand command.
+        /// </summary>
+		ICommand GetRadioStreamer_ListListControlCollectionCommand { get; }
+
         
         /// <summary>
         /// Gets the SetLockScreenCommand command.

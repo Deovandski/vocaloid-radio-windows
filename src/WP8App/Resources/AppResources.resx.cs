@@ -320,5 +320,35 @@ namespace WPAppStudio.Localization {
             }
         }
 
+        
+        /// <summary>
+        ///   Looks up a localized string for TextToSpeech.
+        /// </summary>
+        public static string TextToSpeech {
+            get {
+                return ResourceManager.GetString("TextToSpeech", resourceCulture);
+            }
+        }
+
+        
+        /// <summary>
+        ///   Looks up a localized string for Share.
+        /// </summary>
+        public static string Share {
+            get {
+                return ResourceManager.GetString("Share", resourceCulture);
+            }
+        }
+
+        
+        /// <summary>
+        ///   Looks up a localized string for PinToStart.
+        /// </summary>
+        public static string PinToStart {
+            get {
+                return ResourceManager.GetString("PinToStart", resourceCulture);
+            }
+        }
+
     }
 }
