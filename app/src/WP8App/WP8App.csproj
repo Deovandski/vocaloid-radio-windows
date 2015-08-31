@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{870d9fbe-9183-4110-95cd-91d0a908c921}</ProjectGuid>
+    <ProjectGuid>{870D9FBE-9183-4110-95CD-91D0A908C921}</ProjectGuid>
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -154,6 +154,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AppIcon.png" />
+    <Content Include="AppTile2.png" />
+    <Content Include="AppTile3.png" />
     <Content Include="readme.txt" />
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
@@ -347,10 +350,7 @@
       <Name>Repositories</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\Interfaces\" />
-    <Folder Include="View\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="View\MenuSection_Menu.xaml" />
     <Page Include="View\About.xaml" />

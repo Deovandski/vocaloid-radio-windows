@@ -1,21 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{1ef19084-6727-4e32-aac3-b3e54c1c15a1}" Title="Vocaloid Radio - Miku.fm" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Deovandski Skibinski Junior" Description="This app will be your ticket to the world of Vocaloids! Be ready to listen to great Vocaloid songs in our 24/7 Vocaloid Radio!" Publisher="" PublisherID="{e7d94c95-4681-45a0-a8b4-5df4e482fb9e}">
-    <IconPath IsRelative="true" IsResource="false">Images\Logo-d8c5800e-008d-427f-8760-3d6e8ed66cfb.png</IconPath>
+  <App xmlns="" ProductID="{1ef19084-6727-4e32-aac3-b3e54c1c15a1}" Title="Vocaloid Radio - Miku.fm" RuntimeType="Silverlight" Version="1.1" Genre="apps.normal" Author="Deovandski Skibinski Junior" Description="This app will be your ticket to the world of Vocaloids! Be ready to listen to great Vocaloid songs in our 24/7 Vocaloid Radio!" Publisher="" PublisherID="{e7d94c95-4681-45a0-a8b4-5df4e482fb9e}">
+    <IconPath IsRelative="true" IsResource="false">AppIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
       <Capability Name="ID_CAP_MEDIALIB_AUDIO" />
-      <Capability Name="ID_CAP_MEDIALIB_PHOTO" />
       <Capability Name="ID_CAP_MEDIALIB_PLAYBACK" />
-      <Capability Name="ID_CAP_SENSORS" />
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
-      <Capability Name="ID_CAP_SPEECH_RECOGNITION" />
-      <Capability Name="ID_CAP_PHONEDIALER" />
-      <Capability Name="ID_CAP_MAP" />
-      <Capability Name="ID_CAP_LOCATION" />
-      <Capability Name="ID_CAP_PROXIMITY" />
-      <Capability Name="ID_CAP_IDENTITY_USER" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="View/MenuSection_Menu.xaml" ActivationPolicy="Resume" />
@@ -23,16 +15,20 @@
     <Tokens>
       <PrimaryToken TokenID="MyDoWapp" TaskName="_default">
         <TemplateFlip>
-          <SmallImageURI IsRelative="true" IsResource="false">Images/TileSmallBackground-4f523bba-ea13-4d4a-922c-29a58ed459ae.png</SmallImageURI>
+          <SmallImageURI IsRelative="true" IsResource="false">AppTile3.png</SmallImageURI>
           <Count>0</Count>
-          <BackgroundImageURI IsRelative="true" IsResource="false">Images/Tile-2c7ffd57-1613-49f7-9472-47fea2d7fdc7.png</BackgroundImageURI>
+          <BackgroundImageURI IsRelative="true" IsResource="false">AppTile2.png</BackgroundImageURI>
           <Title>Vocaloid Radio - Miku.fm</Title>
-          <BackContent>Vocaloid Radio 24/7</BackContent>
-          <BackBackgroundImageURI IsRelative="true" IsResource="false">Images/Tileback-1baf4cd9-b13a-4f58-9c06-68ff944a1ef1.png</BackBackgroundImageURI>
+          <BackContent>
+          </BackContent>
+          <BackBackgroundImageURI IsRelative="true" IsResource="false">
+          </BackBackgroundImageURI>
           <BackTitle>
           </BackTitle>
-          <LargeBackgroundImageURI IsRelative="true" IsResource="false">Images/Tile-2c7ffd57-1613-49f7-9472-47fea2d7fdc7.png</LargeBackgroundImageURI>
-          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">Images/Tileback-1baf4cd9-b13a-4f58-9c06-68ff944a1ef1.png</LargeBackBackgroundImageURI>
+          <LargeBackgroundImageURI IsRelative="true" IsResource="false">AppTile3.png</LargeBackgroundImageURI>
+          <LargeBackContent />
+          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">
+          </LargeBackBackgroundImageURI>
           <DeviceLockImageURI IsRelative="true" IsResource="false">
           </DeviceLockImageURI>
           <HasLarge>True</HasLarge>
