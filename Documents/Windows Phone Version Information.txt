@@ -1,0 +1,107 @@
+App Version History: (Updated on September 21st 2014)
+
+Version 4.2.1 (Future Version)
+1. App Localization (fr-FR/ja-JP/ru-RU/zh-CN)
+2. Improve text display and content wrapping for localization. 
+3. Further App Globalization.
+4. Correct text for localized translation errors.
+
+Version 4.2 (Available as 2014.1003.2055.3590) (Current Version -- WP 8.1) 
+1. App Localization (pt-BR/es-ES/en-US/it-IT)
+2. Windows Runtime improvements.
+3. Navigation revamped. All back buttons were removed and the hardware back button works as expected.
+4. Overall App globalization.
+5. RSS Feed implementation
+
+Version 4.1.1 
+1. Connectivity Test Improvement.
+
+Version 4.1
+1. Design Tweaks.
+2. Navigation improvement.
+3. Windows Runtime improvements.
+4. Back Button Design Fix.
+5. Radio Stream and App Information concerning App health now improved to handle Internet Connectivity tests.
+
+Version 4
+1. App internal workings was rebuilt from scratch for optimal performance. The app is now developed only using WinRT instead of using Silverlight, MyToolkit and Unity.
+2. Featured Pages is now hosted under this blog instead of within the Application.
+3. Radio Streamer Information module improvement.
+
+(Newer Version available for Windows Phone 8.1 Only.)
+
+Version 3.2 (Reserved for emergency bug fixes)
+1. Nothing planned at the moment.
+
+Version 3.1 (Current Version -- WP 8.0) 
+1. Bug Fixes.
+2. Featured Pages is now displayed from VocaloidRadio Blogspot instead from within the App.
+3. Removed several Capabilities and functions from the App Package that are were never used by the App.
+4. Loading Screen Updated.
+
+Version 3 
+2. Increase overall App stability.
+3. Bug Fixes.
+4. Recent Songs Display fix.
+5. Featured Pages.
+6. Design Overhaul.
+7. 192kbps and 128kbps Radio Stream implementation.
+8. Improved error handling.
+
+Version 2.5 
+1. Page with all previous song will be displayed.
+2. Main Radio Stream player improvements. 
+3. Back Up Radio stream player improvements.
+4. Streaming Address improvements. New Curiosity streaming Address is more reliable.
+5. Improved VocaloidRadio.com Stream checker features.
+6. App will not automatically lock while on Radio Stream Page.
+7. Overall Performance Improvement.
+8. Radio Stream page overhaul.
+10. Previous songs now displayed.
+
+Version 2.4.1/2.4.2
+1. Streaming Address Fix.
+
+Version 2.4 
+1. Fix a bug related to a black/white screen on the Stream Page when returning to the App while the Radio Stream is playing. This issue has been partially resolved on 2.3 but there are still some actions that trigger this bug.
+2. Find and resolve the causes that lead to an increasing number of crash reports (more information about data collection is displayed on Privacy Information page.)
+3. Backup Stream player (Media Element) will be added so that the user can easily check if the stream is not working.
+4. Song Request page will be added in the main section.
+5. Code for Ads will be improved for the main page and it will also be added for other pages.
+6. VocaloidRadio.com Stream checker feature. 
+7. Main menu improvements and overall App redesign.
+8. Performance Improvements ( App is 30%~50% faster) and it consumes 20%~30% less memory.
+9. "Vocaloid Rules" button is no longer needed so it was removed.
+
+Version 2.3
+1. Fix a bug related to a black/white screen on the Stream Page when returning to the App while the Radio Stream is playing. Apparently caused by an error with the Ad display.
+2. Display Version on App on about page.
+3. About Page redesign. Privacy Information, Legal Information and Technical Information are now in different pages.
+4. Fix an issue when users have the device with the light theme applied (Thanks Microsoft for reporting issue 5.5.2.)
+5. Fix an scroll issue with the current track information displayed on Radio Stream page.
+6. "Vocaloid Rules" button. It can be found by pressing the current track information.
+
+Version 2.2 
+1. Streaming address fix (caused by a server side error.)
+
+Version 2.1.1
+1. Live Tile Improvement.
+
+Version 2.1
+1. Improve background audio performance and functions (Control during lock screen.)
+2. Fix a bug related to Radio Stream being cut-off when phone is idle after certain time.
+3. Fix a bug on the Stop/Play button that happens when a certain pattern of user interactions happens.
+4. Fix a bug related to NFC services (ID_CAP_PROXIMITY.)
+
+Version 2.0 
+1. Background audio enabled (Background Audio Agent.)
+2. Donation page added.
+3. Radio Stream now display information about current music.
+4. The Design and code for the entire App changed.
+
+Version 1.0.1:
+1. Fixed audio Stream.
+2. Design Improvement.
+
+Version 1.0:
+1. Initial Version.

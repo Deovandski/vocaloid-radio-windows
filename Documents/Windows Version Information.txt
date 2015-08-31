@@ -1,0 +1,20 @@
+App Version History: (Updated on August 3rd 2014)
+
+Release 4 (Future commits)
+1. App Localization and Globalization
+2. Fix "Player Closed" issue.
+3. Design tweaks
+4. Better transition between snap and fullscreen mode
+
+Release 3 (Current commit) 
+1. Internet Connectivity Test
+2. Error messages improved
+
+Release 2 
+2. Design Tweaks.
+3. Windows Runtime improvements
+4. Improve web view grid width when changing between snap and fullscreen mode.
+5. Fix a bug where the the stream does not start after entering sleep mode
+
+Release 1 
+1. Initial Version. More information can be found under version 4.0 of Windows Phone Version.
