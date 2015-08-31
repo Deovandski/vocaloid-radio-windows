@@ -151,6 +151,7 @@
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
+    <Content Include="Vocaloid Radio Back Tile.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Images\*.*" />
@@ -334,6 +335,7 @@
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
+    <None Include="WP8App_2013_12_19_17_09_14.sap" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AudioPlaybackAgent\AudioPlaybackAgent.csproj">

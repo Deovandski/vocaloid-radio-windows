@@ -35,7 +35,7 @@
         </toolkit:NavigationOutTransition>
     </toolkit:TransitionService.NavigationOutTransition>
     <phone:PhoneApplicationPage.Resources>
-	    <Style x:Key="ShareButtonStyle" TargetType="Button">
+        <Style x:Key="ShareButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="{StaticResource CustomApplicationTextBrush}"/>
             <Setter Property="Foreground" Value="{StaticResource CustomApplicationTextBrush}"/>
@@ -89,24 +89,13 @@
         </Style>
     </phone:PhoneApplicationPage.Resources>
     <Grid x:Name="LayoutRoot" Background="{StaticResource CustomApplicationBackgroundImage}">
-		<Grid.RowDefinitions>
+        <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" Margin="21,17,0,28">
-            <TextBlock Text="{Binding Title}" FontSize="20" />
-            <TextBlock Text="About" FontSize="72" />
-        </StackPanel>
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="21,0,12,0">
-			<ScrollViewer>
-				<StackPanel>
-					<TextBlock Text="{Binding Description}" TextWrapping="Wrap"/>
-					<TextBlock Text="{Binding Version}" TextWrapping="Wrap" Margin="0, 25"/>
-                    <HyperlinkButton Content="Third Parties license terms" Foreground="{StaticResource CustomApplicationTextBrush}" Command="{Binding LicenseCommand}"/>
-					<Button Content="{Binding Path=LocalizedResources.ShareApp, Source={StaticResource LocalizedStrings}}" Command="{Binding ShareAppCommand}" 
-							Style="{StaticResource ShareButtonStyle}"/>
-				</StackPanel>
-			</ScrollViewer>
-		</Grid>
-	</Grid>
+        <StackPanel Grid.Row="0" Margin="21,17,0,28"/>
+        <Image HorizontalAlignment="Left" Height="240" Margin="0,20,0,0" Grid.Row="1" VerticalAlignment="Top" Width="480" Source="/Vocaloid Radio Back Tile.png"/>
+        <phone:WebBrowser HorizontalAlignment="Left" Margin="0,250,0,0" Grid.Row="1" VerticalAlignment="Top" Height="505" Width="480" Source="http://deovandski.blogspot.com/2013/11/vocaloidradio-mikufm-app-legal.html" IsScriptEnabled="True"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,1,5,0" TextWrapping="Wrap" VerticalAlignment="Center" Height="44" Width="475" FontSize="36" Text="Vocaloid Radio" TextAlignment="Center"/>
+    </Grid>
 </phone:PhoneApplicationPage>
