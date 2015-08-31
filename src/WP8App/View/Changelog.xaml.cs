@@ -9,6 +9,8 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Advertising;
 using System.Windows.Media;
+using System.Threading;
+using System.Globalization;
 
 // Developed by Deovandski Skibinski Junior
 // Updated on 2/21/2014

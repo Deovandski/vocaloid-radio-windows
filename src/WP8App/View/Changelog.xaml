@@ -34,7 +34,7 @@
                 <ColumnDefinition Width="41*"/>
             </Grid.ColumnDefinitions>
 
-            <phone:WebBrowser HorizontalAlignment="Left" Source="http://www.deovandski.blogspot.com/2014/01/vocaloid-radio-changelog.html" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.478" Height="648" Width="480" Grid.ColumnSpan="2" IsScriptEnabled="True" Margin="-12,-10,-12,0"/>
+            <phone:WebBrowser HorizontalAlignment="Left" Name="browser" Source="http://www.deovandski.blogspot.com/2014/01/vocaloid-radio-changelog.html" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.478" Height="648" Width="480" Grid.ColumnSpan="2" IsScriptEnabled="True" Margin="-12,-10,-12,0"/>
 
         </Grid>
         <UI:AdControl x:Name="Ad1" Loaded="Ad1_Loaded" ApplicationId="0bbce01f-6357-4702-b4ab-db02a90d5256" AdUnitId="10336054" HorizontalAlignment="Center" Height="80" Margin="10,45,14,0" VerticalAlignment="Top" Width="456" ErrorOccurred="Ad1_ErrorOccurred" IsAutoCollapseEnabled="True" Foreground="{x:Null}" Background="Black" Grid.RowSpan="2"/>

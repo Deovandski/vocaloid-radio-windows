@@ -43,7 +43,9 @@ namespace WPAppStudio.View
         {
             InitializeComponent();
             if (Resources.Contains("PanoramaMenuSection_Menu0AppBar"))
-                PhonePage.SetApplicationBar(this, Resources["PanoramaMenuSection_Menu0AppBar"] as BindableApplicationBar);  
+                PhonePage.SetApplicationBar(this, Resources["PanoramaMenuSection_Menu0AppBar"] as BindableApplicationBar);
+            PhoneApplicationService phoneAppService = PhoneApplicationService.Current;
+            phoneAppService.UserIdleDetectionMode = IdleDetectionMode.Enabled;      
 		}
 
         // License Terms

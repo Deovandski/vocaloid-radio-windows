@@ -86,7 +86,6 @@
                     </ListBox.ItemsPanel>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-
                             <Grid Height="180" Width="180">
                                 <Grid.Background>
                                     <SolidColorBrush Color="Black" Opacity="0.7"></SolidColorBrush>
@@ -101,10 +100,8 @@
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-
                 </ListBox>
             </phone:PanoramaItem>
         </phone:Panorama>
     </Grid>
-
 </phone:PhoneApplicationPage>

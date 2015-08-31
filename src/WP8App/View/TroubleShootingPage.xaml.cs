@@ -9,6 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Advertising;
 using System.Windows.Media;
+using Microsoft.Phone.Net.NetworkInformation;
 
 // Developed by Deovandski Skibinski Junior
 // Updated on 2/22/2014
@@ -17,16 +18,20 @@ namespace WPAppStudio.View
 {
     public partial class TroubleShootingPage : PhoneApplicationPage
     {
+        private String MEBufferTime = "";
+
         public TroubleShootingPage()
         {
             InitializeComponent();
+            PhoneApplicationService phoneAppService = PhoneApplicationService.Current;
+            phoneAppService.UserIdleDetectionMode = IdleDetectionMode.Disabled;
         }
 
         // Debug Diagnostics for Ad
 
         private void Ad1_ErrorOccurred(object sender, AdErrorEventArgs e)
         {
-            // System.Diagnostics.Debug.WriteLine("Ad Error : ({0}) {1}", e.ErrorCode, e.Error);
+        //     System.Diagnostics.Debug.WriteLine("Ad Error : ({0}) {1}", e.ErrorCode, e.Error);
         }
 
         // Go to Technical Information
@@ -38,24 +43,52 @@ namespace WPAppStudio.View
         // Stop Media Element player
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            mediaElement.Stop();
-            MEstreamStatus.Text = "Media Element is Off";
+            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
+            {
+                mediaElement.Stop();
+                MEstreamStatus.Text = "Media Element is Off";
+                MEstreamStatus.Foreground = new SolidColorBrush(Colors.White);
+            }
+            else
+            {
+                MEstreamStatus.Text = "Check your Connection";
+                MEstreamStatus.Foreground = new SolidColorBrush(Colors.Red);
+            }
+
         }
 
-        // Start Media Element player
+        // Event handler. Call updateMEStatus()
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            mediaElement.Play();
-            MEstreamStatus.Text = "Media Element is On";
-            MEbufferStatus.Text = mediaElement.BufferingTime.ToString() + "s";
+            this.updateMEStatus(true);
         }
 
-        // Change values according to Buffer Time
+        /// <summary>
+        /// Start Media Element player + Change values according to Buffer Time
+        /// Start Media Element if parameter receive is true
+        /// </summary>
+        /// <param name="startPlayer"></param>
+        private void updateMEStatus(bool startPlayer)
+        {
+            MEBufferTime = mediaElement.BufferingTime.ToString();
+            if (MEBufferTime == "00:00:00") { MEBufferTime = "0s"; MEstreamStatus.Foreground = new SolidColorBrush(Colors.Orange); }
+            if (MEBufferTime == "00:00:05") { MEBufferTime = "5s"; MEstreamStatus.Foreground = new SolidColorBrush(Colors.Green); }
+            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
+            {
+                if (startPlayer == true) { mediaElement.Play();}
+                MEstreamStatus.Text = "M.E. is On || Buffer is " + MEBufferTime;
+            }
+            else
+            {
+                MEstreamStatus.Text = "Check your Connection";
+                MEstreamStatus.Foreground = new SolidColorBrush(Colors.Red);
+            }
+        }
+
+        // Event handler. Call updateMEStatus()
         private void mediaElement_BufferingProgressChanged(object sender, RoutedEventArgs e)
         {
-            MEbufferStatus.Text = mediaElement.BufferingTime.ToString() + "s";
-           // if (MEbufferStatus.Text == "00:00:00") { MEbufferStatus.Foreground = new SolidColorBrush(Colors.Red); }
-            //if (MEbufferStatus.Text == "00:00:05") { MEbufferStatus.Foreground = new SolidColorBrush(Colors.Green); }
+            this.updateMEStatus(false);
         }
 
         // Close Media Element and return to Main Menu. Do not allow call to Radio Stream or else there will be a loop call between these two pages.

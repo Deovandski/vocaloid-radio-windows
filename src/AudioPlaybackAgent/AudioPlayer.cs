@@ -17,15 +17,11 @@ namespace Vocaloid_Radio
         {
             // Subscribe to the managed exception handler
             Deployment.Current.Dispatcher.BeginInvoke(delegate
-            {
-                Application.Current.UnhandledException += UnhandledException;
-            });
+            {Application.Current.UnhandledException += UnhandledException;});
         }
-        AudioTrack streamRadio = new AudioTrack(new Uri("http://192.99.8.170:8019/stream", UriKind.Absolute),
+        AudioTrack streamRadio = new AudioTrack(new Uri("http://curiosity.shoutca.st:8019/stream", UriKind.Absolute),
                             "VocaloidRadio.com",
-                            "Online 24/7 Radio",
-                            " ",
-                            null);
+                            "Online 24/7 Radio","", null);
         /// Code to execute on Unhandled Exceptions
         private static void UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
@@ -56,24 +52,15 @@ namespace Vocaloid_Radio
         {
             switch (playState)
             {
-
-
                 case PlayState.Shutdown:
-                    // TODO: Handle the shutdown state here (e.g. save state)
                     break;
-
                 case PlayState.Stopped:
                     break;
-
                 case PlayState.Playing:
                     break;
                 case PlayState.BufferingStarted:
                     break;
                 case PlayState.BufferingStopped:
-                    break;
-                case PlayState.Rewinding:
-                    break;
-                case PlayState.FastForwarding:
                     break;
             }
 
@@ -102,8 +89,8 @@ namespace Vocaloid_Radio
                 case UserAction.Play:
                     if (player.PlayerState != PlayState.Playing)
                     {
-                       
                         player.Track = streamRadio;
+                        player.Volume = 1.00;
                         player.Play();
                     }
                     break;
@@ -113,72 +100,9 @@ namespace Vocaloid_Radio
                 case UserAction.Pause:
                     player.Stop();
                     break;
-                case UserAction.FastForward:
-                  //  player.FastForward();
-                    break;
-                case UserAction.Rewind:
-                   // player.Rewind();
-                    break;
-                case UserAction.Seek:
-                    //player.Position = (TimeSpan)param;
-                    break;
-                case UserAction.SkipNext:
-                   // player.Track = GetNextTrack();
-                    break;
-                case UserAction.SkipPrevious:
-                 /*   AudioTrack previousTrack = GetPreviousTrack();
-                    if (previousTrack != null)
-                    {
-                        player.Track = previousTrack;
-                    }
-                  * */
-                    break;
             }
 
             NotifyComplete();
-        }
-
-        /// <summary>
-        /// Implements the logic to get the next AudioTrack instance.
-        /// In a playlist, the source can be from a file, a web request, etc.
-        /// </summary>
-        /// <remarks>
-        /// The AudioTrack URI determines the source, which can be:
-        /// (a) Isolated-storage file (Relative URI, represents path in the isolated storage)
-        /// (b) HTTP URL (absolute URI)
-        /// (c) MediaStreamSource (null)
-        /// </remarks>
-        /// <returns>an instance of AudioTrack, or null if the playback is completed</returns>
-        private AudioTrack GetNextTrack()
-        {
-            // TODO: add logic to get the next audio track
-
-            AudioTrack track = null;
-
-            // specify the track
-
-            return track;
-        }
-
-        /// <summary>
-        /// Implements the logic to get the previous AudioTrack instance.
-        /// </summary>
-        /// <remarks>
-        /// The AudioTrack URI determines the source, which can be:
-        /// (a) Isolated-storage file (Relative URI, represents path in the isolated storage)
-        /// (b) HTTP URL (absolute URI)
-        /// (c) MediaStreamSource (null)
-        /// </remarks>
-        /// <returns>an instance of AudioTrack, or null if previous track is not allowed</returns>
-        private AudioTrack GetPreviousTrack()
-        {
-            // TODO: add logic to get the previous audio track
-
-            AudioTrack track = null;
-
-            // specify the track
-
-            return track;
         }
 
         /// <summary>

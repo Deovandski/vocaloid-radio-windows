@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{1ef19084-6727-4e32-aac3-b3e54c1c15a1}" Title="Vocaloid Radio" RuntimeType="Silverlight" Version="2.4" Genre="apps.normal" Author="Deovandski Skibinski Junior" Description="This app will be your ticket to the world of Vocaloids! Be ready to listen to great Vocaloid songs in our 24/7 Vocaloid Radio!&#xD;&#xA;&#xD;&#xA;For more information concerning the changelog and legal inforamtion check the License Terms." Publisher="" PublisherID="{e7d94c95-4681-45a0-a8b4-5df4e482fb9e}">
+  <App xmlns="" ProductID="{1ef19084-6727-4e32-aac3-b3e54c1c15a1}" Title="Vocaloid Radio" RuntimeType="Silverlight" Version="2.5" Genre="apps.normal" Author="Deovandski Skibinski Junior" Description="With this free App you will enjoy Vocaloid music* for 24/7 anywhere, anytime! Radio Stream is provided by VocaloidRadio.com&#xD;&#xA;&#xD;&#xA;*Internet Required&#xD;&#xA;&#xD;&#xA;**This App will be update once in a while in order to keep up with the Stream provided by VocaloidRadio.com" Publisher="" PublisherID="{e7d94c95-4681-45a0-a8b4-5df4e482fb9e}">
     <IconPath IsRelative="true" IsResource="false">Images\Tile-bd89aa0f-b2b1-4907-b3cb-f44350b1a15e.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
