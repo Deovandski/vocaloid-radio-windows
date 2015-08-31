@@ -1,0 +1,117 @@
+<phone:PhoneApplicationPage 
+    x:Class="WPAppStudio.View.MenuSection_Menu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:ctl="clr-namespace:WPAppStudio.Controls"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:maps="clr-namespace:WPAppStudio.Controls.Maps"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:mytoolkit="clr-namespace:MyToolkit.Controls;assembly=MyToolkit.Extended"
+	xmlns:mytoolkitpaging="clr-namespace:MyToolkit.Paging;assembly=MyToolkit.Extended"
+	xmlns:ads="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource CustomApplicationTextBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+	DataContext="{Binding Path=MenuSection_MenuViewModel, Source={StaticResource ViewModelLocator}}">
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+    <phone:PhoneApplicationPage.Resources>
+        
+		<mytoolkitpaging:BindableApplicationBar x:Key="PanoramaMenuSection_Menu0AppBar" IsVisible="True" IsMenuEnabled="True" Mode="Minimized" BackgroundColor="{StaticResource CustomApplicationAppBarBackgroundColor}" Opacity="0.99" ForegroundColor="White">
+			<mytoolkitpaging:BindableApplicationBarIconButton x:Name="PanoramaMenuSection_Menu0SetLockScreenBtn" IconUri="/Images/Icons/Dark/SetLockScreen.png" Text="{Binding Path=LocalizedResources.SetLockScreen, Source={StaticResource LocalizedStrings}}" Command="{Binding SetLockScreenCommand}"  />
+			<mytoolkitpaging:BindableApplicationBar.MenuItems>
+				<mytoolkitpaging:BindableApplicationBarMenuItem x:Name="PanoramaMenuSection_Menu0AboutBtn" Text="{Binding Path=LocalizedResources.About, Source={StaticResource LocalizedStrings}}" Command="{Binding AboutCommand}"/>
+			</mytoolkitpaging:BindableApplicationBar.MenuItems>		
+		</mytoolkitpaging:BindableApplicationBar>	
+        <ctl:MenuData x:Key="MenuSection_MenuMenuControlData">
+            <ctl:MenuItemData Title="Vocaloid Radio Website" TargetUrl="http://www.vocaloidradio.com" Image="/Images/Item-46e82c4d-229e-4c88-86f8-8be9c5e5a8ce.png"/>
+            <ctl:MenuItemData Title="Stream Radio" TargetUrl="http://vocaloidradio.com/popup-player.html" Image="/Images/Item-a370135c-36fb-4c8c-997d-b5ce86a9e258.png"/>
+            <ctl:MenuItemData Title="About" TargetUrl="http://www.deovandski.blogspot.com/2013/11/vocaloidradio-mikufm-app-legal.html" Image="/Images/Item-2104fc48-d029-4d64-982c-bc6ede5b308b.png"/>
+       
+        </ctl:MenuData>
+    </phone:PhoneApplicationPage.Resources>
+    <Grid x:Name="LayoutRoot">
+		<Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Visibility="{Binding IsInternetAvailable}" Background="{StaticResource CustomApplicationAppBarBackgroundBrush}" Height="30">
+            <TextBlock Text="{Binding Path=LocalizedResources.NoConnection, Source={StaticResource LocalizedStrings}}" Foreground="White" Margin="10, 0"/>
+        </Grid>
+
+        <!--PLACE BELOW YOUR AdUnitId AND ApplicationId TO ENABLE ADS IN YOUR APPLICATION-->
+        <!--Image480_80 and test_client ARE DEMO VALUES-->
+        <!--<ads:AdControl Grid.Row="1" Height="80" Width="480"
+                      IsAutoCollapseEnabled="True"
+                      IsAutoRefreshEnabled="True"
+                      AdUnitId="Image480_80"
+                      ApplicationId="test_client"/>-->
+					  
+        <phone:Panorama x:Name="PanoramaMenuSection_Menu" Grid.Row="2" Foreground="{StaticResource CustomApplicationTextBrush}" Background="{StaticResource CustomApplicationBackgroundImage}" SelectionChanged="panoramaMenuSection_Menu_SelectionChanged">
+		    <phone:Panorama.Title>
+				<StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+					<Image Height="85" Width="85" Source="http://appstudiodata.blob.core.windows.net/web-resources/Logo-d8c5800e-008d-427f-8760-3d6e8ed66cfb.png" Stretch="Uniform" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5,0,10,5" RenderTransformOrigin="0.5,0.5" />
+					<TextBlock FontSize="92" Text="Vocaloid Radio - Miku.fm" FontFamily="Segoe WP Light" Foreground="{StaticResource CustomTitleApplicationTextBrush}" VerticalAlignment="Stretch"/>
+                </StackPanel>
+            </phone:Panorama.Title>
+			<phone:PanoramaItem x:Name="PanoramaMenuSection_Menu0" Margin="0,0,0,25">
+				<phone:PanoramaItem.Header>
+					<Grid MaxHeight="225" Margin="0,7,0,0">
+						<TextBlock Text="Menu" FontSize="56" TextWrapping="Wrap" TextTrimming="WordEllipsis" Foreground="{StaticResource CustomApplicationTextBrush}"/>
+					</Grid>
+				</phone:PanoramaItem.Header>
+				<ListBox x:Name="MenuSection_MenuMenuControl" 
+					ItemsSource="{StaticResource MenuSection_MenuMenuControlData}"
+					SelectedItem="{Binding SelectedMenuSection_MenuMenuControl, Mode=TwoWay}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+							<toolkit:WrapPanel ItemHeight="200" ItemWidth="200"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+
+						<Grid Height="180" Width="180">	
+							<Grid.Background>
+                                <SolidColorBrush Color="Black" Opacity="0.7"></SolidColorBrush>
+                            </Grid.Background>
+							<Grid.RowDefinitions>
+								<RowDefinition></RowDefinition>
+								<RowDefinition Height="Auto"></RowDefinition>
+							</Grid.RowDefinitions>
+							<Image Margin="10" Source="{Binding Image}" Stretch="Uniform"/>
+							<TextBlock Grid.Row="1" Margin="10,10" FontSize="18" Foreground="{StaticResource CustomApplicationTextBrush}" 
+									   Text="{Binding Title}"/>							
+						</Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </phone:PanoramaItem>
+        </phone:Panorama>
+    </Grid>
+	
+</phone:PhoneApplicationPage>
