@@ -10,6 +10,10 @@ using Microsoft.Phone.Shell;
 using Microsoft.Advertising.Mobile.UI;
 using Microsoft.Advertising;
 using Microsoft.Phone.BackgroundAudio;
+using System.Windows.Media;
+
+// Developed by Deovandski Skibinski Junior
+// Updated on 2/21/2014
 
 namespace Vocaloid_Radio
 {
@@ -22,24 +26,108 @@ namespace Vocaloid_Radio
             BackgroundAudioPlayer.Instance.PlayStateChanged += new EventHandler(Instance_PlayStateChanged);
         }
 
+        // Check any change in playstate | Connected to Event Handler
+
         void Instance_PlayStateChanged(object sender, EventArgs e)
         {
             switch (BackgroundAudioPlayer.Instance.PlayerState)
             {
                 case PlayState.Playing:
-
+                    streamStatus.Text = "Playing Radio | Buffer is " + BackgroundAudioPlayer.Instance.BufferingProgress.ToString() + "s";
+                    streamStatus.Foreground = new SolidColorBrush(Colors.Green);
                     break;
-
+                case PlayState.Paused:
+                    streamStatus.Text = "Radio is on Hold";
+                    streamStatus.Foreground = new SolidColorBrush(Colors.Gray);
+                    playButton.Content = "Pause"; 
+                    break;
                 case PlayState.Stopped:
-
+                    streamStatus.Text = "Radio is Off";
+                    streamStatus.Foreground = new SolidColorBrush(Colors.Gray);
                     break;
+                case PlayState.BufferingStarted:
+                    streamStatus.Text = "Buffering Radio";
+                    streamStatus.Foreground = new SolidColorBrush(Colors.Brown);
+                    break;
+                case PlayState.BufferingStopped:
+                    streamStatus.Text = "Radio is not buffering";
+                    streamStatus.Foreground = new SolidColorBrush(Colors.Orange);
+                    playButton.Content = "Pause"; 
+                    break;
+                case PlayState.Shutdown:
+                    streamStatus.Text = "Radio is Off";
+                    streamStatus.Foreground = new SolidColorBrush(Colors.White);
+                    break;
+                case PlayState.Error:
+                    streamStatus.Text = "An Error Occurred";
+                    streamStatus.Foreground = new SolidColorBrush(Colors.Orange);
+                    // catch error and try to fix it
+                    BackgroundAudioPlayer.Instance.Stop();
+                    break;
+                case PlayState.Unknown:
+                    streamStatus.Text = "Unknown State";
+                    streamStatus.Foreground = new SolidColorBrush(Colors.LightGray);
+                    // catch any unexpected situation and try to fix it
+                    BackgroundAudioPlayer.Instance.Stop();
+                    break;
+
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        // Check any change in playstate | Connected to Page Loaded Event Handler
+        void Instance_PlayStateChanged()
         {
-            NavigationService.Navigate(new Uri("/RadioStream.xaml", UriKind.Relative));
-           
+            switch (BackgroundAudioPlayer.Instance.PlayerState)
+            {
+                case PlayState.Playing:
+                  //  if (streamStatus.Text == "Playing Radio | Buffer is 0s")
+                  //  {
+                   //     streamStatus.Text = "Buffering Issues...";
+                  //      streamStatus.Foreground = new SolidColorBrush(Colors.Yellow);
+                  //  }
+                    if (BackgroundAudioPlayer.Instance.BufferingProgress == 1)
+                    {
+                        streamStatus.Text = "Playing Radio | Buffer is " + BackgroundAudioPlayer.Instance.BufferingProgress.ToString() + "s";
+                        streamStatus.Foreground = new SolidColorBrush(Colors.Green);
+                    }
+
+                    break;
+                case PlayState.Paused:
+                    streamStatus.Text = "Radio is on Hold";
+                    streamStatus.Foreground = new SolidColorBrush(Colors.Gray);
+                    playButton.Content = "Pause";
+                    break;
+                case PlayState.Stopped:
+                    streamStatus.Text = "Radio is Off";
+                    streamStatus.Foreground = new SolidColorBrush(Colors.Gray);
+                    break;
+                case PlayState.BufferingStarted:
+                    streamStatus.Text = "Buffering Radio";
+                    streamStatus.Foreground = new SolidColorBrush(Colors.Brown);
+                    break;
+                case PlayState.BufferingStopped:
+                    streamStatus.Text = "Radio is not buffering";
+                    streamStatus.Foreground = new SolidColorBrush(Colors.Orange);
+                    playButton.Content = "Pause";
+                    break;
+                case PlayState.Shutdown:
+                    streamStatus.Text = "Radio is Off";
+                    streamStatus.Foreground = new SolidColorBrush(Colors.White);
+                    break;
+                case PlayState.Error:
+                    streamStatus.Text = "An Error Occurred";
+                    streamStatus.Foreground = new SolidColorBrush(Colors.Orange);
+                    // catch error and try to fix it
+                    BackgroundAudioPlayer.Instance.Stop();
+                    break;
+                case PlayState.Unknown:
+                    streamStatus.Text = "Unknown State";
+                    streamStatus.Foreground = new SolidColorBrush(Colors.LightGray);
+                    // catch any unexpected situation and try to fix it
+                    BackgroundAudioPlayer.Instance.Stop();
+                    break;
+
+            }
         }
 
         // Stops all audio streaming
@@ -49,74 +137,36 @@ namespace Vocaloid_Radio
             BackgroundAudioPlayer.Instance.Stop();
         }
 
-        // Start Media Streaming
+        // Start Media Streaming | Check for conditions such as MediaState.playing and stopped
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            BackgroundAudioPlayer.Instance.Play();
+            if (BackgroundAudioPlayer.Instance.PlayerState == PlayState.Paused) { BackgroundAudioPlayer.Instance.Play(); }
+            if (BackgroundAudioPlayer.Instance.PlayerState == PlayState.Stopped) { BackgroundAudioPlayer.Instance.Play(); }
+            if (BackgroundAudioPlayer.Instance.PlayerState == PlayState.Shutdown) { BackgroundAudioPlayer.Instance.Play();  }
+            if (BackgroundAudioPlayer.Instance.PlayerState == PlayState.Unknown) { BackgroundAudioPlayer.Instance.Play(); }
             
         }
 
         // Debug Diagnostics for Ad
+
         private void Ad1_ErrorOccurred(object sender, AdErrorEventArgs e)
         {
            // System.Diagnostics.Debug.WriteLine("Ad Error : ({0}) {1}", e.ErrorCode, e.Error);
-            TextBox.Text = e.Error.ToString();
         }
 
-        private void ImageStreamer_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+
+        // Troubleshooting Button + make sure to clean BackgroundPlayerAgent so that MediaElement can use the resources.
+        private void Button_Click_4(object sender, RoutedEventArgs e)
         {
-            // Hold user interaction. For Design porpuse to not allow the user to scroll down.
+            BackgroundAudioPlayer.Instance.Close();
+            NavigationService.Navigate(new Uri("/View/TroubleShootingPage.xaml", UriKind.Relative));
         }
 
-        private void ImageStreamer_MouseWheel(object sender, System.Windows.Input.MouseWheelEventArgs e)
+        // Check and update textblock stream Status
+        private void PhoneApplicationPage_Loaded(object sender, RoutedEventArgs e)
         {
-            // Hold user interaction. For Design porpuse to not allow the user to scroll down.
-        }
-
-        private void ImageStreamer_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            // Hold user interaction. For Design porpuse to not allow the user to scroll down.
-        }
-
-        private void ImageStreamer_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
-        {
-            // Hold user interaction. For Design porpuse to not allow the user to scroll down.
-        }
-
-        private void ImageStreamer_ManipulationStarted(object sender, System.Windows.Input.ManipulationStartedEventArgs e)
-        {
-            // Hold user interaction. For Design porpuse to not allow the user to scroll down.
-        }
-
-        private void ImageStreamer_ManipulationDelta(object sender, System.Windows.Input.ManipulationDeltaEventArgs e)
-        {
-            // Hold user interaction. For Design porpuse to not allow the user to scroll down.
-        }
-
-        private void ImageStreamer_ManipulationCompleted(object sender, System.Windows.Input.ManipulationCompletedEventArgs e)
-        {
-            // Hold user interaction. For Design porpuse to not allow the user to scroll down.
-        }
-
-        private void ImageStreamer_Navigating(object sender, NavigatingEventArgs e)
-        {
-            // Hold user interaction. For Design porpuse to not allow the user to scroll down.
-        }
-
-        private void bt1_GotFocus(object sender, RoutedEventArgs e)
-        {
-            // Hold user interaction. For Design porpuse to not allow the user to scroll down.
-        }
-
-        private void bt1_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            // Hold user interaction. For Design porpuse to not allow the user to scroll down.
-        }
-
-        private void bt1_Click(object sender, RoutedEventArgs e)
-        {
-            // Hold user interaction. For Design porpuse to not allow the user to scroll down.
+            this.Instance_PlayStateChanged();
         }
     }
 }

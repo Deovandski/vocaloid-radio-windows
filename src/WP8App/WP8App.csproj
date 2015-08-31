@@ -145,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppTile2.png" />
+    <Content Include="Images\pageBackground.jpg" />
     <Content Include="readme.txt" />
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
@@ -154,7 +155,29 @@
     <Content Include="Vocaloid Radio Back Tile.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\*.*" />
+    <Content Include="Images\Background-b7bfe342-efd1-455e-b658-50ffbda457df.jpg" />
+    <Content Include="Images\DonatePic.png" />
+    <Content Include="Images\FlipCycleTileLarge.png" />
+    <Content Include="Images\FlipCycleTileMedium.png" />
+    <Content Include="Images\FlipCycleTileSmall.png" />
+    <Content Include="Images\IconicTileMediumLarge.png" />
+    <Content Include="Images\IconicTileSmall.png" />
+    <Content Include="Images\Item-2104fc48-d029-4d64-982c-bc6ede5b308b.png" />
+    <Content Include="Images\Item-46e82c4d-229e-4c88-86f8-8be9c5e5a8ce.png" />
+    <Content Include="Images\Item-7047d2b3-e1e2-447e-bd54-93fda2f7d051.png" />
+    <Content Include="Images\Item-8b2adfcd-b6ef-41c6-a76a-76bd07203a71.png" />
+    <Content Include="Images\LockScreen-5cf9d8d2-6e64-4a19-b86c-536ba2d66cc4.jpg" />
+    <Content Include="Images\Logo-d8c5800e-008d-427f-8760-3d6e8ed66cfb.png" />
+    <Content Include="Images\Logo.png" />
+    <Content Include="Images\miku.jpg" />
+    <Content Include="Images\NoImage.png" />
+    <Content Include="Images\schedulePic.png" />
+    <Content Include="Images\SplashScreen-64e215ea-344c-49e8-927b-18d173efde65.jpg" />
+    <Content Include="Images\tap+send.png" />
+    <Content Include="Images\Thumbs.db" />
+    <Content Include="Images\Tile-bd89aa0f-b2b1-4907-b3cb-f44350b1a15e.png" />
+    <Content Include="Images\Tileback-3ab589e8-5ad0-401f-9545-af245cb3d9c3.jpg" />
+    <Content Include="Images\TileSmallBackground-11887729-d3a4-402c-9315-42875a4884be.png" />
     <Content Include="Images\Icons\Dark\Call.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -281,11 +304,17 @@
     <Compile Include="View\Changelog.xaml.cs">
       <DependentUpon>Changelog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Donate.xaml.cs">
+      <DependentUpon>Donate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LicenseTerms.xaml.cs">
       <DependentUpon>LicenseTerms.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MenuSection_Menu.xaml.cs">
       <DependentUpon>MenuSection_Menu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\NetworkInformation.xaml.cs">
+      <DependentUpon>NetworkInformation.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PrivacyInfo.xaml.cs">
       <DependentUpon>PrivacyInfo.xaml</DependentUpon>
@@ -312,6 +341,21 @@
     <Compile Include="ViewModel\Interfaces\IAboutViewModel.cs" />
     <Compile Include="ViewModel\Interfaces\ILicenseViewModel.cs" />
     <Compile Include="ViewModel\LicenseViewModel.cs" />
+    <Compile Include="View\RecentTracks.xaml.cs">
+      <DependentUpon>RecentTracks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RequestSong.xaml.cs">
+      <DependentUpon>RequestSong.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Schedule.xaml.cs">
+      <DependentUpon>Schedule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TroubleShootingPage.xaml.cs">
+      <DependentUpon>TroubleShootingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\VocaloidRadioWebsite.xaml.cs">
+      <DependentUpon>VocaloidRadioWebsite.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -330,6 +374,50 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Changelog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Donate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LicenseTerms.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MenuSection_Menu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\NetworkInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PrivacyInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RecentTracks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RequestSong.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Schedule.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TroubleShootingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\VocaloidRadioWebsite.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -341,7 +429,6 @@
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
-    <None Include="WP8App_2013_12_19_17_09_14.sap" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AudioPlaybackAgent\AudioPlaybackAgent.csproj">
@@ -363,19 +450,6 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="View\Changelog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\LicenseTerms.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\MenuSection_Menu.xaml" />
-    <Page Include="View\PrivacyInfo.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="View\RadioStream.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

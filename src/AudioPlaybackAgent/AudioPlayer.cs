@@ -21,9 +21,9 @@ namespace Vocaloid_Radio
                 Application.Current.UnhandledException += UnhandledException;
             });
         }
-        AudioTrack streamRadio = new AudioTrack(new Uri("http://195.154.237.156:8019/stream", UriKind.Absolute),
-                            "Online Stream",
-                            "Vocaloid Radio",
+        AudioTrack streamRadio = new AudioTrack(new Uri("http://192.99.8.170:8019/stream", UriKind.Absolute),
+                            "VocaloidRadio.com",
+                            "Online 24/7 Radio",
                             " ",
                             null);
         /// Code to execute on Unhandled Exceptions
@@ -102,6 +102,7 @@ namespace Vocaloid_Radio
                 case UserAction.Play:
                     if (player.PlayerState != PlayState.Playing)
                     {
+                       
                         player.Track = streamRadio;
                         player.Play();
                     }
@@ -110,26 +111,27 @@ namespace Vocaloid_Radio
                     player.Stop();
                     break;
                 case UserAction.Pause:
-                    player.Pause();
+                    player.Stop();
                     break;
                 case UserAction.FastForward:
-                    player.FastForward();
+                  //  player.FastForward();
                     break;
                 case UserAction.Rewind:
-                    player.Rewind();
+                   // player.Rewind();
                     break;
                 case UserAction.Seek:
-                    player.Position = (TimeSpan)param;
+                    //player.Position = (TimeSpan)param;
                     break;
                 case UserAction.SkipNext:
-                    player.Track = GetNextTrack();
+                   // player.Track = GetNextTrack();
                     break;
                 case UserAction.SkipPrevious:
-                    AudioTrack previousTrack = GetPreviousTrack();
+                 /*   AudioTrack previousTrack = GetPreviousTrack();
                     if (previousTrack != null)
                     {
                         player.Track = previousTrack;
                     }
+                  * */
                     break;
             }
 

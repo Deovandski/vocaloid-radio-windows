@@ -1,0 +1,6 @@
+<MarketplaceDetails>
+  <SmallAppTile>AppTile300X300.png</SmallAppTile>
+  <ScreenShots>Main_Menu.png;About_Menu.png;Radio_Stream.png;Backup_Player.png;Stream_Info.png;Request_Song.png;Main_Website.png;;</ScreenShots>
+  <ScreenShotsWXGA>WXGA Photo (3).png;WXGA Photo (1).png;WXGA Photo (5).png;WXGA Photo (2).png;WXGA Photo (4).png;WXGA Photo (6).png;WXGA Photo (7).png;;</ScreenShotsWXGA>
+  <ScreenShots720P>720p Photo (3).png;720p Photo (6).png;720p Photo (5).png;720p Photo (4).png;720p Photo (2).png;720p Photo (1).png;;;</ScreenShots720P>
+</MarketplaceDetails>

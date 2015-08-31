@@ -4,11 +4,28 @@
 // ========================================================================
 // Template:   	AboutPageCS.tt
 // Version:		2.0
-using System.CodeDom.Compiler;
-using System.Runtime.CompilerServices;
-using System.Windows.Controls;
-using Microsoft.Phone.Controls;
 using System;
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Net;
+using System.Runtime.CompilerServices;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Navigation;
+using Entities = WPAppStudio.Entities;
+using Ioc = WPAppStudio.Ioc;
+using IServices = WPAppStudio.Services.Interfaces;
+using IViewModels = WPAppStudio.ViewModel.Interfaces;
+using Localization = WPAppStudio.Localization;
+using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
+using MyToolkit.Paging;
+using Repositories = WPAppStudio.Repositories;
+using WPAppStudio;
+using WPAppStudio.Shared;
+
 
 namespace WPAppStudio.View
 {
@@ -24,7 +41,9 @@ namespace WPAppStudio.View
         /// </summary>
         public About()
         {
-            InitializeComponent();        
+            InitializeComponent();
+            if (Resources.Contains("PanoramaMenuSection_Menu0AppBar"))
+                PhonePage.SetApplicationBar(this, Resources["PanoramaMenuSection_Menu0AppBar"] as BindableApplicationBar);  
 		}
 
         // License Terms
@@ -44,5 +63,35 @@ namespace WPAppStudio.View
         {
             NavigationService.Navigate(new Uri("/View/PrivacyInfo.xaml", UriKind.Relative));
         }
+
+        // Machine generated code copied from MenuSection_Menu
+        private void panoramaMenuSection_Menu_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            InitializeAppBarpanoramaMenuSection_Menu(PanoramaMenuSection_Menu.SelectedItem as PanoramaItem);
+        }
+
+        private void InitializeAppBarpanoramaMenuSection_Menu(PanoramaItem panoramaItem)
+        {
+            if (Resources.Contains(panoramaItem.Name + "AppBar"))
+            {
+                PhonePage.SetApplicationBar(this, Resources[panoramaItem.Name + "AppBar"] as BindableApplicationBar);
+                ApplicationBar.IsVisible = true;
+            }
+            else if (ApplicationBar != null)
+                ApplicationBar.IsVisible = false;
+        }
+
+        /// <summary>
+        /// Called when the page becomes the active page.
+        /// </summary>
+        /// <param name="e">Contains information about the navigation done.</param>
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            MenuSection_MenuMenuControl.SelectedItem = null;
+        }
+
+        // Quit Application to reduce Memory consuption
+
     }
 }

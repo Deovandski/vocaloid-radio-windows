@@ -65,12 +65,17 @@ namespace WPAppStudio.View
         /// Called when the page becomes the active page.
         /// </summary>
         /// <param name="e">Contains information about the navigation done.</param>
-        protected override  void OnNavigatedTo(NavigationEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-		
-		
             MenuSection_MenuMenuControl.SelectedItem = null;
 		}
+
+        // Quit Application to reduce Memory consuption
+
+        private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
+        {
+            Application.Current.Terminate();
+        }
     }
 }
