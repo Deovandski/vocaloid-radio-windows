@@ -3,7 +3,10 @@
 
 Github releases will be used starting with version 4.3 and Release 4, for all previous versions please refer to the commits.
 
-For EULA and related information, please visit [VocaloidRadio.blogpsot.com](http://www.vocaloidradioapp.blogspot.com/)
+For EULA and related information, please visit the [Development Blog](http://www.vocaloidradioapp.blogspot.com/)
+
+[Official Website](http://vocaloidradio.com/)
+
 ### Store Links
 
 [![](/Documents/WP8_Store.png)](http://www.windowsphone.com/en-us/store/app/vocaloid-radio/7542806a-2671-475a-b611-6b91bd45404a)
