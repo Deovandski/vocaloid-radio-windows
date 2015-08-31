@@ -41,10 +41,10 @@
         <ctl:MenuData x:Key="MenuSection_MenuMenuControlData">
             <ctl:MenuItemData Title="Vocaloid Radio Website" Target="/View/VocaloidRadioWebsite.xaml" Image="/Images/Item-46e82c4d-229e-4c88-86f8-8be9c5e5a8ce.png"/>
             <ctl:MenuItemData Title="About" Target="/View/About.xaml" Image="/Images/Item-2104fc48-d029-4d64-982c-bc6ede5b308b.png"/>
-            <ctl:MenuItemData Title="Radio Stream" Target="/View/RadioStream.xaml" Image="/Images/Item-8b2adfcd-b6ef-41c6-a76a-76bd07203a71.png"/>
+            <ctl:MenuItemData Title="Radio Stream" Target="/View/RadioStreamerSelection.xaml" Image="/Images/Item-8b2adfcd-b6ef-41c6-a76a-76bd07203a71.png"/>
             <ctl:MenuItemData Title="Request Song" Target="/View/RequestSong.xaml" Image="/Images/Logo-d8c5800e-008d-427f-8760-3d6e8ed66cfb.png"/>
             <ctl:MenuItemData Title="Donate" Target="/View/Donate.xaml" Image="/Images/DonatePic.png"/>
-            <ctl:MenuItemData Title="Schedule" Target="/View/Schedule.xaml" Image="/Images/SchedulePic.png"/>
+            <ctl:MenuItemData Title="Featured Pages" Target="/View/FeaturedPages.xaml" Image="/Images/SchedulePic.png"/>
         </ctl:MenuData>
     </phone:PhoneApplicationPage.Resources>
     <Grid x:Name="LayoutRoot">
@@ -71,14 +71,14 @@
             </phone:Panorama.Background>
             <phone:Panorama.Title>
                 <StackPanel Orientation="Horizontal" Margin="-7,35,0,0">
-                    <TextBlock FontSize="65" Text="Vocaloid Radio" FontFamily="Segoe WP Light" Foreground="{StaticResource CustomTitleApplicationTextBrush}" VerticalAlignment="Stretch"/>
+                    <TextBlock FontSize="65" Text="Vocaloid Radio" FontFamily="Segoe WP Light" Foreground="#FF7FD1F4" VerticalAlignment="Stretch" Width="477" TextAlignment="Center"/>
                 </StackPanel>
             </phone:Panorama.Title>
             <phone:PanoramaItem x:Name="PanoramaMenuSection_Menu0" Height="680">
 
                 <ListBox x:Name="MenuSection_MenuMenuControl" 
 					ItemsSource="{StaticResource MenuSection_MenuMenuControlData}"
-					SelectedItem="{Binding SelectedMenuSection_MenuMenuControl, Mode=TwoWay}" Margin="0,0,0,54">
+					SelectedItem="{Binding SelectedMenuSection_MenuMenuControl, Mode=TwoWay}" Margin="30,0,-25,54">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <toolkit:WrapPanel ItemHeight="200" ItemWidth="200"/>

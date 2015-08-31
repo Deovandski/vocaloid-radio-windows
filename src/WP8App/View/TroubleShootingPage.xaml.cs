@@ -72,7 +72,7 @@ namespace WPAppStudio.View
         {
             MEBufferTime = mediaElement.BufferingTime.ToString();
             if (MEBufferTime == "00:00:00") { MEBufferTime = "0s"; MEstreamStatus.Foreground = new SolidColorBrush(Colors.Orange); }
-            if (MEBufferTime == "00:00:05") { MEBufferTime = "5s"; MEstreamStatus.Foreground = new SolidColorBrush(Colors.Green); }
+            if (MEBufferTime == "00:00:10") { MEBufferTime = "10s"; MEstreamStatus.Foreground = new SolidColorBrush(Colors.Green); }
             if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
             {
                 if (startPlayer == true) { mediaElement.Play();}

@@ -13,24 +13,23 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
-
+    
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <!--TitlePanel contains the name of the application and page title-->
-        <Image Name="miku" HorizontalAlignment="Left" Height="125" VerticalAlignment="Top" Width="480" Grid.RowSpan="2" Source="/Images/miku.jpg" Stretch="UniformToFill"/>
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Margin="9,-7,10,0" Style="{StaticResource PhoneTextTitle1Style}" Height="45" Text="Vocaloid Radio Website" FontSize="22" TextAlignment="Center" FontWeight="Bold" Foreground="White"/>
-        </StackPanel>
+        <TextBlock FontSize="44" Text="Vocaloid Radio" FontFamily="Segoe WP Light" Foreground="#FF7FD1F4" VerticalAlignment="Stretch" TextAlignment="Center" Margin="10,8,10,700" Grid.RowSpan="2"/>
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,47,12,0">
-            <phone:WebBrowser HorizontalAlignment="Left" Source="http://vocaloidradio.com/" VerticalAlignment="Top" RenderTransformOrigin="0.491,0.478" Height="653" Width="485" IsScriptEnabled="True" Margin="-12,-15,-17,0"/>
+        <Grid x:Name="ContentPanel" Margin="0,10,0,0" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0*"/>
+                <ColumnDefinition Width="17*"/>
+                <ColumnDefinition Width="31*"/>
+            </Grid.ColumnDefinitions>
+            <phone:WebBrowser Source="http://vocaloidradio.com" HorizontalAlignment="Left" IsScriptEnabled="True" Grid.ColumnSpan="3" Width="480" Margin="0,140,0,0"/>
         </Grid>
-        <UI:AdControl x:Name="Ad1" Loaded="Ad1_Loaded" ApplicationId="0bbce01f-6357-4702-b4ab-db02a90d5256" AdUnitId="10336054" HorizontalAlignment="Center" Height="80" Margin="10,45,14,0" VerticalAlignment="Top" Width="456" ErrorOccurred="Ad1_ErrorOccurred" IsAutoCollapseEnabled="True" Foreground="{x:Null}" Grid.RowSpan="2" Background="Black"/>
+        <UI:AdControl x:Name="Ad1" Loaded="Ad1_Loaded" ApplicationId="0bbce01f-6357-4702-b4ab-db02a90d5256" AdUnitId="10336054" HorizontalAlignment="Center" Height="80" Margin="10,68,10,0" VerticalAlignment="Top" Width="460" ErrorOccurred="Ad1_ErrorOccurred" IsAutoCollapseEnabled="True" Foreground="{x:Null}" Background="Black" Grid.RowSpan="2"/>
     </Grid>
 </phone:PhoneApplicationPage>

@@ -27,13 +27,10 @@ namespace WPAppStudio.View
         private void Ad1_ErrorOccurred(object sender, AdErrorEventArgs e)
         {
             // System.Diagnostics.Debug.WriteLine("Ad Error : ({0}) {1}", e.ErrorCode, e.Error);
-            miku.Source = (ImageSource)new ImageSourceConverter().ConvertFromString("/Images/miku.jpg");
         }
 
         private void Ad1_Loaded(object sender, RoutedEventArgs e)
         {
-            //  miku.Opacity = 0;
-            miku.Source = (ImageSource)new ImageSourceConverter().ConvertFromString("/Images/pageBackground.jpg");
         }
 
     }

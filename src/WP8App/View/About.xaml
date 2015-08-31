@@ -9,7 +9,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:UI="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI" 
     x:Class="WPAppStudio.View.About"
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    mc:Ignorable="d"
     SupportedOrientations="Portrait" Orientation="Portrait"
 	>
     <phone:PhoneApplicationPage.Resources>
@@ -69,13 +69,13 @@
             </phone:Panorama.Background>
             <phone:Panorama.Title>
                 <StackPanel Orientation="Horizontal" Margin="-7,35,0,0">
-                    <TextBlock FontSize="44" Text="Vocaloid Radio Version 2.5" FontFamily="Segoe WP Light" Foreground="White" VerticalAlignment="Stretch" Width="477"/>
+                    <TextBlock FontSize="44" Text="Vocaloid Radio Version 3" FontFamily="Segoe WP Light" Foreground="#FF7FD1F4" VerticalAlignment="Stretch" Width="477" TextAlignment="Center"/>
                 </StackPanel>
             </phone:Panorama.Title>
-            <phone:PanoramaItem x:Name="PanoramaMenuSection_Menu0" Height="516">
+            <phone:PanoramaItem x:Name="PanoramaMenuSection_Menu0" Height="516" Width="460">
                 <ListBox x:Name="MenuSection_MenuMenuControl" 
 					ItemsSource="{StaticResource MenuSection_MenuMenuControlData}"
-					SelectedItem="{Binding SelectedMenuSection_MenuMenuControl, Mode=TwoWay}" Height="489" VerticalAlignment="Top" Margin="0,0,0,-9">
+					SelectedItem="{Binding SelectedMenuSection_MenuMenuControl, Mode=TwoWay}" Height="489" VerticalAlignment="Top" Margin="25,0,-15,-9">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <toolkit:WrapPanel ItemHeight="200" ItemWidth="200"/>

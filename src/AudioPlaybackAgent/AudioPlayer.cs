@@ -17,11 +17,9 @@ namespace Vocaloid_Radio
         {
             // Subscribe to the managed exception handler
             Deployment.Current.Dispatcher.BeginInvoke(delegate
-            {Application.Current.UnhandledException += UnhandledException;});
+            { Application.Current.UnhandledException += UnhandledException; });
         }
-        AudioTrack streamRadio = new AudioTrack(new Uri("http://curiosity.shoutca.st:8019/stream", UriKind.Absolute),
-                            "VocaloidRadio.com",
-                            "Online 24/7 Radio","", null);
+
         /// Code to execute on Unhandled Exceptions
         private static void UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
@@ -63,7 +61,6 @@ namespace Vocaloid_Radio
                 case PlayState.BufferingStopped:
                     break;
             }
-
             NotifyComplete();
         }
 
@@ -84,21 +81,31 @@ namespace Vocaloid_Radio
         /// </remarks>
         protected override void OnUserAction(BackgroundAudioPlayer player, AudioTrack track, UserAction action, object param)
         {
-            switch (action)
+             switch (action)
             {
                 case UserAction.Play:
                     if (player.PlayerState != PlayState.Playing)
                     {
-                        player.Track = streamRadio;
+                        // empties the track queue if the Track is not Null
+                      //  if (player.Track != null) {  player.Track = null;  }
                         player.Volume = 1.00;
                         player.Play();
                     }
                     break;
                 case UserAction.Stop:
-                    player.Stop();
+                    if (player.PlayerState != PlayState.Stopped)
+                    {
+
+                        player.Track = null; // empties the track queue
+                        player.Stop();
+                    }
                     break;
                 case UserAction.Pause:
-                    player.Stop();
+                    if (player.PlayerState != PlayState.Paused)
+                    {
+                        player.Track = null; // empties the track queue
+                        player.Stop();
+                    }
                     break;
             }
 
@@ -138,7 +145,7 @@ namespace Vocaloid_Radio
         /// </remarks>
         protected override void OnCancel()
         {
-
         }
+
     }
 }

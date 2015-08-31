@@ -43,10 +43,10 @@
             </Button>
             <Button x:Name="playButton" Content="Play" HorizontalAlignment="Right" Margin="236,628,0,0" VerticalAlignment="Bottom" Click="Button_Click_2" Height="120" Width="210" Background="Black" Foreground="White" BorderBrush="White"/>
             <phone:WebBrowser x:Name="ImageStreamer" FontSize="25" IsEnabled="False" Opacity="100" Margin="-2,65,-2,339" Source="/HTML Code/SongInformation.html"  IsScriptEnabled="True"/>
-            <TextBlock HorizontalAlignment="Left" Margin="10,453,0,0" TextWrapping="Wrap" Text="Backup Player Status" VerticalAlignment="Top" Width="243" Foreground="White" FontWeight="Bold" TextAlignment="Center" RenderTransformOrigin="0.305,0.63"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,453,0,0" TextWrapping="Wrap" Text="192kbps Player Status" VerticalAlignment="Top" Width="243" Foreground="White" FontWeight="Bold" TextAlignment="Center" RenderTransformOrigin="0.305,0.63"/>
             <UI:AdControl x:Name="Ad1" ApplicationId="0bbce01f-6357-4702-b4ab-db02a90d5256" AdUnitId="10336054" HorizontalAlignment="Center" Height="80" Margin="0,-15,0,0" VerticalAlignment="Top" Width="456" ErrorOccurred="Ad1_ErrorOccurred" IsAutoCollapseEnabled="True" Foreground="{x:Null}" Background="Black"/>
             <TextBlock Name="MEstreamStatus" HorizontalAlignment="Left" Margin="10,485,0,0" TextWrapping="Wrap" Text="Media Element is Off" VerticalAlignment="Top" Width="243" Foreground="White" TextAlignment="Center"/>
-            <MediaElement x:Name="mediaElement" BufferingProgressChanged="mediaElement_BufferingProgressChanged" Source="http://curiosity.shoutca.st:8019/stream" HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="456" AutoPlay="False"/>
+            <MediaElement x:Name="mediaElement" BufferingProgressChanged="mediaElement_BufferingProgressChanged" Source="http://curiosity.shoutca.st:8019/stream" HorizontalAlignment="Left" Height="70" VerticalAlignment="Top" Width="456" AutoPlay="False" Volume="1" BufferingTime="0:0:10"/>
             <Button Content="Not working?" FontSize="24" HorizontalAlignment="Left" Margin="233,424,-12,0" VerticalAlignment="Top" Height="108" Width="235" Click="Button_Click" Foreground="White" Background="Black" BorderBrush="White"/>
         </Grid>
     </Grid>

@@ -181,30 +181,26 @@
   </data>
   <data name="BackgroundImagePngUrl" xml:space="preserve">
     <value>Background-b7bfe342-efd1-455e-b658-50ffbda457df.jpg</value>
-    <comment></comment>
   </data>
   <data name="AppLogoPngUrl" xml:space="preserve">
     <value>Logo-d8c5800e-008d-427f-8760-3d6e8ed66cfb.png</value>
-    <comment></comment>
   </data>
   <data name="SetLockScreen" xml:space="preserve">
     <value>Lock screen</value>
-    <comment></comment>
   </data>
   <data name="About" xml:space="preserve">
     <value>About</value>
-    <comment></comment>
   </data>
   <data name="TextToSpeech" xml:space="preserve">
     <value>Read</value>
-    <comment></comment>
   </data>
   <data name="Share" xml:space="preserve">
     <value>Share</value>
-    <comment></comment>
   </data>
   <data name="PinToStart" xml:space="preserve">
     <value>Pin to start</value>
-    <comment></comment>
+  </data>
+  <data name="BackgroundImage_Stream" xml:space="preserve">
+    <value>background_stream.jpg</value>
   </data>
 </root>

@@ -147,14 +147,23 @@
   <ItemGroup>
     <Content Include="AppTile2.png" />
     <Content Include="HTML code\PreviousSongs.html" />
+    <Content Include="HTML code\SongInformation.html" />
+    <Content Include="HTML code\SongInformation_128.html" />
+    <Content Include="Images\clouds_bg.jpg" />
+    <Content Include="Images\Icons\128kbps.png" />
+    <Content Include="Images\Icons\192kbps.png" />
+    <Content Include="Images\kelly.png" />
+    <Content Include="Images\mikufan.png" />
+    <Content Include="Images\MS-Banner-180-x-60.jpg" />
     <Content Include="Images\pageBackground.jpg" />
+    <Content Include="Images\reddit.jpg" />
     <Content Include="readme.txt" />
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
-    <Content Include="HTML code\SongInformation.html" />
+    <Content Include="HTML code\SongInformation_192.html" />
     <Content Include="Vocaloid Radio Back Tile.png" />
   </ItemGroup>
   <ItemGroup>
@@ -172,12 +181,10 @@
     <Content Include="Images\LockScreen-5cf9d8d2-6e64-4a19-b86c-536ba2d66cc4.jpg" />
     <Content Include="Images\Logo-d8c5800e-008d-427f-8760-3d6e8ed66cfb.png" />
     <Content Include="Images\Logo.png" />
-    <Content Include="Images\miku.jpg" />
     <Content Include="Images\NoImage.png" />
     <Content Include="Images\schedulePic.png" />
     <Content Include="Images\SplashScreen-64e215ea-344c-49e8-927b-18d173efde65.jpg" />
     <Content Include="Images\tap+send.png" />
-    <Content Include="Images\Thumbs.db" />
     <Content Include="Images\Tile-bd89aa0f-b2b1-4907-b3cb-f44350b1a15e.png" />
     <Content Include="Images\Tileback-3ab589e8-5ad0-401f-9545-af245cb3d9c3.jpg" />
     <Content Include="Images\TileSmallBackground-11887729-d3a4-402c-9315-42875a4884be.png" />
@@ -310,6 +317,18 @@
     <Compile Include="View\Donate.xaml.cs">
       <DependentUpon>Donate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Featured Pages\Kelly.xaml.cs">
+      <DependentUpon>Kelly.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Featured Pages\Mikufan.xaml.cs">
+      <DependentUpon>Mikufan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Featured Pages\Mikustar.xaml.cs">
+      <DependentUpon>Mikustar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Featured Pages\Reddit.xaml.cs">
+      <DependentUpon>Reddit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LicenseTerms.xaml.cs">
       <DependentUpon>LicenseTerms.xaml</DependentUpon>
     </Compile>
@@ -322,8 +341,14 @@
     <Compile Include="View\PrivacyInfo.xaml.cs">
       <DependentUpon>PrivacyInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\RadioStream.xaml.cs">
-      <DependentUpon>RadioStream.xaml</DependentUpon>
+    <Compile Include="View\RadioStreamerSelection.xaml.cs">
+      <DependentUpon>RadioStreamerSelection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RadioStream_128.xaml.cs">
+      <DependentUpon>RadioStream_128.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RadioStream_192.xaml.cs">
+      <DependentUpon>RadioStream_192.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\MenuSection_MenuViewModel.cs" />
     <Compile Include="ViewModel\RadioStreamer_DetailViewModel.cs" />
@@ -344,14 +369,11 @@
     <Compile Include="ViewModel\Interfaces\IAboutViewModel.cs" />
     <Compile Include="ViewModel\Interfaces\ILicenseViewModel.cs" />
     <Compile Include="ViewModel\LicenseViewModel.cs" />
-    <Compile Include="View\RecentTracks.xaml.cs">
-      <DependentUpon>RecentTracks.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\RequestSong.xaml.cs">
       <DependentUpon>RequestSong.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Schedule.xaml.cs">
-      <DependentUpon>Schedule.xaml</DependentUpon>
+    <Compile Include="View\FeaturedPages.xaml.cs">
+      <DependentUpon>FeaturedPages.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\TroubleShootingPage.xaml.cs">
       <DependentUpon>TroubleShootingPage.xaml</DependentUpon>
@@ -385,6 +407,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Featured Pages\Kelly.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Featured Pages\Mikufan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Featured Pages\Mikustar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Featured Pages\Reddit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\LicenseTerms.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -401,7 +439,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\RecentTracks.xaml">
+    <Page Include="View\RadioStreamerSelection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RadioStream_128.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -409,7 +451,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Schedule.xaml">
+    <Page Include="View\FeaturedPages.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -453,7 +495,7 @@
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="View\RadioStream.xaml">
+    <Page Include="View\RadioStream_192.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

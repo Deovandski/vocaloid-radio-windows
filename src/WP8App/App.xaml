@@ -33,7 +33,7 @@
         <Color x:Key="CustomApplicationAppBarBackgroundColor">#00aba9</Color>                
 
 		<SolidColorBrush x:Key="CustomTitleApplicationTextBrush" Color="#1ba1e2" />
-		<SolidColorBrush x:Key="CustomApplicationTextBrush" Color="#00aba9" />
+        <SolidColorBrush x:Key="CustomApplicationTextBrush" Color="#FF7FD1F4" />
 		<SolidColorBrush x:Key="CustomApplicationBackgroundBrush" Color="#1ba1e2" />
 		<SolidColorBrush x:Key="CustomApplicationAppBarBackgroundBrush" Color="{StaticResource CustomApplicationAppBarBackgroundColor}"/>
         

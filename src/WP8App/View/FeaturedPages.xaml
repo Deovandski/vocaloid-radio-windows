@@ -1,0 +1,105 @@
+﻿<phone:PhoneApplicationPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:ctl="clr-namespace:WPAppStudio.Controls"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:UI="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI" 
+    x:Class="WPAppStudio.View.Schedule"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+   >
+    <phone:PhoneApplicationPage.Resources>
+
+        <ctl:MenuData x:Key="MenuSection_MenuMenuControlData">
+            <ctl:MenuItemData Title="Kelly Hill Tone" Target="/View/Featured Pages/Kelly.xaml" Image="/Images/kelly.png"/>
+            <ctl:MenuItemData Title="MikuStar" Target="/View/Featured Pages/Mikustar.xaml" Image="/Images/MS-Banner-180-x-60.jpg"/>
+            <ctl:MenuItemData Title="Mikufan.com" Target="/View/Featured Pages/Mikufan.xaml" Image="/Images/mikufan.png"/>
+            <ctl:MenuItemData Title="Vocaloid Reddit" Target="/View/Featured Pages/Reddit.xaml" Image="/Images/reddit.jpg"/>
+        </ctl:MenuData>
+    </phone:PhoneApplicationPage.Resources>
+    <phone:PhoneApplicationPage.FontFamily>
+        <StaticResource ResourceKey="PhoneFontFamilyNormal"/>
+    </phone:PhoneApplicationPage.FontFamily>
+    <phone:PhoneApplicationPage.FontSize>
+        <StaticResource ResourceKey="PhoneFontSizeNormal"/>
+    </phone:PhoneApplicationPage.FontSize>
+    <phone:PhoneApplicationPage.Foreground>
+        <StaticResource ResourceKey="CustomApplicationTextBrush"/>
+    </phone:PhoneApplicationPage.Foreground>
+    <phone:PhoneApplicationPage.DataContext>
+        <Binding Path="MenuSection_MenuViewModel" Source="{StaticResource ViewModelLocator}"/>
+    </phone:PhoneApplicationPage.DataContext>
+    <toolkit:TransitionService.NavigationInTransition>
+        <toolkit:NavigationInTransition>
+            <toolkit:NavigationInTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardIn"/>
+            </toolkit:NavigationInTransition.Backward>
+            <toolkit:NavigationInTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardIn"/>
+            </toolkit:NavigationInTransition.Forward>
+        </toolkit:NavigationInTransition>
+    </toolkit:TransitionService.NavigationInTransition>
+    <toolkit:TransitionService.NavigationOutTransition>
+        <toolkit:NavigationOutTransition>
+            <toolkit:NavigationOutTransition.Backward>
+                <toolkit:TurnstileTransition Mode="BackwardOut"/>
+            </toolkit:NavigationOutTransition.Backward>
+            <toolkit:NavigationOutTransition.Forward>
+                <toolkit:TurnstileTransition Mode="ForwardOut"/>
+            </toolkit:NavigationOutTransition.Forward>
+        </toolkit:NavigationOutTransition>
+    </toolkit:TransitionService.NavigationOutTransition>
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Visibility="{Binding IsInternetAvailable}" Background="{StaticResource CustomApplicationAppBarBackgroundBrush}" Height="30">
+            <TextBlock Text="{Binding LocalizedResources.NoConnection, Source={StaticResource LocalizedStrings}}" Foreground="White" Margin="10, 0"/>
+        </Grid>
+
+        <phone:Panorama x:Name="PanoramaMenuSection_Menu" Grid.Row="2" Foreground="{x:Null}" Margin="0,145,0,0">
+            <phone:Panorama.Background>
+                <ImageBrush ImageSource="{Binding LocalizedResources.BackgroundImagePngUrl, Converter={StaticResource StringToImageResources}, Source={StaticResource LocalizedStrings}}"/>
+            </phone:Panorama.Background>
+            <phone:Panorama.Title>
+                <StackPanel Orientation="Horizontal" Margin="-7,35,0,0">
+                    <TextBlock FontSize="44" Text="Featured Pages" FontFamily="Segoe WP Light" Foreground="#FF7FD1F4" VerticalAlignment="Stretch" Width="477" TextAlignment="Center"/>
+                </StackPanel>
+            </phone:Panorama.Title>
+            <phone:PanoramaItem x:Name="PanoramaMenuSection_Menu0" Height="516">
+                <ListBox x:Name="MenuSection_MenuMenuControl" 
+					ItemsSource="{StaticResource MenuSection_MenuMenuControlData}"
+					SelectedItem="{Binding SelectedMenuSection_MenuMenuControl, Mode=TwoWay}" Height="489" VerticalAlignment="Top" Margin="0,0,-10,-9" HorizontalAlignment="Right" Width="400">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <toolkit:WrapPanel ItemHeight="200" ItemWidth="200"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Height="180" Width="180">
+                                <Grid.Background>
+                                    <SolidColorBrush Color="Black" Opacity="0.7"/>
+                                </Grid.Background>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Image Margin="10" Source="{Binding Image}" Stretch="Uniform"/>
+                                <TextBlock Grid.Row="1" Margin="10,10" FontSize="18" Foreground="{StaticResource CustomApplicationTextBrush}" 
+									Text="{Binding Title}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </phone:PanoramaItem>
+        </phone:Panorama>
+        <Image Name="miku" HorizontalAlignment="Left" Height="145" VerticalAlignment="Top" Width="480" Grid.RowSpan="3" Source="/Images/Tileback-3ab589e8-5ad0-401f-9545-af245cb3d9c3.jpg" Stretch="UniformToFill"/>
+    </Grid>
+</phone:PhoneApplicationPage>
