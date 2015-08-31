@@ -12,94 +12,22 @@
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768"
     SupportedOrientations="Portrait" Orientation="Portrait"
    >
-    <phone:PhoneApplicationPage.Resources>
-
-        <ctl:MenuData x:Key="MenuSection_MenuMenuControlData">
-            <ctl:MenuItemData Title="Kelly Hill Tone" Target="/View/Featured Pages/Kelly.xaml" Image="/Images/kelly.png"/>
-            <ctl:MenuItemData Title="MikuStar" Target="/View/Featured Pages/Mikustar.xaml" Image="/Images/MS-Banner-180-x-60.jpg"/>
-            <ctl:MenuItemData Title="Mikufan.com" Target="/View/Featured Pages/Mikufan.xaml" Image="/Images/mikufan.png"/>
-            <ctl:MenuItemData Title="Vocaloid Reddit" Target="/View/Featured Pages/Reddit.xaml" Image="/Images/reddit.jpg"/>
-        </ctl:MenuData>
-    </phone:PhoneApplicationPage.Resources>
-    <phone:PhoneApplicationPage.FontFamily>
-        <StaticResource ResourceKey="PhoneFontFamilyNormal"/>
-    </phone:PhoneApplicationPage.FontFamily>
-    <phone:PhoneApplicationPage.FontSize>
-        <StaticResource ResourceKey="PhoneFontSizeNormal"/>
-    </phone:PhoneApplicationPage.FontSize>
-    <phone:PhoneApplicationPage.Foreground>
-        <StaticResource ResourceKey="CustomApplicationTextBrush"/>
-    </phone:PhoneApplicationPage.Foreground>
-    <phone:PhoneApplicationPage.DataContext>
-        <Binding Path="MenuSection_MenuViewModel" Source="{StaticResource ViewModelLocator}"/>
-    </phone:PhoneApplicationPage.DataContext>
-    <toolkit:TransitionService.NavigationInTransition>
-        <toolkit:NavigationInTransition>
-            <toolkit:NavigationInTransition.Backward>
-                <toolkit:TurnstileTransition Mode="BackwardIn"/>
-            </toolkit:NavigationInTransition.Backward>
-            <toolkit:NavigationInTransition.Forward>
-                <toolkit:TurnstileTransition Mode="ForwardIn"/>
-            </toolkit:NavigationInTransition.Forward>
-        </toolkit:NavigationInTransition>
-    </toolkit:TransitionService.NavigationInTransition>
-    <toolkit:TransitionService.NavigationOutTransition>
-        <toolkit:NavigationOutTransition>
-            <toolkit:NavigationOutTransition.Backward>
-                <toolkit:TurnstileTransition Mode="BackwardOut"/>
-            </toolkit:NavigationOutTransition.Backward>
-            <toolkit:NavigationOutTransition.Forward>
-                <toolkit:TurnstileTransition Mode="ForwardOut"/>
-            </toolkit:NavigationOutTransition.Forward>
-        </toolkit:NavigationOutTransition>
-    </toolkit:TransitionService.NavigationOutTransition>
-    <Grid x:Name="LayoutRoot">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Visibility="{Binding IsInternetAvailable}" Background="{StaticResource CustomApplicationAppBarBackgroundBrush}" Height="30">
-            <TextBlock Text="{Binding LocalizedResources.NoConnection, Source={StaticResource LocalizedStrings}}" Foreground="White" Margin="10, 0"/>
+        <!--LayoutRoot is the root grid where all page content is placed-->
+        <Grid x:Name="LayoutRoot" Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock FontSize="44" Text="Featured Pages" FontFamily="Segoe WP Light" Foreground="#FF7FD1F4" VerticalAlignment="Stretch" TextAlignment="Center" Margin="10,8,10,700" Grid.RowSpan="2"/>
+            <!--ContentPanel - place additional content here-->
+            <Grid x:Name="ContentPanel" Margin="0,10,0,0" Grid.RowSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0*"/>
+                    <ColumnDefinition Width="17*"/>
+                    <ColumnDefinition Width="31*"/>
+                </Grid.ColumnDefinitions>
+            <phone:WebBrowser Source="http://vocaloidradioapp.blogspot.com/2014/06/vocaloid-radio-featured-pages.html" HorizontalAlignment="Left" IsScriptEnabled="True" Grid.ColumnSpan="3" Width="480" Margin="0,140,0,0"/>
+            </Grid>
+            <UI:AdControl x:Name="Ad1" Loaded="Ad1_Loaded" ApplicationId="0bbce01f-6357-4702-b4ab-db02a90d5256" AdUnitId="10336054" HorizontalAlignment="Center" Height="80" Margin="10,68,10,0" VerticalAlignment="Top" Width="460" ErrorOccurred="Ad1_ErrorOccurred" IsAutoCollapseEnabled="True" Foreground="{x:Null}" Background="Black" Grid.RowSpan="2"/>
         </Grid>
-
-        <phone:Panorama x:Name="PanoramaMenuSection_Menu" Grid.Row="2" Foreground="{x:Null}" Margin="0,145,0,0">
-            <phone:Panorama.Background>
-                <ImageBrush ImageSource="{Binding LocalizedResources.BackgroundImagePngUrl, Converter={StaticResource StringToImageResources}, Source={StaticResource LocalizedStrings}}"/>
-            </phone:Panorama.Background>
-            <phone:Panorama.Title>
-                <StackPanel Orientation="Horizontal" Margin="-7,35,0,0">
-                    <TextBlock FontSize="44" Text="Featured Pages" FontFamily="Segoe WP Light" Foreground="#FF7FD1F4" VerticalAlignment="Stretch" Width="477" TextAlignment="Center"/>
-                </StackPanel>
-            </phone:Panorama.Title>
-            <phone:PanoramaItem x:Name="PanoramaMenuSection_Menu0" Height="516">
-                <ListBox x:Name="MenuSection_MenuMenuControl" 
-					ItemsSource="{StaticResource MenuSection_MenuMenuControlData}"
-					SelectedItem="{Binding SelectedMenuSection_MenuMenuControl, Mode=TwoWay}" Height="489" VerticalAlignment="Top" Margin="0,0,-10,-9" HorizontalAlignment="Right" Width="400">
-                    <ListBox.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <toolkit:WrapPanel ItemHeight="200" ItemWidth="200"/>
-                        </ItemsPanelTemplate>
-                    </ListBox.ItemsPanel>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Height="180" Width="180">
-                                <Grid.Background>
-                                    <SolidColorBrush Color="Black" Opacity="0.7"/>
-                                </Grid.Background>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Image Margin="10" Source="{Binding Image}" Stretch="Uniform"/>
-                                <TextBlock Grid.Row="1" Margin="10,10" FontSize="18" Foreground="{StaticResource CustomApplicationTextBrush}" 
-									Text="{Binding Title}"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </phone:PanoramaItem>
-        </phone:Panorama>
-        <Image Name="miku" HorizontalAlignment="Left" Height="145" VerticalAlignment="Top" Width="480" Grid.RowSpan="3" Source="/Images/Tileback-3ab589e8-5ad0-401f-9545-af245cb3d9c3.jpg" Stretch="UniformToFill"/>
-    </Grid>
 </phone:PhoneApplicationPage>

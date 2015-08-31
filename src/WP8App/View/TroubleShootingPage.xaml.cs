@@ -70,19 +70,23 @@ namespace WPAppStudio.View
         /// <param name="startPlayer"></param>
         private void updateMEStatus(bool startPlayer)
         {
-            MEBufferTime = mediaElement.BufferingTime.ToString();
-            if (MEBufferTime == "00:00:00") { MEBufferTime = "0s"; MEstreamStatus.Foreground = new SolidColorBrush(Colors.Orange); }
-            if (MEBufferTime == "00:00:10") { MEBufferTime = "10s"; MEstreamStatus.Foreground = new SolidColorBrush(Colors.Green); }
-            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
+            try
             {
-                if (startPlayer == true) { mediaElement.Play();}
-                MEstreamStatus.Text = "M.E. is On || Buffer is " + MEBufferTime;
+                MEBufferTime = mediaElement.BufferingTime.ToString();
+                if (MEBufferTime == "00:00:00") { MEBufferTime = "0s"; MEstreamStatus.Foreground = new SolidColorBrush(Colors.Orange); }
+                if (MEBufferTime == "00:00:10") { MEBufferTime = "10s"; MEstreamStatus.Foreground = new SolidColorBrush(Colors.Green); }
+                if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
+                {
+                    if (startPlayer == true) { mediaElement.Play(); }
+                    MEstreamStatus.Text = "M.E. is On || Buffer is " + MEBufferTime;
+                }
+                else
+                {
+                    MEstreamStatus.Text = "Check your Connection";
+                    MEstreamStatus.Foreground = new SolidColorBrush(Colors.Red);
+                }
             }
-            else
-            {
-                MEstreamStatus.Text = "Check your Connection";
-                MEstreamStatus.Foreground = new SolidColorBrush(Colors.Red);
-            }
+            catch (Exception) { MEstreamStatus.Text = "Error (Ref 5)"; }
         }
 
         // Event handler. Call updateMEStatus()

@@ -69,7 +69,7 @@
             </phone:Panorama.Background>
             <phone:Panorama.Title>
                 <StackPanel Orientation="Horizontal" Margin="-7,35,0,0">
-                    <TextBlock FontSize="44" Text="Vocaloid Radio Version 3" FontFamily="Segoe WP Light" Foreground="#FF7FD1F4" VerticalAlignment="Stretch" Width="477" TextAlignment="Center"/>
+                    <TextBlock FontSize="44" Text="Vocaloid Radio Version 3.1" FontFamily="Segoe WP Light" Foreground="#FF7FD1F4" VerticalAlignment="Stretch" Width="477" TextAlignment="Center"/>
                 </StackPanel>
             </phone:Panorama.Title>
             <phone:PanoramaItem x:Name="PanoramaMenuSection_Menu0" Height="516" Width="460">

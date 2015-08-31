@@ -81,30 +81,41 @@ namespace Vocaloid_Radio
         /// </remarks>
         protected override void OnUserAction(BackgroundAudioPlayer player, AudioTrack track, UserAction action, object param)
         {
-             switch (action)
+            switch (action)
             {
                 case UserAction.Play:
                     if (player.PlayerState != PlayState.Playing)
                     {
-                        // empties the track queue if the Track is not Null
-                      //  if (player.Track != null) {  player.Track = null;  }
-                        player.Volume = 1.00;
-                        player.Play();
+                        try
+                        {
+                            // empties the track queue if the Track is not Null
+                            //  if (player.Track != null) {  player.Track = null;  }
+                            player.Volume = 1.00;
+                            player.Play();
+                        }
+                        catch (Exception) { }
                     }
                     break;
                 case UserAction.Stop:
                     if (player.PlayerState != PlayState.Stopped)
                     {
-
-                        player.Track = null; // empties the track queue
-                        player.Stop();
+                        try
+                        {
+                            player.Track = null; // empties the track queue
+                            player.Stop();
+                        }
+                        catch (Exception) { }
                     }
                     break;
                 case UserAction.Pause:
                     if (player.PlayerState != PlayState.Paused)
                     {
-                        player.Track = null; // empties the track queue
-                        player.Stop();
+                        try
+                        {
+                            player.Track = null; // empties the track queue
+                            player.Stop();
+                        }
+                        catch (Exception) { }
                     }
                     break;
             }

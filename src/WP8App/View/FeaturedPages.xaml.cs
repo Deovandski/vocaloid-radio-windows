@@ -24,5 +24,15 @@ namespace WPAppStudio.View
 
         }
 
+        // AD Control Error - Log report is currently deactivated for faster load
+
+        private void Ad1_ErrorOccurred(object sender, AdErrorEventArgs e)
+        {
+            // System.Diagnostics.Debug.WriteLine("Ad Error : ({0}) {1}", e.ErrorCode, e.Error);
+        }
+
+        private void Ad1_Loaded(object sender, RoutedEventArgs e)
+        {
+        }
     }
 }

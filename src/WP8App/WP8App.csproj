@@ -146,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AppTile2.png" />
+    <Content Include="HTML code\BlankPage.html" />
     <Content Include="HTML code\PreviousSongs.html" />
     <Content Include="HTML code\SongInformation.html" />
     <Content Include="HTML code\SongInformation_128.html" />
@@ -317,18 +318,6 @@
     <Compile Include="View\Donate.xaml.cs">
       <DependentUpon>Donate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Featured Pages\Kelly.xaml.cs">
-      <DependentUpon>Kelly.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Featured Pages\Mikufan.xaml.cs">
-      <DependentUpon>Mikufan.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Featured Pages\Mikustar.xaml.cs">
-      <DependentUpon>Mikustar.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Featured Pages\Reddit.xaml.cs">
-      <DependentUpon>Reddit.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\LicenseTerms.xaml.cs">
       <DependentUpon>LicenseTerms.xaml</DependentUpon>
     </Compile>
@@ -404,22 +393,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Donate.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Featured Pages\Kelly.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Featured Pages\Mikufan.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Featured Pages\Mikustar.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\Featured Pages\Reddit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
