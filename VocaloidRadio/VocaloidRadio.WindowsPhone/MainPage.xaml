@@ -1,0 +1,83 @@
+﻿<Page
+    x:Class="VocaloidRadio.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VocaloidRadio"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{StaticResource CustomApplicationBackgroundImage}">
+        <TextBlock FontSize="40" Text="Vocaloid Radio" FontFamily="Segoe WP Light" Foreground="#FF7FD1F4"  Margin="0,10,0,503" 
+                  Width="400" TextAlignment="Center" />
+        <!--Vocaloid Website Display Group-->
+        <Image Name="imageButton_VocaloidWebsite" HorizontalAlignment="Left" Height="150" Margin="37,82,0,0" VerticalAlignment="Top" Width="150" Source="Images/buttonBackground.jpg" Opacity="0.65" PointerPressed="imageButton_VocaloidWebsite_PointerPressed"/>
+        <Image HorizontalAlignment="Left" Height="123" Margin="37,82,0,0" VerticalAlignment="Top" Width="150" Source="Images/Icons/Item-4.png" Stretch="Fill" PointerPressed="imageButton_VocaloidWebsite_PointerPressed" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <CompositeTransform ScaleX="0.85" ScaleY="0.85"/>
+            </Image.RenderTransform>
+        </Image>
+        <TextBlock HorizontalAlignment="Left" Margin="37,205,0,0" TextWrapping="Wrap" Text="Website" VerticalAlignment="Top" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_VocaloidWebsite_PointerPressed"/>
+
+        <!--Developer Blog Display Group-->
+        <Image x:Name="imageButton_DeveloperBlog" HorizontalAlignment="Left" Height="150" Margin="212,82,0,0" VerticalAlignment="Top" Width="150" Source="Images/buttonBackground.jpg" Opacity="0.65" PointerPressed="imageButton_DeveloperBlog_PointerPressed"/>
+        <TextBlock HorizontalAlignment="Left" Margin="212,205,0,0" TextWrapping="Wrap" Text="App Blog" VerticalAlignment="Top" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_DeveloperBlog_PointerPressed"/>
+        <Image HorizontalAlignment="Left" Height="123" Margin="212,82,0,0" VerticalAlignment="Top" Width="150" Source="Images/Icons/Item-2.png" Stretch="Fill" RenderTransformOrigin="0.5,0.5" PointerPressed="imageButton_DeveloperBlog_PointerPressed">
+            <Image.RenderTransform>
+                <CompositeTransform ScaleX="0.85" ScaleY="0.85"/>
+            </Image.RenderTransform>
+        </Image>
+
+        <!--Radio Stream Display Group-->
+        <Image x:Name="imageButton_RadioStream" HorizontalAlignment="Left" Height="150" Margin="37,253,0,0" VerticalAlignment="Top" Width="150" Source="Images/buttonBackground.jpg" Opacity="0.65" PointerPressed="imageButton_RadioStream_PointerPressed"/>
+        <TextBlock HorizontalAlignment="Left" Margin="37,376,0,0" TextWrapping="Wrap" Text="Radio Stream" VerticalAlignment="Top" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_RadioStream_PointerPressed"/>
+        <Image HorizontalAlignment="Left" Height="123" Margin="37,253,0,0" VerticalAlignment="Top" Width="150" Source="Images/Icons/Dark/Music.png" Stretch="Fill" PointerPressed="imageButton_RadioStream_PointerPressed" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <CompositeTransform ScaleX="0.85" ScaleY="0.85"/>
+            </Image.RenderTransform>
+        </Image>
+
+        <!--Request Song Display Group-->
+        <Image x:Name="imageButton_RequestSong" HorizontalAlignment="Left" Height="150" Margin="212,253,0,0" VerticalAlignment="Top" Width="150" Source="Images/buttonBackground.jpg" Opacity="0.65" PointerPressed="imageButton_RequestSong_PointerPressed"/>
+        <Image HorizontalAlignment="Left" Height="123" Margin="212,253,0,0" VerticalAlignment="Top" Width="150" Source="Images/Icons/Logo-3.png" Stretch="Fill" PointerPressed="imageButton_RequestSong_PointerPressed" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <CompositeTransform ScaleX="0.85" ScaleY="0.85"/>
+            </Image.RenderTransform>
+        </Image>
+        <TextBlock HorizontalAlignment="Left" Margin="212,376,0,0" TextWrapping="Wrap" Text="Request Song" VerticalAlignment="Top" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_RequestSong_PointerPressed"/>
+
+        <!--Donate Display Group-->
+        <Image x:Name="imageButton_Donate" HorizontalAlignment="Left" Height="150" Margin="37,423,0,0" VerticalAlignment="Top" Width="150" Source="Images/buttonBackground.jpg" Opacity="0.65" PointerPressed="imageButton_Donate_PointerPressed"/>
+        <Image HorizontalAlignment="Left" Height="123" Margin="37,423,0,0" VerticalAlignment="Top" Width="150" Source="Images/DonatePic.png" PointerPressed="imageButton_Donate_PointerPressed" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <CompositeTransform ScaleY="0.85" ScaleX="0.85"/>
+            </Image.RenderTransform>
+        </Image>
+        <TextBlock HorizontalAlignment="Left" Margin="37,546,0,0" TextWrapping="Wrap" Text="Donate" VerticalAlignment="Top" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_Donate_PointerPressed"/>
+
+        <!--Featured Pages Display Group-->
+        <Image x:Name="imageButton_FeaturedPages" HorizontalAlignment="Left" Height="150" Margin="212,423,0,0" VerticalAlignment="Top" Width="150" Source="Images/buttonBackground.jpg" Opacity="0.65" PointerPressed="imageButton_FeaturedPages_PointerPressed"/>
+        <Image HorizontalAlignment="Left" Height="123" Margin="212,423,0,0" VerticalAlignment="Top" Width="150" Source="Images/schedulePic.png" PointerPressed="imageButton_FeaturedPages_PointerPressed" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <CompositeTransform ScaleX="0.85" ScaleY="0.85"/>
+            </Image.RenderTransform>
+        </Image>
+        <TextBlock HorizontalAlignment="Left" Margin="212,546,0,0" TextWrapping="Wrap" Text="Featured Pages" VerticalAlignment="Top" Height="27" Width="150" Foreground="{StaticResource CustomApplicationAppBarBackgroundBrush}" FontWeight="Bold" TextAlignment="Center" FontSize="14" PointerPressed="imageButton_FeaturedPages_PointerPressed"/>
+
+    </Grid>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton x:Name="helpButton" x:Uid="HelpButton" Label="Help" Command="{Binding MainViewModel.PrivacyCommand}" Click="helpButton_Click" Icon="Help"/>
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton x:Name="licenseButton" x:Uid="LicenseButton" Label="Legal Terms" Command="{Binding MainViewModel.PrivacyCommand}" Click="licenseButton_Click"/>
+                <AppBarButton x:Name="networkButton" x:Uid="NetworkButton" Label="Network Information" Command="{Binding MainViewModel.PrivacyCommand}" Click="networkButton_Click"/>
+                <AppBarButton x:Name="privacyButton" x:Uid="PrivacyButton" Label="Privacy Information" Command="{Binding MainViewModel.PrivacyCommand}" Click="privacyButton_Click"/>
+                <AppBarButton x:Name="technicalButton" x:Uid="TechnicalButton" Label="Technical Information" Command="{Binding MainViewModel.PrivacyCommand}" Click="technicalButton_Click"/>
+                <AppBarButton Label="App Version: 4.0" IsEnabled="False" Command="{Binding MainViewModel.PrivacyCommand}"/>
+                <AppBarButton Label=" " Command="{Binding MainViewModel.PrivacyCommand}"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>

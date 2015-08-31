@@ -1,0 +1,22 @@
+﻿<Application
+    x:Class="VocaloidRadio.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VocaloidRadio">
+    
+    <Application.Resources>
+
+    <!-- Resources -->
+    <Color x:Key="CustomApplicationAppBarBackgroundColor">#00aba9</Color>
+
+    <SolidColorBrush x:Key="CustomTitleApplicationTextBrush" Color="#1ba1e2" />
+    <SolidColorBrush x:Key="CustomApplicationTextBrush" Color="#FF7FD1F4" />
+    <SolidColorBrush x:Key="CustomApplicationBackgroundBrush" Color="#1ba1e2" />
+    <SolidColorBrush x:Key="CustomApplicationAppBarBackgroundBrush" Color="{StaticResource CustomApplicationAppBarBackgroundColor}"/>
+    <ImageBrush x:Key="CustomApplicationBackgroundImage" ImageSource="Images/clouds_bg.jpg" Stretch="UniformToFill"/>
+    <ImageBrush x:Key="CustomRadioBackgroundImage" ImageSource="Images/background_stream.jpg" Stretch="UniformToFill"/>
+    <Color x:Key="VR_DefaultColor">#FF7FD1F4</Color>
+
+    </Application.Resources>
+    
+</Application>

@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>26b64706-1bc5-4eaf-9419-3a8016e4a1e1</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>VocaloidRadio</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)HTML code\PreviousSongs_Larger.html" />
+    <Content Include="$(MSBuildThisFileDirectory)HTML code\PreviousSongs.html" />
+    <Content Include="$(MSBuildThisFileDirectory)HTML code\SongInformation.html" />
+    <Content Include="$(MSBuildThisFileDirectory)HTML code\SongInformation_128.html" />
+    <Content Include="$(MSBuildThisFileDirectory)HTML code\SongInformation_192.html" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\10364326_761930030517904_307840656_n.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\BackButton.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\background_stream.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\bcup_MainBackground.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\buttonBackground.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\clouds_bg.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\DonatePic.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\128kbps.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\192kbps.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\Dark\Call.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\Dark\gotolocation.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\Dark\GoToSource.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\Dark\Home.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\Dark\location.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\Dark\Mail.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\Dark\Music.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\Dark\PinToStart.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\Dark\Play.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\Dark\Refresh.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\Dark\Search.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\Dark\SetLockScreen.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\Dark\Share.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\Dark\TextToSpeech.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\Item-2.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\Item-4.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\Item-7.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\Item-8.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Icons\Logo-3.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Large_bg.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\kelly.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\LockScreen-5cf9d8d2-6e64-4a19-b86c-536ba2d66cc4.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\mikufan.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\miku_LargeBG.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\miku_OriginalLargeBG.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\MS-Banner-180-x-60.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\reddit.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\schedulePic.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\SplashScreen.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Tile-bd89aa0f-b2b1-4907-b3cb-f44350b1a15e.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Tileback2.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\TileBack.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\TileSmallBackground-11887729-d3a4-402c-9315-42875a4884be.png" />
+  </ItemGroup>
+</Project>
