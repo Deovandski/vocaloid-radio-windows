@@ -1,4 +1,4 @@
-MainPackage=C:\Users\Deovandski\Documents\Vocaloid Radio\Version 4\VocaloidRadio\VocaloidRadio.WindowsPhone\bin\Release\VocaloidRadio.WindowsPhone_4.0.0.1_Bundle\VocaloidRadio.WindowsPhone_4.0.0.1_AnyCPU.appx
-SymbolPackage=C:\Users\Deovandski\Documents\Vocaloid Radio\Version 4\VocaloidRadio\VocaloidRadio.WindowsPhone\AppPackages\VocaloidRadio.WindowsPhone_4.0.0.1_Test\VocaloidRadio.WindowsPhone_4.0.0.1_AnyCPU.appxsym
-ResourcePack=C:\Users\Deovandski\Documents\Vocaloid Radio\Version 4\VocaloidRadio\VocaloidRadio.WindowsPhone\bin\Release\VocaloidRadio.WindowsPhone_4.0.0.1_Bundle\VocaloidRadio.WindowsPhone_4.0.0.1_scale-100.appx
-ResourcePack=C:\Users\Deovandski\Documents\Vocaloid Radio\Version 4\VocaloidRadio\VocaloidRadio.WindowsPhone\bin\Release\VocaloidRadio.WindowsPhone_4.0.0.1_Bundle\VocaloidRadio.WindowsPhone_4.0.0.1_scale-140.appx
+MainPackage=C:\Users\Deovandski\Documents\Vocaloid Radio\Version 4.2\VocaloidRadio\VocaloidRadio.WindowsPhone\bin\Release\VocaloidRadio.WindowsPhone_4.2.2.6_Bundle\VocaloidRadio.WindowsPhone_4.2.2.6_AnyCPU.appx
+SymbolPackage=C:\Users\Deovandski\Documents\Vocaloid Radio\Version 4.2\VocaloidRadio\VocaloidRadio.WindowsPhone\AppPackages\VocaloidRadio.WindowsPhone_4.2.2.6_Test\VocaloidRadio.WindowsPhone_4.2.2.6_AnyCPU.appxsym
+ResourcePack=C:\Users\Deovandski\Documents\Vocaloid Radio\Version 4.2\VocaloidRadio\VocaloidRadio.WindowsPhone\bin\Release\VocaloidRadio.WindowsPhone_4.2.2.6_Bundle\VocaloidRadio.WindowsPhone_4.2.2.6_scale-100.appx
+ResourcePack=C:\Users\Deovandski\Documents\Vocaloid Radio\Version 4.2\VocaloidRadio\VocaloidRadio.WindowsPhone\bin\Release\VocaloidRadio.WindowsPhone_4.2.2.6_Bundle\VocaloidRadio.WindowsPhone_4.2.2.6_scale-140.appx

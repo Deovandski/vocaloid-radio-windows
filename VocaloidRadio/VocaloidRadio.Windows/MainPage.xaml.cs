@@ -29,6 +29,7 @@ namespace VocaloidRadio
         // Variables
         SystemMediaTransportControls mediaControl;
         private String MEBufferTime = "";
+        private bool InternetAvailable;
 
         public MainPage()
         {
@@ -51,6 +52,47 @@ namespace VocaloidRadio
             // Register to handle the following system transpot control buttons.
             mediaControl.IsPlayEnabled = true;
             mediaControl.IsPauseEnabled = true;
+            InternetTest.NavigationCompleted += InternetTest_NavigationCompleted;
+            
+        }
+
+        // Internet Test
+        private void InternetTest_NavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
+        {
+            Debug.WriteLine("Web View Navigation Completed");
+            if (args.IsSuccess)
+            {
+                try
+                {
+                    InternetAvailable = true;
+
+                    networkStatus.Text = "Server is On!";
+                    networkStatus.Foreground = new SolidColorBrush(Colors.Green);
+
+                    if (streamStatus.Text == "Check your Connection! (Ref: WP_4)" && mediaplayer.CurrentState != MediaElementState.Playing)
+                    {
+                        streamStatus.Text = "Press Play!";
+                        streamStatus.Foreground = new SolidColorBrush(Colors.Green);
+                    }
+                    InternetTest.Stop();
+                }
+                catch (Exception)
+                {
+                    networkStatus.Text = "I.T Error 1";
+                    streamStatus.Text = "Restart the App and notify the Developer";
+                    networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                    streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+
+                }
+            }
+            else
+            {
+                InternetAvailable = false;
+                networkStatus.Text = "No internet!";
+                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                streamStatus.Text = "Check your Connection! (Ref: WP_15)";
+                streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+            }
 
         }
 
@@ -61,18 +103,325 @@ namespace VocaloidRadio
             var width = Window.Current.Bounds.Width;
             Debug.WriteLine("Main Page: WindowSizeChanged... width is: " + width.ToString());
 
-            if (width <= 1050)
+            if (width <= 1000)
             {
                 leftSubGrid.Visibility = Visibility.Collapsed;
                 LeftColumn.Width = new GridLength(0);
             }
-            if (width > 1050)
+            if (width > 1000)
             {
                 leftSubGrid.Visibility = Visibility.Visible;
                 mainGrid.ColumnDefinitions[0].Width = GridLength.Auto;
             }
 
         }
+
+        // Start Playback
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            networkStatus.Text = "Verifying Internet";
+            networkStatus.Foreground = new SolidColorBrush(Colors.Yellow);
+            InternetTest.Navigate(new Uri("http://curiosity.shoutca.st:8019/stream"));
+            
+            if (InternetAvailable == true)
+            {
+            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
+            {
+                if (mediaplayer.CurrentState == MediaElementState.Closed)
+                {
+                    streamStatus.Text = "Please restart your App. Media Player error 1";
+                    streamStatus.Foreground = new SolidColorBrush(Colors.OrangeRed);
+                    Debug.WriteLine("Play Request. Result: Media Player is Closed");
+                }
+                mediaplayer.Play();
+                networkStatus.Text = "Network is Available";
+                networkStatus.Foreground = new SolidColorBrush(Colors.DarkGreen);
+                Debug.WriteLine("Player Request to Play... Result: " + mediaplayer.CurrentState.ToString());
+            }
+            else
+            {
+                networkStatus.Text = "Error Ocurred! Check your connection! (Ref: WP_101)";
+                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+            }
+            }
+            else // If Internet Is Not Available
+            {
+                networkStatus.Text = "Could not connect to Stream...";
+                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                streamStatus.Text = "Check your Connection! (Ref: WP_4)";
+                streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+            }
+        }
+
+        // Stop Playback
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                mediaplayer.Stop();
+                networkStatus.Text = "Player Stopped";
+                networkStatus.Foreground = new SolidColorBrush(Colors.Gray);
+                Debug.WriteLine("Player Request to stop... Result: " + mediaplayer.CurrentState.ToString());
+
+            }
+            catch (Exception)
+            {
+                networkStatus.Text = "Error Ocurred!  (Ref: WP_101)";
+                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+
+            }
+
+        }
+
+        // System Media Transport Control
+        private void medialControl_ButtonPressed(SystemMediaTransportControls sender,
+    SystemMediaTransportControlsButtonPressedEventArgs args)
+        {
+            switch (args.Button)
+            {
+                case SystemMediaTransportControlsButton.Play:
+                    try
+                    {
+                        PlayMedia();
+                    }
+                    catch (Exception) 
+                    {
+                        networkStatus.Text = "S.M.T.C. Error";
+                        streamStatus.Text = "Restart the App and notify the Developer";
+                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                        streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+                    }
+                    break;
+                case SystemMediaTransportControlsButton.Pause:
+                    try
+                    {
+                        PauseMedia();
+                    }
+                    catch (Exception)
+                    {
+                        networkStatus.Text = "S.M.T.C. Error";
+                        streamStatus.Text = "Restart the App and notify the Developer";
+                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                        streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        async void PlayMedia()
+        {
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                try
+                {
+                    mediaplayer.Play();
+                    Debug.WriteLine("Player Request to Play... Result: " + mediaplayer.CurrentState.ToString());
+                }
+                catch (Exception)
+                {
+                    networkStatus.Text = "P.M. Error 102";
+                    streamStatus.Text = "Restart the App and notify the Developer";
+                    networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                    streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+                }
+            });
+        }
+
+        async void PauseMedia()
+        {
+            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+            {
+                try
+                {
+                    mediaplayer.Stop();    
+                    Debug.WriteLine("Player Request to Play... Result: " + mediaplayer.CurrentState.ToString());
+                }
+                catch (Exception)
+                {
+                    networkStatus.Text = "P.M. Error 103";
+                    streamStatus.Text = "Restart the App and notify the Developer";
+                    networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                    streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+                }
+            });
+        }
+
+        // Media Player State Changed Handler
+        private void mediaplayer_CurrentStateChanged(object sender, RoutedEventArgs e)
+        {
+            switch (mediaplayer.CurrentState)
+            {
+                case MediaElementState.Opening:
+                    streamStatus.Text = "Player Opening... If Play button does not work restart your App";
+                    streamStatus.Foreground = new SolidColorBrush(Colors.Orange);
+                    Debug.WriteLine("Play Request. Result: Media Player Stuck on Opening");
+                    break;
+                case MediaElementState.Playing:
+                    try
+                    {
+                        networkStatus.Text = "Player is Normal";
+                        networkStatus.Foreground = new SolidColorBrush(Colors.Green);
+                        MEBufferTime = mediaplayer.BufferingProgress.ToString();
+                        if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
+                        {
+                            streamStatus.Text = "M.E. is On || Buffer is " + MEBufferTime;
+                            streamStatus.Foreground = new SolidColorBrush(Colors.Green);
+
+                        }
+                        else
+                        {
+                            networkStatus.Text = "P.M. Error 104";
+                            streamStatus.Text = "Restart the App and notify the Developer";
+                            networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                            streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+                        }
+                        mediaControl.PlaybackStatus = MediaPlaybackStatus.Playing;
+                    }
+                    catch (Exception) 
+                    {
+                        networkStatus.Text = "Internal Error 1";
+                        streamStatus.Text = "Restart the App and notify the Developer";
+                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                        streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+                    }
+                    break;
+
+                case MediaElementState.Paused:
+                    try { 
+                    if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
+                    {
+                        streamStatus.Text = "Stream Paused";
+                        streamStatus.Foreground = new SolidColorBrush(Colors.Gray);
+                        networkStatus.Text = "Player Paused";
+                        networkStatus.Foreground = new SolidColorBrush(Colors.Gray);
+                        Debug.WriteLine("Player Paused. Buffer: " + mediaplayer.BufferingProgress.ToString());
+                    }
+                    else
+                    {
+                        networkStatus.Text = "P.M. Error 105";
+                        streamStatus.Text = "Restart the App and notify the Developer";
+                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                        streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+                    }
+                    mediaControl.PlaybackStatus = MediaPlaybackStatus.Paused;
+                    }
+                    catch (Exception)
+                    {
+                        networkStatus.Text = "Internal Error 2";
+                        streamStatus.Text = "Restart the App and notify the Developer";
+                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                        streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+                    }
+                    break;
+
+                case MediaElementState.Stopped:
+                    try
+                    {
+                        if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
+                        {
+                            streamStatus.Text = "Stream Stopped";
+                            streamStatus.Foreground = new SolidColorBrush(Colors.Gray);
+                            networkStatus.Text = "Player Stopped";
+                            networkStatus.Foreground = new SolidColorBrush(Colors.Gray);
+                        }
+                        else
+                        {
+                            networkStatus.Text = "P.M. Error 105";
+                            streamStatus.Text = "Restart the App and notify the Developer";
+                            networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                            streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+                        }
+                        mediaControl.PlaybackStatus = MediaPlaybackStatus.Stopped;
+                    }
+                    catch (Exception) 
+                    {
+                        networkStatus.Text = "Internal Error 3";
+                        streamStatus.Text = "Restart the App and notify the Developer";
+                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                        streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+                    }
+                    break;
+
+                case MediaElementState.Closed:
+                    try
+                    {
+                        streamStatus.Text = "--";
+                        streamStatus.Foreground = new SolidColorBrush(Colors.Gray);
+                        networkStatus.Text = "Player is Closed...";
+                        networkStatus.Foreground = new SolidColorBrush(Colors.LightGray);
+                        mediaControl.PlaybackStatus = MediaPlaybackStatus.Closed;
+                    }
+                    catch (Exception) 
+                    {
+                        networkStatus.Text = "Internal Error 4";
+                        streamStatus.Text = "Restart the App and notify the Developer";
+                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                        streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+                    }
+                    break;
+
+                default:
+                    try
+                    {
+                        networkStatus.Text = "App Analyser Error...";
+                        streamStatus.Text = "App is starting or an error ocurred!";
+                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                        streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+
+                    }
+                    catch (Exception) 
+                    {
+                        networkStatus.Text = "Internal Error 5";
+                        streamStatus.Text = "Restart the App and notify the Developer";
+                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                        streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+                    }
+                    break;
+            }
+        }
+
+        private void MenuWebView_NavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
+        {
+            try
+            {
+                Debug.WriteLine("Web View Navigation Error... Result: " + e.WebErrorStatus.ToString());
+                networkStatus.Text = "W.V. Error 101";
+                streamStatus.Text = "Restart the App and notify the Developer";
+                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+            }
+            catch (Exception)
+            {
+                networkStatus.Text = "Internal Error 6";
+                streamStatus.Text = "Restart the App and notify the Developer";
+                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+            }
+        }
+
+        private void MenuWebView_UnviewableContentIdentified(WebView sender, WebViewUnviewableContentIdentifiedEventArgs args)
+        {
+            try{
+            Debug.WriteLine("Web View Unviewable Content Error... Result: " + args.Uri.ToString());
+            networkStatus.Text = "W.V. Error 102";
+            streamStatus.Text = "Restart the App and notify the Developer";
+            networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+            streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+            }
+            catch (Exception)
+            {
+                networkStatus.Text = "Internal Error 7";
+                streamStatus.Text = "Restart the App and notify the Developer";
+                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+            }
+        }
+
+        ///All code Below controls the Left SubGrid///
+        
+        #region LeftColumnControl
 
         // License Control
         private void licenseButton_Click(object sender, RoutedEventArgs e)
@@ -88,7 +437,6 @@ namespace VocaloidRadio
             }
         }
 
-        #region LeftColumnControl
 
         // Network Control
         private void networkButton_Click(object sender, RoutedEventArgs e)
@@ -138,7 +486,7 @@ namespace VocaloidRadio
             try
             {
                 MenuWebView.Stop();
-           
+
                 MenuWebView.Navigate(new Uri("http://vocaloidradioapp.blogspot.com/2014/06/vocaloid-radio-windows-app-help.html"));
                 currentPage.Text = "App Help";
             }
@@ -206,176 +554,12 @@ namespace VocaloidRadio
 
         #endregion
 
-        // Start Playback
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void InternetTest_NavigationStarting(WebView sender, WebViewNavigationStartingEventArgs args)
         {
-            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
-            {
-                mediaplayer.Play();
-                networkStatus.Text = "Network is Available";
-                networkStatus.Foreground = new SolidColorBrush(Colors.DarkGreen);
-                Debug.WriteLine("Player Request to Play... Result: " + mediaplayer.CurrentState.ToString());
-            }
-            else
-            {
-                networkStatus.Text = "Error Ocurred! Check your connection! (Ref: WP_101)";
-                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-            }
+            networkStatus.Text = "Verifying Internet";
+            networkStatus.Foreground = new SolidColorBrush(Colors.Yellow);
+            streamStatus.Text = "Please wait 5 seconds!";
+            streamStatus.Foreground = new SolidColorBrush(Colors.Yellow);
         }
-
-        // Stop Playback
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                mediaplayer.Stop();
-                networkStatus.Text = "Player Stopped";
-                networkStatus.Foreground = new SolidColorBrush(Colors.Gray);
-                Debug.WriteLine("Player Request to stop... Result: " + mediaplayer.CurrentState.ToString());
-
-            }
-            catch (Exception)
-            {
-                networkStatus.Text = "Error Ocurred!  (Ref: WP_101)";
-                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-
-            }
-
-        }
-
-        // System Media Transport Control
-        private void medialControl_ButtonPressed(SystemMediaTransportControls sender,
-    SystemMediaTransportControlsButtonPressedEventArgs args)
-        {
-            switch (args.Button)
-            {
-                case SystemMediaTransportControlsButton.Play:
-                    PlayMedia();
-                    break;
-                case SystemMediaTransportControlsButton.Pause:
-                    PauseMedia();
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        async void PlayMedia()
-        {
-            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-            {
-                try
-                {
-                    mediaplayer.Play();
-                    Debug.WriteLine("Player Request to Play... Result: " + mediaplayer.CurrentState.ToString());
-                }
-                catch (Exception)
-                {
-                    networkStatus.Text = "Error Ocurred! Check Your Connection  (Ref: WP_102)";
-                    networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                }
-            });
-        }
-
-        async void PauseMedia()
-        {
-            await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
-            {
-                try
-                {
-                    mediaplayer.Pause();     
-                    Debug.WriteLine("Player Request to Play... Result: " + mediaplayer.CurrentState.ToString());
-                }
-                catch (Exception)
-                {
-                    networkStatus.Text = "Error Ocurred! Check Your Connection  (Ref: WP_102)";
-                    networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                }
-            });
-        }
-
-        // Media Player State Changed Handler
-        private void mediaplayer_CurrentStateChanged(object sender, RoutedEventArgs e)
-        {
-            switch (mediaplayer.CurrentState)
-            {
-                case MediaElementState.Playing:
-                    networkStatus.Text = "Player is Normal";
-                    networkStatus.Foreground = new SolidColorBrush(Colors.Green);     
-                    MEBufferTime = mediaplayer.BufferingProgress.ToString();
-                    if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
-                    {
-                        streamStatus.Text = "M.E. is On || Buffer is " + MEBufferTime;
-                        streamStatus.Foreground = new SolidColorBrush(Colors.Green);
-
-                    }
-                    else
-                    {
-                        streamStatus.Text = "Check your Connection";
-                        streamStatus.Foreground = new SolidColorBrush(Colors.Red);
-                        networkStatus.Text = "Player had an issue";
-                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                    }
-                    mediaControl.PlaybackStatus = MediaPlaybackStatus.Playing;
-                    break;
-                case MediaElementState.Paused:
-                    if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
-                    {
-                        streamStatus.Text = "Stream Paused";
-                        streamStatus.Foreground = new SolidColorBrush(Colors.Gray);
-                        networkStatus.Text = "Player Paused";
-                        networkStatus.Foreground = new SolidColorBrush(Colors.Gray);
-                    }
-                    else
-                    {
-                        networkStatus.Text = "Issue (Ref: WP_103)";
-                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                        streamStatus.Text = "Stream Paused";
-                        streamStatus.Foreground = new SolidColorBrush(Colors.Gray);
-                    }
-                    mediaControl.PlaybackStatus = MediaPlaybackStatus.Paused;
-                    break;
-                case MediaElementState.Stopped:
-                    if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
-                    {
-                        streamStatus.Text = "Stream Stopped";
-                        streamStatus.Foreground = new SolidColorBrush(Colors.Gray);
-                        networkStatus.Text = "Player Stopped";
-                        networkStatus.Foreground = new SolidColorBrush(Colors.Gray);
-                    }
-                    else
-                    {
-                        networkStatus.Text = "Issue (Ref: WP_104)";
-                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                        streamStatus.Text = "Stream Stopped";
-                        streamStatus.Foreground = new SolidColorBrush(Colors.Gray);
-                    }
-                    mediaControl.PlaybackStatus = MediaPlaybackStatus.Stopped;
-                    break;
-                case MediaElementState.Closed:
-                    streamStatus.Text = "--";
-                    streamStatus.Foreground = new SolidColorBrush(Colors.Gray);
-                    networkStatus.Text = "Player is Closed...";
-                    networkStatus.Foreground = new SolidColorBrush(Colors.LightGray);
-                    mediaControl.PlaybackStatus = MediaPlaybackStatus.Closed;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void MenuWebView_NavigationFailed(object sender, WebViewNavigationFailedEventArgs e)
-        {
-
-            Debug.WriteLine("Web View Navigation Error... Result: " + e.WebErrorStatus.ToString());
-        }
-
-        private void MenuWebView_UnviewableContentIdentified(WebView sender, WebViewUnviewableContentIdentifiedEventArgs args)
-        {
-            Debug.WriteLine("Web View Unviewable Content Error... Result: " + args.Uri.ToString());
-
-        }
-
-
     }
 }

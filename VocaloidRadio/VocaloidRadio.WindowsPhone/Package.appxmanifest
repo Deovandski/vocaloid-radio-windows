@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-  <Identity Name="31332Deovandski.VocaloidRadio" Publisher="CN=4BCD280D-1FA1-477A-BCAB-AF2BB13ABA81" Version="4.0.0.1" />
+  <Identity Name="31332Deovandski.VocaloidRadio" Publisher="CN=4BCD280D-1FA1-477A-BCAB-AF2BB13ABA81" Version="4.2.2.6" />
   <mp:PhoneIdentity PhoneProductId="58337dc9-7136-4059-a9de-6896a87e3c94" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Vocaloid Radio</DisplayName>

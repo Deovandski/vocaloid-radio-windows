@@ -10,9 +10,16 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock FontSize="30" TextWrapping="Wrap" Text="Privacy Information" FontFamily="Segoe WP Light" Foreground="#FF7FD1F4" VerticalAlignment="Stretch" TextAlignment="Center" Margin="124,8,10,562"/>
-        <WebView HorizontalAlignment="Left" Source="http://vocaloidradioapp.blogspot.com/2014/05/all-data-collected-in-this-app-is.html" Height="492" Margin="10,138,0,0" VerticalAlignment="Top" Width="380"/>
-        <UI:AdControl AutoRefreshIntervalInSeconds="60" ApplicationId="733b41ec-6494-40d4-9e24-ca5a9c4d0a81" AdUnitId="10801351" HorizontalAlignment="Left" Height="50" IsAutoRefreshEnabled="True" Margin="10,83,0,0" VerticalAlignment="Top" Width="380"/>
-        <Button x:Name="BackButton" Background="Black" Content="Back" HorizontalAlignment="Left" Height="87" Margin="10,0,0,0" VerticalAlignment="Top" Width="114" Click="BackButton_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <WebView Source="http://vocaloidradioapp.blogspot.com/2014/05/all-data-collected-in-this-app-is.html" Grid.Row="2"/>
+        <UI:AdControl AutoRefreshIntervalInSeconds="60" ApplicationId="733b41ec-6494-40d4-9e24-ca5a9c4d0a81" AdUnitId="10801351" Height="50" IsAutoRefreshEnabled="True" Margin="0" Width="380" Grid.ColumnSpan="2" Grid.Row="1"/>
+        <Button x:Name="BackButton" Background="Black" Content="Back" HorizontalAlignment="Stretch" Margin="0" VerticalAlignment="Stretch" Click="BackButton_Click" Grid.ColumnSpan="2" Foreground="White" BorderBrush="White"/>
     </Grid>
 </Page>

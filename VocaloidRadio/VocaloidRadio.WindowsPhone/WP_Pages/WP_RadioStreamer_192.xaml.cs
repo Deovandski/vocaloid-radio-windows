@@ -10,18 +10,16 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Core;
 using Windows.Foundation.Collections;
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
-
 namespace VocaloidRadio.WP_Pages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class WP_RadioStreamer_192 : Page
-    {   
+    {
+        private bool InternetAvailable;
+
         // Constructor
         public WP_RadioStreamer_192()
         {
+
             this.InitializeComponent();
 
             // Source for WebControl || XAML
@@ -33,7 +31,25 @@ namespace VocaloidRadio.WP_Pages
 
             // Back Button controller
             this.NavigationCacheMode = NavigationCacheMode.Required;
-            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+            InternetTest.NavigationCompleted += InternetTest_NavigationCompleted;
+        }
+
+        private void InternetTest_NavigationCompleted(WebView sender, WebViewNavigationCompletedEventArgs args)
+        {
+            if (args.IsSuccess)
+            {
+                InternetAvailable = true;
+
+                networkStatus.Text = "192 Server is On!";
+                networkStatus.Foreground = new SolidColorBrush(Colors.Green);
+                InternetTest.Stop();
+
+            }
+            else
+            {
+                InternetAvailable = false;
+            }
+
         }
 
         // Handles any state change within the Background Process. All code Must follow:
@@ -42,127 +58,172 @@ namespace VocaloidRadio.WP_Pages
         //               await + within clause statement.
         // --
 
+        // Handles When the Background Player State Changes
+
         async void Current_CurrentStateChanged(MediaPlayer sender, object args)
         {
-            switch (sender.CurrentState)
+            await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => networkStatus.Text = "Verifying Internet");
+            await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => networkStatus.Foreground = new SolidColorBrush(Colors.Yellow));
+            await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => InternetTest.Navigate(new Uri("http://curiosity.shoutca.st:8019/stream")));
+
+            if (InternetAvailable == true)
             {
-                case MediaPlayerState.Playing: await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                try
                 {
-                    if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
+                    if (BackgroundMediaPlayer.Current == null) { throw new Exception(); }
+                    switch (sender.CurrentState)
                     {
-                        networkStatus.Text = "Radio is Streaming!";
-                        networkStatus.Foreground = new SolidColorBrush(Colors.Green);
-                        if (BackgroundMediaPlayer.Current.BufferingProgress > 0.5 && BackgroundMediaPlayer.Current.BufferingProgress < 0.8)
+                        case MediaPlayerState.Playing: await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                         {
-                            streamStatus.Text = "50%";
-                            streamStatus.Foreground = new SolidColorBrush(Colors.Yellow);
+                            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
+                            {
+                                networkStatus.Text = "Radio is Streaming!";
+                                networkStatus.Foreground = new SolidColorBrush(Colors.Green);
+                                try
+                                {
+                                    if (BackgroundMediaPlayer.Current.BufferingProgress > 0.5 && BackgroundMediaPlayer.Current.BufferingProgress < 0.8)
+                                    {
+                                        streamStatus.Text = "50%";
+                                        streamStatus.Foreground = new SolidColorBrush(Colors.Yellow);
+                                    }
+                                    if (BackgroundMediaPlayer.Current.BufferingProgress > 0.8)
+                                    {
+                                        streamStatus.Text = "100%";
+                                        streamStatus.Foreground = new SolidColorBrush(Colors.Green);
+                                    }
+                                    if (BackgroundMediaPlayer.Current.BufferingProgress == 0)
+                                    {
+                                        streamStatus.Text = "Buffering Issue...";
+                                        streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
+                                    }
+                                }
+                                catch (Exception)
+                                {
+                                    InternetAvailable = false;
+                                }
+                            }
+                            else
+                            {
+                                networkStatus.Text = "Error Ocurred! (Ref: WP_101)";
+                                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                            }
+
                         }
-                        if (BackgroundMediaPlayer.Current.BufferingProgress > 0.8)
+                            );
+                            break;
+                        case MediaPlayerState.Paused: await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                         {
-                            streamStatus.Text = "100%";
-                            streamStatus.Foreground = new SolidColorBrush(Colors.Green);
+                            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
+                            {
+                                streamStatus.Text = "Radio is Paused";
+                                streamStatus.Foreground = new SolidColorBrush(Colors.DarkGray);
+                            }
+                            else
+                            {
+                                networkStatus.Text = "Error Ocurred! (Ref: WP_102)";
+                                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                            }
                         }
-                        if (BackgroundMediaPlayer.Current.BufferingProgress == 0)
+                            );
+                            break;
+                        case MediaPlayerState.Buffering: await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                         {
-                            streamStatus.Text = "Buffering Issue...";
-                            streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
+                            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
+                            {
+                                networkStatus.Text = "Network detected";
+                                networkStatus.Foreground = new SolidColorBrush(Colors.GreenYellow);
+                                if (BackgroundMediaPlayer.Current.BufferingProgress > 0.5 && BackgroundMediaPlayer.Current.BufferingProgress < 0.8)
+                                {
+                                    streamStatus.Text = "50%";
+                                    streamStatus.Foreground = new SolidColorBrush(Colors.Yellow);
+                                }
+                                if (BackgroundMediaPlayer.Current.BufferingProgress > 0.8)
+                                {
+                                    streamStatus.Text = "100%";
+                                    streamStatus.Foreground = new SolidColorBrush(Colors.Green);
+                                }
+                                if (BackgroundMediaPlayer.Current.BufferingProgress == 0)
+                                {
+                                    streamStatus.Text = "Buffering Issue...";
+                                    streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
+                                }
+                            }
+                            else
+                            {
+                                networkStatus.Text = "Error Ocurred! (Ref: WP_103)";
+                                streamStatus.Text = "...";
+                                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                                streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
+                            }
                         }
+                            );
+                            break;
+                        case MediaPlayerState.Stopped: await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                        {
+                            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
+                            {
+                                streamStatus.Text = "Paused";
+                                streamStatus.Foreground = new SolidColorBrush(Colors.DarkGray);
+                                networkStatus.Text = "Radio is Paused";
+                                networkStatus.Foreground = new SolidColorBrush(Colors.Gray);
+                            }
+                            else
+                            {
+                                networkStatus.Text = "Error Ocurred! (Ref: WP_104)";
+                                streamStatus.Text = "...";
+                                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                                streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
+                            }
+                        }
+                            );
+                            break;
+                        case MediaPlayerState.Opening: await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                        {
+                            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
+                            {
+                                streamStatus.Text = "Waiting for Buffer...";
+                                streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
+                                networkStatus.Text = "Radio is Opening";
+                                networkStatus.Foreground = new SolidColorBrush(Colors.White);
+                            }
+                            else
+                            {
+                                networkStatus.Text = "Error Ocurred! (Ref: WP_105)";
+                                streamStatus.Text = "...";
+                                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                                streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
+                            }
+                        }
+                           );
+                            break;
+                    }
+                }
+                catch (Exception)
+                {
+                    if (BackgroundMediaPlayer.Current == null)
+                    {
+                        networkStatus.Text = "Internal Error!";
+                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                        streamStatus.Text = "(Ref: WP_106)";
+                        streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+
                     }
                     else
                     {
-                        networkStatus.Text = "Error Ocurred! (Ref: WP_101)";
+                        networkStatus.Text = "Error Ocurred! (Ref: WP_107)";
                         networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                    }
-            
-                }
-                    );
-                    break;
-                case MediaPlayerState.Paused: await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
-                    {
-                        streamStatus.Text = "Background Task Awaiting";
-                        streamStatus.Foreground = new SolidColorBrush(Colors.DarkGray);
-                        networkStatus.Text = "Radio is Paused";
-                        networkStatus.Foreground = new SolidColorBrush(Colors.DarkGray);
-                    }
-                    else
-                    {
-                        networkStatus.Text = "Error Ocurred! (Ref: WP_102)";
-                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                        streamStatus.Text = "...";
+                        streamStatus.Foreground = new SolidColorBrush(Colors.Red);
                     }
                 }
-                    );
-                    break;
-                case MediaPlayerState.Buffering: await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
-                    {
-                        networkStatus.Text = "Radio is Streaming!";
-                        networkStatus.Foreground = new SolidColorBrush(Colors.Green);
-                        if (BackgroundMediaPlayer.Current.BufferingProgress > 0.5 && BackgroundMediaPlayer.Current.BufferingProgress < 0.8)
-                        {
-                            streamStatus.Text = "50%";
-                            streamStatus.Foreground = new SolidColorBrush(Colors.Yellow);
-                        }
-                        if (BackgroundMediaPlayer.Current.BufferingProgress > 0.8)
-                        {
-                            streamStatus.Text = "100%";
-                            streamStatus.Foreground = new SolidColorBrush(Colors.Green);
-                        }
-                        if (BackgroundMediaPlayer.Current.BufferingProgress == 0)
-                        {
-                            streamStatus.Text = "Buffering Issue...";
-                            streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
-                        }
-                    }
-                    else
-                    {
-                        networkStatus.Text = "Error Ocurred! (Ref: WP_103)";
-                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                    }
-                }
-                    );
-                    break;
-                case MediaPlayerState.Stopped: await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
-                    {
-                        streamStatus.Text = "Paused";
-                        streamStatus.Foreground = new SolidColorBrush(Colors.DarkGray);
-                        networkStatus.Text = "Radio is Paused";
-                        networkStatus.Foreground = new SolidColorBrush(Colors.Gray);
-                    }
-                    else
-                    {
-                        networkStatus.Text = "Error Ocurred! (Ref: WP_104)";
-                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                    }
-                }
-                    );
-                    break;
-                case MediaPlayerState.Opening: await this.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
-                    {
-                        streamStatus.Text = "Waiting for Buffer...";
-                        streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
-                        networkStatus.Text = "Radio is Opening";
-                        networkStatus.Foreground = new SolidColorBrush(Colors.White);
-                    }
-                    else
-                    {
-                        networkStatus.Text = "Error Ocurred! (Ref: WP_105)";
-                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                    }
-                }
-                   );
-                    break;
+            }
+            else // If Internet Is Not Available
+            {
+                // Threading not available
             }
         }
 
         #region XAML_CodeControl
-
 
         // Stops all audio streaming
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -170,77 +231,89 @@ namespace VocaloidRadio.WP_Pages
             try
             {
                 BackgroundMediaPlayer.Current.Pause();
-                streamStatus.Text = "100% Complete";
+                streamStatus.Text = "Radio is Off. Press Play!";
                 streamStatus.Foreground = new SolidColorBrush(Colors.Gray);
+                networkStatus.Text = "...";
+                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
             }
             catch (Exception)
             {
-                networkStatus.Text = "Fatal Error... Please restart the App. (Ref: WP_2)";
+                networkStatus.Text = "Fatal Error... (Ref: WP_2)";
                 networkStatus.Foreground = new SolidColorBrush(Colors.Red);
             }
         }
 
-        // Method for activating Radio and Disabling IdleDetectionMode.
+        // Method for activating Radio
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            networkStatus.Text = "Verifying Internet";
+            networkStatus.Foreground = new SolidColorBrush(Colors.Yellow);
+            InternetTest.Navigate(new Uri("http://curiosity.shoutca.st:8019/stream"));
 
-            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
+            if (InternetAvailable == true)
             {
-                streamStatus.Text = "Please Wait for Radio Setup. 10% Complete";
-                streamStatus.Foreground = new SolidColorBrush(Colors.Gray);
-                networkStatus.Text = "Network is Available";
-                networkStatus.Foreground = new SolidColorBrush(Colors.Green);
-                try
+                if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
                 {
-                    streamStatus.Text = "Please Wait for Radio Setup. 30% Complete";
-
-                    if (MediaPlayerState.Playing != BackgroundMediaPlayer.Current.CurrentState)
+                    streamStatus.Text = "Please Wait for Radio Setup. 10% Complete";
+                    streamStatus.Foreground = new SolidColorBrush(Colors.Gray);
+                    networkStatus.Text = "...";
+                    networkStatus.Foreground = new SolidColorBrush(Colors.Green);
+                    try
                     {
-                        BackgroundAudioTask.MyBackgroundAudioTask backgroundAccess = new BackgroundAudioTask.MyBackgroundAudioTask();
-                        streamStatus.Text = "Please Wait for Radio Setup. 35% Complete";
-                        var message = new ValueSet();
-                        streamStatus.Text = "Please Wait for Radio Setup. 45% Complete";
-                        ApplicationSettingsHelper.SaveSettingsValue(Constants.CurrentTrack, "192");
-                        streamStatus.Text = "Please Wait for Radio Setup. 55% Complete";
-                        message.Add(Constants.StartPlayback, "0");
-                        streamStatus.Text = "Please Wait for Radio Setup. 75% Complete";
-                        BackgroundMediaPlayer.SendMessageToBackground(message);
-                    }
+                        streamStatus.Text = "Please Wait for Radio Setup. 30% Complete";
 
-                    streamStatus.Text = "100% Complete";
+                        if (MediaPlayerState.Playing != BackgroundMediaPlayer.Current.CurrentState)
+                        {
+                            BackgroundAudioTask.MyBackgroundAudioTask backgroundAccess = new BackgroundAudioTask.MyBackgroundAudioTask();
+                            streamStatus.Text = "Please Wait for Radio Setup. 35% Complete";
+                            var message = new ValueSet();
+                            streamStatus.Text = "Please Wait for Radio Setup. 45% Complete";
+                            ApplicationSettingsHelper.SaveSettingsValue(Constants.CurrentTrack, "192");
+                            streamStatus.Text = "Please Wait for Radio Setup. 55% Complete";
+                            message.Add(Constants.StartPlayback, "0");
+                            streamStatus.Text = "Please Wait for Radio Setup. 75% Complete";
+                            BackgroundMediaPlayer.SendMessageToBackground(message);
+                        }
+
+                        streamStatus.Text = "...";
+                    }
+                    catch (Exception)
+                    {
+                        networkStatus.Text = "Stream/BackgroundAudio Error";
+                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                        if (MediaPlayerState.Playing == BackgroundMediaPlayer.Current.CurrentState)
+                        {
+                            streamStatus.Text = "(Ref: WP_3)";
+                        }
+                        else
+                        {
+                            try
+                            {
+                                BackgroundMediaPlayer.Current.Play();
+                            }
+                            catch (Exception) { }
+                        }
+                    }
                 }
-                catch (Exception)
+                else
                 {
-                    networkStatus.Text = "Stream/BackgroundAudio Error";
-                    networkStatus.Foreground = new SolidColorBrush(Colors.Red);
-                    if (MediaPlayerState.Playing == BackgroundMediaPlayer.Current.CurrentState)
-                    {
-                        streamStatus.Text = "Somwthing Wrong Happened... (Ref: WP_3)";
-                    }
-                    else
-                    {
-                        BackgroundMediaPlayer.Current.Play();
-                    }
+                    networkStatus.Text = "Not Connected to any Network!";
+                    networkStatus.Foreground = new SolidColorBrush(Colors.Yellow);
+                    streamStatus.Text = "Radio is Off";
+                    streamStatus.Foreground = new SolidColorBrush(Colors.Red);
                 }
+
             }
-            else
+            else // If Internet Is Not Available
             {
-                networkStatus.Text = "No Connection";
-                networkStatus.Foreground = new SolidColorBrush(Colors.Yellow);
-                streamStatus.Text = "Radio is Off";
+                networkStatus.Text = "Could not connect to Stream...";
+                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                streamStatus.Text = "Check your Connection! (Ref: WP_4)";
                 streamStatus.Foreground = new SolidColorBrush(Colors.Red);
-            }
 
+            }
         }
         #endregion
-
-        // Invoked when this page is about to be displayed in a Frame.
-        // Event data that describes how this page was reached.
-        // This parameter is typically used to configure the page.</param>
-        protected override void OnNavigatedFrom(NavigationEventArgs e)
-        {
-            Windows.Phone.UI.Input.HardwareButtons.BackPressed += HardwareButtons_BackPressed;
-        }
 
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
@@ -249,20 +322,167 @@ namespace VocaloidRadio.WP_Pages
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            networkStatus.Text = "Verifying Internet";
+            networkStatus.Foreground = new SolidColorBrush(Colors.Yellow);
+            InternetTest.Navigate(new Uri("http://curiosity.shoutca.st:8019/stream"));
+
+            if (InternetAvailable == true)
+            {
+                try
+                {
+                    if (BackgroundMediaPlayer.Current == null) { throw new Exception(); }
+                    switch (BackgroundMediaPlayer.Current.CurrentState)
+                    {
+                        case MediaPlayerState.Playing:
+                        {
+                            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
+                            {
+                                networkStatus.Text = "Radio is Streaming!";
+                                networkStatus.Foreground = new SolidColorBrush(Colors.Green);
+                                try
+                                {
+                                    if (BackgroundMediaPlayer.Current.BufferingProgress > 0.5 && BackgroundMediaPlayer.Current.BufferingProgress < 0.8)
+                                    {
+                                        streamStatus.Text = "50%";
+                                        streamStatus.Foreground = new SolidColorBrush(Colors.Yellow);
+                                    }
+                                    if (BackgroundMediaPlayer.Current.BufferingProgress > 0.8)
+                                    {
+                                        streamStatus.Text = "100%";
+                                        streamStatus.Foreground = new SolidColorBrush(Colors.Green);
+                                    }
+                                    if (BackgroundMediaPlayer.Current.BufferingProgress == 0)
+                                    {
+                                        streamStatus.Text = "Buffering Issue...";
+                                        streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
+                                    }
+                                }
+                                catch (Exception)
+                                {
+                                    InternetAvailable = false;
+                                }
+                            }
+                            else
+                            {
+                                networkStatus.Text = "Error Ocurred! (Ref: WP_101)";
+                                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                            }
+
+                        }
+                            break;
+                        case MediaPlayerState.Paused:
+                        {
+                            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
+                            {
+                                streamStatus.Text = "Radio is Paused";
+                                streamStatus.Foreground = new SolidColorBrush(Colors.DarkGray);
+                            }
+                            else
+                            {
+                                networkStatus.Text = "Error Ocurred! (Ref: WP_102)";
+                                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                            }
+                        }
+                            break;
+                        case MediaPlayerState.Buffering:
+                        {
+                            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
+                            {
+                                networkStatus.Text = "Network detected";
+                                networkStatus.Foreground = new SolidColorBrush(Colors.GreenYellow);
+                                if (BackgroundMediaPlayer.Current.BufferingProgress > 0.5 && BackgroundMediaPlayer.Current.BufferingProgress < 0.8)
+                                {
+                                    streamStatus.Text = "50%";
+                                    streamStatus.Foreground = new SolidColorBrush(Colors.Yellow);
+                                }
+                                if (BackgroundMediaPlayer.Current.BufferingProgress > 0.8)
+                                {
+                                    streamStatus.Text = "100%";
+                                    streamStatus.Foreground = new SolidColorBrush(Colors.Green);
+                                }
+                                if (BackgroundMediaPlayer.Current.BufferingProgress == 0)
+                                {
+                                    streamStatus.Text = "Buffering Issue...";
+                                    streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
+                                }
+                            }
+                            else
+                            {
+                                networkStatus.Text = "Error Ocurred! (Ref: WP_103)";
+                                streamStatus.Text = "...";
+                                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                                streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
+                            }
+                        }
+                            break;
+                        case MediaPlayerState.Stopped:
+                        {
+                            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
+                            {
+                                streamStatus.Text = "Paused";
+                                streamStatus.Foreground = new SolidColorBrush(Colors.DarkGray);
+                                networkStatus.Text = "Radio is Paused";
+                                networkStatus.Foreground = new SolidColorBrush(Colors.Gray);
+                            }
+                            else
+                            {
+                                networkStatus.Text = "Error Ocurred! (Ref: WP_104)";
+                                streamStatus.Text = "...";
+                                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                                streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
+                            }
+                        }
+                            break;
+                        case MediaPlayerState.Opening:
+                        {
+                            if (System.Net.NetworkInformation.NetworkInterface.GetIsNetworkAvailable() == true)
+                            {
+                                streamStatus.Text = "Waiting for Buffer...";
+                                streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
+                                networkStatus.Text = "Radio is Opening";
+                                networkStatus.Foreground = new SolidColorBrush(Colors.White);
+                            }
+                            else
+                            {
+                                networkStatus.Text = "Error Ocurred! (Ref: WP_105)";
+                                streamStatus.Text = "...";
+                                networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                                streamStatus.Foreground = new SolidColorBrush(Colors.YellowGreen);
+                            }
+                        }
+                            break;
+                    }
+                }
+                catch (Exception)
+                {
+                    if (BackgroundMediaPlayer.Current == null)
+                    {
+                        networkStatus.Text = "Internal Error!";
+                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                        streamStatus.Text = "(Ref: WP_106)";
+                        streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+
+                    }
+                    else
+                    {
+                        networkStatus.Text = "Error Ocurred! (Ref: WP_107)";
+                        networkStatus.Foreground = new SolidColorBrush(Colors.Red);
+                        streamStatus.Text = "...";
+                        streamStatus.Foreground = new SolidColorBrush(Colors.Red);
+                    }
+                }
+            }
+            else // If Internet Is Not Available
+            {
+                // Threading not available
+            }
+            
         }
 
-        // Back Button Event Handler
-        void HardwareButtons_BackPressed(object sender, Windows.Phone.UI.Input.BackPressedEventArgs e)
-        {
-            e.Handled = true;
-            Windows.Phone.UI.Input.HardwareButtons.BackPressed -= HardwareButtons_BackPressed;
-            // Go Back to Radio Selection
-            Frame.Navigate(typeof(WP_Pages.WP_RadioStreamer_Selection));
-        }
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(WP_RadioStreamer_Selection));
         }
-       
+
     }
 }

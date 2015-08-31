@@ -71,7 +71,7 @@
 
             <!--Left Column SubGrid Row 1 -->
             <TextBlock x:Name="currentPage" Grid.Column="0" Grid.Row="1" FontSize="45" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Vocaloid Radio" VerticalAlignment="Top" Width="663" Foreground="{StaticResource CustomApplicationTextBrush}" TextAlignment="Center" Height="60"/>
-            <WebView x:Name="MenuWebView" Grid.Row="2" Margin="0,0,0,0"/>
+            <WebView x:Name="MenuWebView" Grid.Row="2" Margin="0,0,0,0" UnviewableContentIdentified="MenuWebView_UnviewableContentIdentified"/>
 
         </Grid>
 
@@ -131,6 +131,7 @@
             <!--Upper Right Main Column-->
             <Image Grid.Row="0" Height="230" Width="1346" Source="ms-appx:///Images/10364326_761930030517904_307840656_n.jpg" Grid.ColumnSpan="2"/>
         </Grid>
+        <WebView x:Uid="InternetTest" x:Name="InternetTest" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="10" Visibility="Collapsed" NavigationCompleted="InternetTest_NavigationCompleted" NavigationStarting="InternetTest_NavigationStarting"/>
         <MediaElement x:Name="mediaplayer" x:FieldModifier="Public" Visibility="Collapsed" AudioCategory="BackgroundCapableMedia" AutoPlay="False" Source="http://curiosity.shoutca.st:8019/stream" AreTransportControlsEnabled="True" CurrentStateChanged="mediaplayer_CurrentStateChanged" />
         <UI:AdControl ApplicationId="8a003930-0fab-44e3-bdc0-c9d9b3f914cd" AdUnitId="10801352" HorizontalAlignment="Left" Height="108" Margin="10,660,0,0" VerticalAlignment="Top" Width="663"/>
     </Grid>

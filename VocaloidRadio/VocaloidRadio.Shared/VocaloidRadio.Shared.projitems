@@ -17,6 +17,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)HTML code\BlankPage.html" />
     <Content Include="$(MSBuildThisFileDirectory)HTML code\PreviousSongs_Larger.html" />
     <Content Include="$(MSBuildThisFileDirectory)HTML code\PreviousSongs.html" />
     <Content Include="$(MSBuildThisFileDirectory)HTML code\SongInformation.html" />
