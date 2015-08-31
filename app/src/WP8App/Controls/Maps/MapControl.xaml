@@ -1,0 +1,129 @@
+<UserControl 
+    x:Name="MapUserControl"
+    x:Class="WPAppStudio.Controls.Maps.MapControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:maps="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps"
+    xmlns:mapstoolkit="clr-namespace:Microsoft.Phone.Maps.Toolkit;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:controls="clr-namespace:WPAppStudio.Controls.Maps"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    <UserControl.Resources>
+    	<Style x:Key="PitchSliderStyle" TargetType="Slider">
+    		<Setter Property="Template">
+    			<Setter.Value>
+    				<ControlTemplate TargetType="Slider">
+    					<Grid Background="Transparent">
+    						<Grid x:Name="VerticalTemplate" Margin="{StaticResource PhoneVerticalMargin}">
+    							<Rectangle x:Name="VerticalTrack" Stroke="White" Fill="{TemplateBinding Background}" IsHitTestVisible="False" Margin="18,0,18,0" Width="12"/>
+                                <Rectangle x:Name="VerticalFill" Fill="{TemplateBinding Foreground}" IsHitTestVisible="False" Margin="18,0,18,0" Width="12">
+    								<Rectangle.Clip>
+    									<RectangleGeometry Rect="0, 0, 12, 6"/>
+    								</Rectangle.Clip>
+    							</Rectangle>
+                                <Rectangle x:Name="VerticalCenterElement" Stroke="Black" Fill="{StaticResource PhoneForegroundBrush}" Height="12" Margin="12,0,12,0" VerticalAlignment="Top" Width="24">
+    								<Rectangle.RenderTransform>
+    									<TranslateTransform/>
+    								</Rectangle.RenderTransform>
+    							</Rectangle>
+    						</Grid>
+    					</Grid>
+    				</ControlTemplate>
+    			</Setter.Value>
+    		</Setter>
+    	</Style>
+        <Style x:Key="PushPinImageStyle" TargetType="Image">
+            <Setter Property="Width" Value="60"></Setter>
+            <Setter Property="Height" Value="60"></Setter>
+            <Setter Property="VerticalAlignment" Value="Top"></Setter>
+        </Style>
+        <Style x:Key="DescriptionContainerStyle" TargetType="Grid">
+            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="Width" Value="120"></Setter>
+            <Setter Property="Height" Value="60"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+            <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+            <Setter Property="Visibility" Value="Collapsed"></Setter>
+        </Style>
+        <Style x:Key="DescriptionBlockStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"></Setter>
+            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+            <Setter Property="TextTrimming" Value="WordEllipsis"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <Canvas>
+        <maps:Map x:Name="Map" 
+									  Height="520"
+									  Width="440"
+									  HorizontalAlignment="Center"
+                                      ZoomLevel="{Binding ElementName=MapUserControl, Path=Zoom, Mode=TwoWay}"
+                                      CartographicMode="{Binding ElementName=MapUserControl, Path=SelectedMode.CartographicMode, Mode=TwoWay}"
+									  Pitch="{Binding ElementName=MapUserControl, Path=Pitch, Mode=TwoWay}"
+                                      controls:MapPushPinDependency.ItemsSource="{Binding ElementName=MapUserControl, Path=PushPins}"
+									  LandmarksEnabled="True">
+            <mapstoolkit:MapExtensions.Children>
+                <mapstoolkit:MapItemsControl Name="StoresMapItemsControl">
+                    <mapstoolkit:MapItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <mapstoolkit:Pushpin x:Name="PushPins" GeoCoordinate="{Binding Coordinate}" Visibility="Visible">
+                                <mapstoolkit:Pushpin.Template>
+                                    <ControlTemplate>
+                                        <controls:PushPinTemplateSelector Content="{Binding }">
+                                            <controls:PushPinTemplateSelector.LabelDescription>
+                                                <DataTemplate>
+                                                    <mapstoolkit:Pushpin>
+                                                        <StackPanel Tag="{Binding }" Tap="PushPin_OnTap">
+                                                            <TextBlock Text="{Binding Label}"></TextBlock>
+                                                            <Grid x:Name="DescriptionContainer" Style="{StaticResource DescriptionContainerStyle}">
+                                                                <TextBlock Text="{Binding Description}" Padding="1,1,1,1" Style="{StaticResource DescriptionBlockStyle}"></TextBlock>
+                                                            </Grid>
+                                                        </StackPanel>
+                                                    </mapstoolkit:Pushpin>
+                                                </DataTemplate>
+                                            </controls:PushPinTemplateSelector.LabelDescription>
+                                            <controls:PushPinTemplateSelector.ImageDescription>
+                                                <DataTemplate>
+                                                    <mapstoolkit:Pushpin>
+                                                        <StackPanel Tag="{Binding }" Tap="PushPin_OnTap" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White" Orientation="Horizontal">
+                                                            <Image Source="{Binding Image}" Style="{StaticResource PushPinImageStyle}" />
+                                                            <Grid x:Name="DescriptionContainer" Style="{StaticResource DescriptionContainerStyle}">
+                                                                <TextBlock Text="{Binding Description}" Padding="3,1,3,1" Style="{StaticResource DescriptionBlockStyle}"></TextBlock>
+                                                            </Grid>
+                                                        </StackPanel>
+                                                    </mapstoolkit:Pushpin>
+                                                </DataTemplate>
+                                            </controls:PushPinTemplateSelector.ImageDescription>
+                                            <controls:PushPinTemplateSelector.ImageLabel>
+                                                <DataTemplate>
+                                                    <mapstoolkit:Pushpin>
+                                                        <StackPanel Tag="{Binding }" Tap="PushPin_OnTap" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White" Orientation="Horizontal">
+                                                            <Image Source="{Binding Image}" Style="{StaticResource PushPinImageStyle}" />
+                                                            <Grid x:Name="DescriptionContainer" Style="{StaticResource DescriptionContainerStyle}">
+                                                                <TextBlock Text="{Binding Label}" Padding="3,1,3,1" Style="{StaticResource DescriptionBlockStyle}"></TextBlock>
+                                                            </Grid>
+                                                        </StackPanel>
+                                                    </mapstoolkit:Pushpin>
+                                                </DataTemplate>
+                                            </controls:PushPinTemplateSelector.ImageLabel>
+                                        </controls:PushPinTemplateSelector>
+                                    </ControlTemplate>
+                                </mapstoolkit:Pushpin.Template>
+                            </mapstoolkit:Pushpin>
+                        </DataTemplate>
+                    </mapstoolkit:MapItemsControl.ItemTemplate>
+                </mapstoolkit:MapItemsControl>
+                <mapstoolkit:UserLocationMarker x:Name="UserLocationMarker" GeoCoordinate="{Binding ElementName=MapUserControl, Path=UserLocation}" />
+            </mapstoolkit:MapExtensions.Children>
+        </maps:Map>
+        <Slider x:Name="PitchLevel" Canvas.ZIndex="99" Height="480" Minimum ="0" Maximum="75" Value="{Binding ElementName=MapUserControl, Path=Pitch, Mode=TwoWay}" Orientation="Vertical" VerticalContentAlignment="Stretch" Margin="0,20" Style="{StaticResource PitchSliderStyle}" />
+        <toolkit:ListPicker x:Name="CoordinateModeSelector" Canvas.ZIndex="99" Canvas.Left="300" ItemsSource="{Binding ElementName=MapUserControl, Path=Modes}" SelectedItem="{Binding ElementName=MapUserControl, Path=SelectedMode, Mode=TwoWay}" 
+												 ExpansionMode="FullScreenOnly" FullModeItemTemplate="{StaticResource MapModeListPickerItemTemplate}" 
+												 DisplayMemberPath="Name" Background="LightGray" BorderBrush="Black" Foreground="Black" Width="100"/>
+    </Canvas>
+</UserControl>
