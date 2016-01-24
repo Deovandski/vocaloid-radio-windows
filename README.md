@@ -1,7 +1,7 @@
-## Vocaloid Radio Universal Windows App Source Code
+## Vocaloid Radio UWMP App Source Code
 ![](/Documents/VocaloidRadioLogo.jpg)
 
-Github releases will be used starting with version 4.3 and Release 4, for all previous versions please refer to the commits.
+UWP Branch. Under Development.
 
 For EULA and related information, please visit the [Development Blog](http://www.vocaloidradioapp.blogspot.com/)
 
@@ -14,7 +14,7 @@ For EULA and related information, please visit the [Development Blog](http://www
 
 ### Notice
 
-For source codes other than the ones for Windows Phone and Windows 8.1, please refer to the [Windows Phone 8 branch](https://github.com/Deovandski/Vocaloid_Radio_Windows/tree/WindowsPhone8) or the deprecated [AppStudio branch](https://github.com/Deovandski/Vocaloid_Radio_Windows/tree/AppStudio).
+For stable releases, check [Master Branch](https://github.com/Deovandski/Vocaloid_Radio_Windows) For source codes other than the ones for Windows Phone and Windows 8.1, please refer to the [Windows Phone 8 branch](https://github.com/Deovandski/Vocaloid_Radio_Windows/tree/WindowsPhone8) or the deprecated [AppStudio branch](https://github.com/Deovandski/Vocaloid_Radio_Windows/tree/AppStudio).
 
 ### Requirements
 
@@ -31,6 +31,7 @@ For source codes other than the ones for Windows Phone and Windows 8.1, please r
 ### License
 [The MIT License (MIT)](Documents/LICENSE.md)
 
-Source Code Copyright (c) 2013 - 2015, Deovandski Skibinski Junior
+Source Code Copyright (c) 2013 - 2016, Deovandski Skibinski Junior
+Source Code Copyright (c) 2016, // TODO
 
 All rights reserved to their respective owners.
