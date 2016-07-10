@@ -9,8 +9,7 @@ For EULA and related information, please visit the [Development Blog](http://www
 
 ### Store Links
 
-[![](/Documents/WP8_Store.png)](http://www.windowsphone.com/en-us/store/app/vocaloid-radio/7542806a-2671-475a-b611-6b91bd45404a)
-[![](/Documents/W_Store.png)](http://apps.microsoft.com/windows/en-us/app/vocaloid-radio/b0670e01-8caf-489e-823b-ba56ce7a2c80)
+No longer available on Windows Store.
 
 ### Notice
 
